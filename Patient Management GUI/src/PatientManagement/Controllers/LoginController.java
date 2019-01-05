@@ -5,7 +5,7 @@
  */
 package PatientManagement.Controllers;
 
-import PatientManagement.GuiViews.LoginView;
+import PatientManagement.GuiViews.*;
 import PatientManagement.Model.Accounts.LoginSystemSingleton;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -38,7 +38,29 @@ public class LoginController {
             
             if (result)
             {
-                view.setLblResult("Success!");
+                javax.swing.JFrame newView = null;
+                switch (model.getAccountType())
+                {
+                    case DOCTOR:
+                        newView = new DoctorMenuView();
+                        break;
+                    case SECRETARY:
+                        newView = new SecretaryMenuView();
+                        break;
+                    case ADMINISTRATOR:
+                        newView = new AdministratorMenuView();
+                        break;
+                    case PATIENT:
+                        newView = new PatientMenuView();
+                        break;
+                }
+                
+                if (newView != null)
+                {
+                    view.setVisible(false);
+                    newView.setLocation(view.getLocation());
+                    newView.setVisible(true);
+                }
             }
             else
             {

@@ -18,7 +18,7 @@ public class Patient extends Account
     
     public Patient(String name, String surname, String address, String idNumber, int age, Gender gender)
     {
-        super(name, surname, address, idNumber);
+        super(name, surname, address, idNumber,LoginSystemSingleton.AccountType.PATIENT);
         
         this.age = age;
         this.gender = gender;

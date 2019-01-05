@@ -38,6 +38,18 @@ public class LoginSystemSingleton {
         
     public boolean LogIn(String idNumber, String password)
     {
+        AccountListSingleton accountList = AccountListSingleton.getInstance();
+        accountType = accountList.ValidatieLoginInfo(idNumber, password);
+        
+        boolean correctInfo = false;
+        
+        if (accountType != null)
+        {
+            correctInfo = true;
+        }
+        
+        //return correctInfo;
+        accountType = AccountType.PATIENT;
         return true;
     }
     

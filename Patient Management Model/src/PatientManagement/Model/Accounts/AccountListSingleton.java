@@ -5,6 +5,7 @@
  */
 package PatientManagement.Model.Accounts;
 
+import PatientManagement.Model.Accounts.LoginSystemSingleton.AccountType;
 import java.util.ArrayList;
 
 /**
@@ -53,8 +54,22 @@ public class AccountListSingleton {
         }
     }
     
-    public boolean ValidatieLoginInfo(String idNumber, String password)
+    public AccountType ValidatieLoginInfo(String idNumber, String password)
     {
-        return false;
+        AccountType result = null;
+        
+        for (Account account : accountList)
+        {
+            if (account.getIdNumber() == idNumber)
+            {
+                if (account.getPassword() == password)
+                {
+                    result = account.getAccountType();
+                    break;
+                }
+            }
+        }
+        
+        return result;
     }
 }

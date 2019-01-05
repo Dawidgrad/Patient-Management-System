@@ -13,7 +13,7 @@ public class Administrator extends Account
 {
     public Administrator(String name, String surname, String address, String idNumber)
     {
-        super(name, surname, address, idNumber);
+        super(name, surname, address, idNumber, LoginSystemSingleton.AccountType.ADMINISTRATOR);
     }
     
     public void CreateNewAccount(String type, String name, String surname, String address, String idNumber)

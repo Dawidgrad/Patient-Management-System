@@ -5,6 +5,8 @@
  */
 package PatientManagement.Model.Accounts;
 
+import PatientManagement.Model.Accounts.LoginSystemSingleton.AccountType;
+
 /**
  *
  * @author Davio
@@ -13,6 +15,6 @@ public class Secretary extends Account
 {
     public Secretary(String name, String surname, String address, String idNumber)
     {
-        super(name, surname, address, idNumber);
+        super(name, surname, address, idNumber, AccountType.SECRETARY);
     }
 }

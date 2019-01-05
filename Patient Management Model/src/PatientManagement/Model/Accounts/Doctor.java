@@ -13,6 +13,6 @@ public class Doctor extends Account
 {
     public Doctor(String name, String surname, String address, String idNumber)
     {
-        super(name, surname, address, idNumber);
+        super(name, surname, address, idNumber, LoginSystemSingleton.AccountType.DOCTOR);
     }
 }

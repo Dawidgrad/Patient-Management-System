@@ -5,6 +5,8 @@
  */
 package PatientManagement.Model.Accounts;
 
+import PatientManagement.Model.Accounts.LoginSystemSingleton.AccountType;
+
 /**
  *
  * @author Davio
@@ -15,6 +17,7 @@ public abstract class Account {
     private String address;
     private String idNumber;
     private String password;
+    private AccountType accountType;
 
     public String getName() {
         return name;
@@ -51,12 +54,17 @@ public abstract class Account {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public AccountType getAccountType() {
+        return accountType;
+    }
     
-    public Account(String name, String surname, String address, String idNumber)
+    public Account(String name, String surname, String address, String idNumber, AccountType type)
     {
         this.name = name;
         this.surname = surname;
         this.address = address;
         this.idNumber = idNumber;
+        this.accountType = type;
     }
 }
