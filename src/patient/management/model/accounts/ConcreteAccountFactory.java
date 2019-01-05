@@ -12,20 +12,20 @@ package patient.management.model.accounts;
 public class ConcreteAccountFactory extends AccountFactory
 {
     @Override
-    public Account CreateAccount(String type)
+    public Account CreateAccount(String type, String name, String surname, String address, String idNumber)
     {
         Account newAccount;
         
         switch (type)
         {
             case "Doctor":
-                newAccount = new Doctor();
+                newAccount = new Doctor(name, surname, address, idNumber);
                 break;
             case "Secretary":
-                newAccount = new Secretary();
+                newAccount = new Secretary(name, surname, address, idNumber);
                 break;
             case "Administrator":
-                newAccount = new Administrator();
+                newAccount = new Administrator(name, surname, address, idNumber);
                 break;
             default:
                 newAccount = null;

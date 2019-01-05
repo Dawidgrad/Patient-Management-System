@@ -11,4 +11,8 @@ package patient.management.model.accounts;
  */
 public class Secretary extends Account
 {
+    public Secretary(String name, String surname, String address, String idNumber)
+    {
+        super(name, surname, address, idNumber);
+    }
 }

@@ -11,4 +11,8 @@ package patient.management.model.accounts;
  */
 public class Doctor extends Account 
 {
+    public Doctor(String name, String surname, String address, String idNumber)
+    {
+        super(name, surname, address, idNumber);
+    }
 }

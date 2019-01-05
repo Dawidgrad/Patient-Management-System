@@ -34,4 +34,22 @@ public class AccountListSingleton {
     {
         accountList.add(newAccount);
     }
+    
+    public void RemoveAccount(String idNumber)
+    {
+        Account accountToRemove = null;
+        
+        for (Account account : accountList)
+        {
+            if (account.getIdNumber().equals(idNumber))
+            {
+                accountToRemove = account;
+            } 
+        }
+        
+        if (accountToRemove != null)
+        {
+            accountList.remove(accountToRemove);
+        }
+    }
 }

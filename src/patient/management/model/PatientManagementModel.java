@@ -18,14 +18,24 @@ public class PatientManagementModel {
      */
     public static void main(String[] args) {
         boolean nextLoop;
-        Administrator admin = new Administrator();
+        Administrator admin = new Administrator("admin", "admin", "51 Admin Road", "A0000");
         Scanner scanner = new Scanner(System.in);
         do
         {
             System.out.println("List of available accounts: Doctor Administrator Secretary");
-            System.out.println("Enter the name of the account you want to create: ");
+            System.out.println("Enter the type of the account you want to create: ");
             String type = scanner.nextLine();
-            admin.CreateNewAccount(type);
+            
+            System.out.println("Enter the name: ");
+            String name = scanner.nextLine();
+            System.out.println("Enter the surname: ");
+            String surname = scanner.nextLine();
+            System.out.println("Enter the address: ");
+            String address = scanner.nextLine();
+            System.out.println("Enter the idNumber: ");
+            String idNumber = scanner.nextLine();
+            
+            admin.CreateNewAccount(type, name, surname, address, idNumber);
             
             System.out.println("Do you want to create another account? Answer \"Yes\" or \"No\"");
             String loopAnswer = scanner.nextLine();
@@ -45,10 +55,10 @@ public class PatientManagementModel {
             }
             
         } while(nextLoop == true);
+       
+        admin.RemoveAccount("D007");
         
         System.out.println("Program finishes...");
-        
-        AccountListSingleton x = AccountListSingleton.getInstance();
     }
     
 }

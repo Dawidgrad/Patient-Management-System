@@ -11,5 +11,5 @@ package patient.management.model.accounts;
  */
 public abstract class AccountFactory 
 {
-    public abstract Account CreateAccount(String type);
+    public abstract Account CreateAccount(String type, String name, String surname, String address, String idNumber);
 }
