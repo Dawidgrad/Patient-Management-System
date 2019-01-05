@@ -52,4 +52,9 @@ public class AccountListSingleton {
             accountList.remove(accountToRemove);
         }
     }
+    
+    public boolean ValidatieLoginInfo(String idNumber, String password)
+    {
+        return false;
+    }
 }

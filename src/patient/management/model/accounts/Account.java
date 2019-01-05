@@ -11,6 +11,10 @@ package patient.management.model.accounts;
  */
 public abstract class Account {
     private String name;
+    private String surname;
+    private String address;
+    private String idNumber;
+    private String password;
 
     public String getName() {
         return name;
@@ -39,13 +43,14 @@ public abstract class Account {
     public String getIdNumber() {
         return idNumber;
     }
-
-    public void setIdNumber(String idNumber) {
-        this.idNumber = idNumber;
+    
+    public String getPassword() {
+        return password;
     }
-    private String surname;
-    private String address;
-    private String idNumber;
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
     
     public Account(String name, String surname, String address, String idNumber)
     {
