@@ -5,6 +5,9 @@
  */
 package PatientManagement.GuiViews;
 
+import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Davio
@@ -17,6 +20,25 @@ public class AdministratorMenuView extends javax.swing.JFrame {
     public AdministratorMenuView() {
         initComponents();
     }
+    
+        
+    public void addAccountListener(ActionListener listenForAccountButton)
+    {
+        btnAccountsManagement.addActionListener(listenForAccountButton);
+    }
+    
+    public void addDoctorListListener(ActionListener listenForDoctorListButton)
+    {
+        btnDoctorsList.addActionListener(listenForDoctorListButton);
+    }
+    
+    public void displayErrorMessage(String errorMessage)
+    {
+        JOptionPane.showMessageDialog(this, errorMessage);
+    }
+    
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -103,6 +125,8 @@ public class AdministratorMenuView extends javax.swing.JFrame {
             }
         });
     }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAccountsManagement;

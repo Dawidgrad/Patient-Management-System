@@ -5,6 +5,8 @@
  */
 package PatientManagement.GuiViews;
 
+import java.awt.event.ActionListener;
+
 /**
  *
  * @author Davio
@@ -16,6 +18,21 @@ public class PatientMenuView extends javax.swing.JFrame {
      */
     public PatientMenuView() {
         initComponents();
+    }
+    
+    public void addAccountSettingsListener(ActionListener listenForAccountSettingsButton)
+    {
+        btnAccountSettings.addActionListener(listenForAccountSettingsButton);
+    }
+    
+    public void addBrowseDoctorsListener(ActionListener listenForBrowseDoctorsButton)
+    {
+        btnBrowseDoctors.addActionListener(listenForBrowseDoctorsButton);
+    }
+    
+    public void addAppointmentsListener(ActionListener listenForAppointmentsButton)
+    {
+        btnAppointments.addActionListener(listenForAppointmentsButton);
     }
 
     /**

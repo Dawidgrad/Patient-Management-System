@@ -5,6 +5,8 @@
  */
 package PatientManagement.GuiViews;
 
+import java.awt.event.ActionListener;
+
 /**
  *
  * @author Davio
@@ -17,6 +19,22 @@ public class SecretaryMenuView extends javax.swing.JFrame {
     public SecretaryMenuView() {
         initComponents();
     }
+    
+    public void addPatientAccountsListener(ActionListener listenForPatientAccountsButton)
+    {
+        btnPatientAccounts.addActionListener(listenForPatientAccountsButton);
+    }
+    
+    public void addAppointmentsListener(ActionListener listenForAppointmentsButton)
+    {
+        btnAppointments.addActionListener(listenForAppointmentsButton);
+    }
+    
+    public void addMedicinesListener(ActionListener listenForMedicinesButton)
+    {
+        btnMedicines.addActionListener(listenForMedicinesButton);
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -27,14 +45,14 @@ public class SecretaryMenuView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnPatientsAccounts = new javax.swing.JButton();
+        btnPatientAccounts = new javax.swing.JButton();
         btnAppointments = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         btnMedicines = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        btnPatientsAccounts.setText("Patients' Accounts");
+        btnPatientAccounts.setText("Patient Accounts");
 
         btnAppointments.setText("Appointments");
         btnAppointments.setToolTipText("");
@@ -53,7 +71,7 @@ public class SecretaryMenuView extends javax.swing.JFrame {
                 .addContainerGap(125, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnPatientsAccounts, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnPatientAccounts, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnAppointments, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnMedicines, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(132, 132, 132))
@@ -64,7 +82,7 @@ public class SecretaryMenuView extends javax.swing.JFrame {
                 .addGap(47, 47, 47)
                 .addComponent(jLabel1)
                 .addGap(45, 45, 45)
-                .addComponent(btnPatientsAccounts)
+                .addComponent(btnPatientAccounts)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addComponent(btnAppointments)
                 .addGap(33, 33, 33)
@@ -113,7 +131,7 @@ public class SecretaryMenuView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAppointments;
     private javax.swing.JButton btnMedicines;
-    private javax.swing.JButton btnPatientsAccounts;
+    private javax.swing.JButton btnPatientAccounts;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
