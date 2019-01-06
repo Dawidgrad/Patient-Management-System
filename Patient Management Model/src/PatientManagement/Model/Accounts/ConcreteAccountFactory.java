@@ -5,6 +5,8 @@
  */
 package PatientManagement.Model.Accounts;
 
+import PatientManagement.Model.Accounts.AccountListSingleton.AccountType;
+
 /**
  *
  * @author Davio
@@ -12,20 +14,20 @@ package PatientManagement.Model.Accounts;
 public class ConcreteAccountFactory extends AccountFactory
 {
     @Override
-    public Account CreateAccount(String type, String name, String surname, String address, String idNumber)
+    public Account CreateAccount(String name, String surname, String address, String idNumber, String password, AccountType type)
     {
         Account newAccount;
         
         switch (type)
         {
-            case "Doctor":
-                newAccount = new Doctor(name, surname, address, idNumber);
+            case DOCTOR:
+                newAccount = new Doctor(name, surname, address, idNumber, password);
                 break;
-            case "Secretary":
-                newAccount = new Secretary(name, surname, address, idNumber);
+            case SECRETARY:
+                newAccount = new Secretary(name, surname, address, idNumber, password);
                 break;
-            case "Administrator":
-                newAccount = new Administrator(name, surname, address, idNumber);
+            case ADMINISTRATOR:
+                newAccount = new Administrator(name, surname, address, idNumber, password);
                 break;
             default:
                 newAccount = null;

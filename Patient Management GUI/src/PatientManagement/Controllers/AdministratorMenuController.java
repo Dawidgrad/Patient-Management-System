@@ -5,6 +5,7 @@
  */
 package PatientManagement.Controllers;
 
+import PatientManagement.GuiViews.AccountManagementView;
 import PatientManagement.GuiViews.AdministratorMenuView;
 import PatientManagement.Model.Accounts.Administrator;
 import java.awt.event.ActionEvent;
@@ -31,8 +32,12 @@ public class AdministratorMenuController {
     {
 
         @Override
-        public void actionPerformed(ActionEvent e) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        public void actionPerformed(ActionEvent e) 
+        {
+            AccountManagementView newView = new AccountManagementView();
+            view.setVisible(false);
+            newView.setLocation(view.getLocation());
+            AccountManagementController accountManagement = new AccountManagementController(newView, model);
         }
         
     }

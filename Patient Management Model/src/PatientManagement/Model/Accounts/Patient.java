@@ -5,6 +5,8 @@
  */
 package PatientManagement.Model.Accounts;
 
+import PatientManagement.Model.Accounts.AccountListSingleton.AccountType;
+
 /**
  *
  * @author Davio
@@ -16,9 +18,9 @@ public class Patient extends Account
     private Gender gender;
     private int age;
     
-    public Patient(String name, String surname, String address, String idNumber, int age, Gender gender)
+    public Patient(String name, String surname, String address, String idNumber, String password, int age, Gender gender)
     {
-        super(name, surname, address, idNumber,LoginSystemSingleton.AccountType.PATIENT);
+        super(name, surname, address, idNumber, password, AccountType.PATIENT);
         
         this.age = age;
         this.gender = gender;

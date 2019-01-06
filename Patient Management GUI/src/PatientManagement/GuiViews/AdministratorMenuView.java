@@ -22,9 +22,9 @@ public class AdministratorMenuView extends javax.swing.JFrame {
     }
     
         
-    public void addAccountListener(ActionListener listenForAccountButton)
+    public void addAccountListener(ActionListener accountButton)
     {
-        btnAccountsManagement.addActionListener(listenForAccountButton);
+        btnAccountsManagement.addActionListener(accountButton);
     }
     
     public void addDoctorListListener(ActionListener listenForDoctorListButton)
@@ -54,6 +54,7 @@ public class AdministratorMenuView extends javax.swing.JFrame {
         btnDoctorsList = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setSize(new java.awt.Dimension(0, 0));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Administrator Menu");

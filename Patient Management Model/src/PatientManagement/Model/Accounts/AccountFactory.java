@@ -5,11 +5,13 @@
  */
 package PatientManagement.Model.Accounts;
 
+import PatientManagement.Model.Accounts.AccountListSingleton.AccountType;
+
 /**
  *
  * @author Davio
  */
 public abstract class AccountFactory 
 {
-    public abstract Account CreateAccount(String type, String name, String surname, String address, String idNumber);
+    public abstract Account CreateAccount(String name, String surname, String address, String idNumber, String password, AccountType type);
 }

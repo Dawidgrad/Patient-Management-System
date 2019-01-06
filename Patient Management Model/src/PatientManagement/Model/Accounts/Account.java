@@ -5,7 +5,7 @@
  */
 package PatientManagement.Model.Accounts;
 
-import PatientManagement.Model.Accounts.LoginSystemSingleton.AccountType;
+import PatientManagement.Model.Accounts.AccountListSingleton.AccountType;
 
 /**
  *
@@ -59,7 +59,7 @@ public abstract class Account {
         return accountType;
     }
     
-    public Account(String name, String surname, String address, String idNumber, AccountType type)
+    public Account(String name, String surname, String address, String idNumber, String password, AccountType type)
     {
         this.name = name;
         this.surname = surname;

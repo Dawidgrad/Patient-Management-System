@@ -5,12 +5,13 @@
  */
 package PatientManagement.Model.Accounts;
 
+import PatientManagement.Model.Accounts.AccountListSingleton.AccountType;
+
 /**
  *
  * @author Davio
  */
 public class LoginSystemSingleton {
-    public static enum AccountType {ADMINISTRATOR, DOCTOR, SECRETARY, PATIENT}
     
     private static String idNumber;
     private static AccountType accountType;
@@ -49,7 +50,7 @@ public class LoginSystemSingleton {
         }
         
         //return correctInfo;
-        accountType = AccountType.PATIENT;
+        accountType = AccountType.ADMINISTRATOR;
         return true;
     }
     

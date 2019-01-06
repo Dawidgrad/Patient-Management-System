@@ -5,7 +5,6 @@
  */
 package PatientManagement.Model.Accounts;
 
-import PatientManagement.Model.Accounts.LoginSystemSingleton.AccountType;
 import java.util.ArrayList;
 
 /**
@@ -13,6 +12,8 @@ import java.util.ArrayList;
  * @author Davio
  */
 public class AccountListSingleton {
+    public static enum AccountType {ADMINISTRATOR, DOCTOR, SECRETARY, PATIENT}
+    
     private static AccountListSingleton uniqueInstance = null;
     private static ArrayList<Account> accountList;
     
@@ -71,5 +72,20 @@ public class AccountListSingleton {
         }
         
         return result;
+    }
+    
+    public ArrayList<Account> GetAccountTypeList(AccountType type)
+    {
+        ArrayList<Account> typeList = new ArrayList<Account>();
+        
+        for (Account account : accountList)
+        {
+            if (account.getAccountType() == type)
+            {
+                typeList.add(account);
+            }
+        }
+        
+        return typeList;
     }
 }

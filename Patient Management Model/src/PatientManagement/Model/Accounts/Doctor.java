@@ -5,6 +5,7 @@
  */
 package PatientManagement.Model.Accounts;
 
+import PatientManagement.Model.Accounts.AccountListSingleton.AccountType;
 import PatientManagement.Model.Reviews.DoctorFeedback;
 
 /**
@@ -15,9 +16,9 @@ public class Doctor extends Account
 {
     private DoctorFeedback feedback;
             
-    public Doctor(String name, String surname, String address, String idNumber)
+    public Doctor(String name, String surname, String address, String idNumber, String password)
     {
-        super(name, surname, address, idNumber, LoginSystemSingleton.AccountType.DOCTOR);
+        super(name, surname, address, idNumber, password, AccountType.DOCTOR);
     }
     
     public void UpdateFeedback(DoctorFeedback feedback)

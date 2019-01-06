@@ -5,21 +5,23 @@
  */
 package PatientManagement.Model.Accounts;
 
+import PatientManagement.Model.Accounts.AccountListSingleton.AccountType;
+
 /**
  *
  * @author Davio
  */
 public class Administrator extends Account
 {
-    public Administrator(String name, String surname, String address, String idNumber)
+    public Administrator(String name, String surname, String address, String idNumber, String password)
     {
-        super(name, surname, address, idNumber, LoginSystemSingleton.AccountType.ADMINISTRATOR);
+        super(name, surname, address, idNumber, password, AccountType.ADMINISTRATOR);
     }
     
-    public void CreateNewAccount(String type, String name, String surname, String address, String idNumber)
+    public void CreateNewAccount(String name, String surname, String address, String idNumber, String password, AccountType type)
     {
         ConcreteAccountFactory accountFactory = new ConcreteAccountFactory();
-        Account newAccount = accountFactory.CreateAccount(type, name, surname, address, idNumber);
+        Account newAccount = accountFactory.CreateAccount(name, surname, address, idNumber, password, type);
         
         AccountListSingleton accountList = AccountListSingleton.getInstance();
         accountList.AddAccount(newAccount);

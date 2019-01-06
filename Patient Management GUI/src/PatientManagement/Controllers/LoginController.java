@@ -30,41 +30,42 @@ public class LoginController {
     {
 
         @Override
-        public void actionPerformed(ActionEvent e) {
+        public void actionPerformed(ActionEvent e) 
+        {
             String idNumber = view.getTxtIdNumber().getText();
-            String password = view.getTxtPassword().getText();
+            String password = new String(view.getTxtPassword().getPassword());
             
             boolean result = model.LogIn(idNumber, password);
             
             if (result)
             {
-                javax.swing.JFrame newView = null;
-                switch (model.getAccountType())
-                {
-                    case DOCTOR:
-                        newView = new DoctorMenuView();
-                        break;
-                    case SECRETARY:
-                        newView = new SecretaryMenuView();
-                        break;
-                    case ADMINISTRATOR:
-                        newView = new AdministratorMenuView();
-                        break;
-                    case PATIENT:
-                        newView = new PatientMenuView();
-                        break;
-                }
-                
-                if (newView != null)
-                {
-                    view.setVisible(false);
-                    newView.setLocation(view.getLocation());
-                    newView.setVisible(true);
-                }
+                DetermineAccountType();
             }
             else
             {
                 view.setLblResult("Could not log in!");
+            }
+        }
+        
+        private void DetermineAccountType()
+        {
+            switch (model.getAccountType())
+            {
+                case DOCTOR:
+                    DoctorMenuView doctorView = new DoctorMenuView();
+//                    view.setVisible(false);
+//                    doctorView.setLocation(view.getLocation());
+//                    DoctorMenuController doctorController = new DoctorMenuController(doctorView, );
+                    break;
+                case SECRETARY:
+                    SecretaryMenuView secretaryView = new SecretaryMenuView();
+                    break;
+                case ADMINISTRATOR:
+                    AdministratorMenuView administratorView = new AdministratorMenuView();
+                    break;
+                case PATIENT:
+                    PatientMenuView patientView = new PatientMenuView();
+                    break;
             }
         }
         
