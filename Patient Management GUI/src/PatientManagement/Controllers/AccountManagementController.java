@@ -73,7 +73,17 @@ public class AccountManagementController
             
             try
             {
-                model.CreateNewAccount(firstName, lastName, address, idNumber, password, type);
+                boolean result = model.CreateNewAccount(firstName, lastName, address, idNumber, password, type);
+                
+                if (result)
+                {
+                    JOptionPane.showMessageDialog(null, "Account added successfully!");
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null, "Account with given credentials could not be added! "
+                            + "Account with that ID Number might already exist.");
+                }
             }
             catch(Exception ex)
             {

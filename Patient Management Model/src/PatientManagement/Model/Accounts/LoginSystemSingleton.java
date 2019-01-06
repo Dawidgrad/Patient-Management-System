@@ -5,19 +5,20 @@
  */
 package PatientManagement.Model.Accounts;
 
-import PatientManagement.Model.Accounts.AccountListSingleton.AccountType;
-
 /**
  *
  * @author Davio
  */
 public class LoginSystemSingleton {
     
-    private static String idNumber;
-    private static AccountType accountType;
+    private static Account loggedInAccount = null;
     private static LoginSystemSingleton uniqueInstance = null;
     
     private LoginSystemSingleton() {}
+    
+    public static Account getLoggedInAccount() {
+        return loggedInAccount;
+    }
     
     public static LoginSystemSingleton getInstance()
     {
@@ -28,29 +29,21 @@ public class LoginSystemSingleton {
         
         return uniqueInstance;
     }
-    
-    public static String getIdNumber() {
-        return idNumber;
-    }
-
-    public static AccountType getAccountType() {
-        return accountType;
-    }
         
     public boolean LogIn(String idNumber, String password)
     {
         AccountListSingleton accountList = AccountListSingleton.getInstance();
-        accountType = accountList.ValidatieLoginInfo(idNumber, password);
+        loggedInAccount = accountList.ValidatieLoginInfo(idNumber, password);
         
         boolean correctInfo = false;
         
-        if (accountType != null)
+        if (loggedInAccount != null)
         {
             correctInfo = true;
         }
         
         //return correctInfo;
-        accountType = AccountType.ADMINISTRATOR;
+        loggedInAccount = new Administrator("root", "root", "root", "root", "root");
         return true;
     }
     

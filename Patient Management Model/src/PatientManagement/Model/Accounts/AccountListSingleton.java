@@ -32,9 +32,24 @@ public class AccountListSingleton {
         return uniqueInstance;
     }
     
-    public void AddAccount(Account newAccount)
+    public boolean AddAccount(Account newAccount)
     {
-        accountList.add(newAccount);
+        boolean uniqueAccount = true;
+        
+        for (Account account : accountList)
+        {
+            if (account.getIdNumber().equals(newAccount.getIdNumber()))
+            {
+                uniqueAccount = false;
+            } 
+        }
+        
+        if (uniqueAccount)
+        {
+            accountList.add(newAccount);
+        }
+        
+        return uniqueAccount;
     }
     
     public void RemoveAccount(String idNumber)
@@ -55,9 +70,9 @@ public class AccountListSingleton {
         }
     }
     
-    public AccountType ValidatieLoginInfo(String idNumber, String password)
+    public Account ValidatieLoginInfo(String idNumber, String password)
     {
-        AccountType result = null;
+        Account result = null;
         
         for (Account account : accountList)
         {
@@ -65,7 +80,7 @@ public class AccountListSingleton {
             {
                 if (account.getPassword() == password)
                 {
-                    result = account.getAccountType();
+                    result = account;
                     break;
                 }
             }

@@ -24,11 +24,13 @@ public class AdministratorMenuController {
         this.view = view;
         this.model = model;
         
-        this.view.addAccountListener(new AccountListener());
+        this.view.setVisible(true);
+
+        this.view.addAccountListener(new AddAccountListener());
         this.view.addDoctorListListener(new DoctorListListener());
     }
     
-    class AccountListener implements ActionListener
+    class AddAccountListener implements ActionListener
     {
 
         @Override

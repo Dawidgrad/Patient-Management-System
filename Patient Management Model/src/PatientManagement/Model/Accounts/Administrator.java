@@ -18,13 +18,15 @@ public class Administrator extends Account
         super(name, surname, address, idNumber, password, AccountType.ADMINISTRATOR);
     }
     
-    public void CreateNewAccount(String name, String surname, String address, String idNumber, String password, AccountType type)
+    public boolean CreateNewAccount(String name, String surname, String address, String idNumber, String password, AccountType type)
     {
         ConcreteAccountFactory accountFactory = new ConcreteAccountFactory();
         Account newAccount = accountFactory.CreateAccount(name, surname, address, idNumber, password, type);
         
         AccountListSingleton accountList = AccountListSingleton.getInstance();
-        accountList.AddAccount(newAccount);
+        boolean success = accountList.AddAccount(newAccount);
+        
+        return success;
     }
     
     public void RemoveAccount(String idNumber)

@@ -23,6 +23,8 @@ public class PatientMenuController {
         this.view = view;
         this.model = model;
         
+        this.view.setVisible(true);
+        
         this.view.addAccountSettingsListener(new AccountSettingsListener());
         this.view.addBrowseDoctorsListener(new BrowseDoctorsListener());
         this.view.addAppointmentsListener(new AppointmentsListener());

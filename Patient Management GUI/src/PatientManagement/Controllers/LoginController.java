@@ -6,7 +6,7 @@
 package PatientManagement.Controllers;
 
 import PatientManagement.GuiViews.*;
-import PatientManagement.Model.Accounts.LoginSystemSingleton;
+import PatientManagement.Model.Accounts.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -49,22 +49,35 @@ public class LoginController {
         
         private void DetermineAccountType()
         {
-            switch (model.getAccountType())
+            switch (model.getLoggedInAccount().getAccountType())
             {
                 case DOCTOR:
                     DoctorMenuView doctorView = new DoctorMenuView();
-//                    view.setVisible(false);
-//                    doctorView.setLocation(view.getLocation());
-//                    DoctorMenuController doctorController = new DoctorMenuController(doctorView, );
+                    view.setVisible(false);
+                    doctorView.setLocation(view.getLocation());
+                    DoctorMenuController doctorController = 
+                            new DoctorMenuController(doctorView, ((Doctor)model.getLoggedInAccount()));
                     break;
                 case SECRETARY:
                     SecretaryMenuView secretaryView = new SecretaryMenuView();
+                    view.setVisible(false);
+                    secretaryView.setLocation(view.getLocation());
+                    SecretaryMenuController secretaryController = 
+                            new SecretaryMenuController(secretaryView, ((Secretary)model.getLoggedInAccount()));
                     break;
                 case ADMINISTRATOR:
                     AdministratorMenuView administratorView = new AdministratorMenuView();
+                    view.setVisible(false);
+                    administratorView.setLocation(view.getLocation());
+                    AdministratorMenuController administratorController = 
+                            new AdministratorMenuController(administratorView, ((Administrator)model.getLoggedInAccount()));
                     break;
                 case PATIENT:
                     PatientMenuView patientView = new PatientMenuView();
+                    view.setVisible(false);
+                    patientView.setLocation(view.getLocation());
+                    PatientMenuController patientController = 
+                            new PatientMenuController(patientView, ((Patient)model.getLoggedInAccount()));
                     break;
             }
         }
