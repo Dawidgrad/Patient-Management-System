@@ -34,4 +34,9 @@ public class Administrator extends Account
         AccountListSingleton accountList = AccountListSingleton.getInstance();
         accountList.RemoveAccount(idNumber);
     }
+    
+    public void GiveDoctorFeedback(Doctor doctor, String feedback)
+    {
+        doctor.UpdateAdministratorFeedback(feedback);
+    }
 }

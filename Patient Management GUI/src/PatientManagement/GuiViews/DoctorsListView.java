@@ -28,14 +28,17 @@ public class DoctorsListView extends javax.swing.JFrame
         return lstDoctors;
     }
 
-    public JLabel getLblRating() {
-        return lblRating;
+    public void setLblRating(String rating) {
+        this.lblRating.setText(rating);
     }
 
-    public void setLstComments(JList<String> lstComments) {
-        this.lstComments = lstComments;
+    public void setTxtComments(String comments) {
+        this.txtComments.setText(comments);
     }
-    
+
+    public String getTxtFeedback() {
+        return txtFeedback.getText();
+    }
     
     public void AddSelectDoctorListener(ActionListener selectDoctorButton)
     {
@@ -63,10 +66,10 @@ public class DoctorsListView extends javax.swing.JFrame
         btnSelectDoctor = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        lstComments = new javax.swing.JList<>();
         jLabel1 = new javax.swing.JLabel();
         lblRating = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        txtComments = new javax.swing.JTextArea();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtFeedback = new javax.swing.JTextArea();
@@ -106,13 +109,15 @@ public class DoctorsListView extends javax.swing.JFrame
 
         jPanel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
 
-        lstComments.setToolTipText("");
-        jScrollPane3.setViewportView(lstComments);
-
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel1.setText("Average rating: ");
 
         lblRating.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+
+        txtComments.setColumns(20);
+        txtComments.setRows(5);
+        txtComments.setEnabled(false);
+        jScrollPane4.setViewportView(txtComments);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -121,19 +126,19 @@ public class DoctorsListView extends javax.swing.JFrame
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(85, 85, 85)
                         .addComponent(lblRating)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 136, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
@@ -258,11 +263,11 @@ public class DoctorsListView extends javax.swing.JFrame
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lblRating;
-    private javax.swing.JList<String> lstComments;
     private javax.swing.JList<String> lstDoctors;
+    private javax.swing.JTextArea txtComments;
     private javax.swing.JTextArea txtFeedback;
     // End of variables declaration//GEN-END:variables
 }

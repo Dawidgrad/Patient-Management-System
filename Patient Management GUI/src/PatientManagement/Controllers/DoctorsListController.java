@@ -107,8 +107,16 @@ public class DoctorsListController
             DoctorFeedback feedback = reviewList.GetFeedback(selectedDoctor.getIdNumber());
             
             // Update UI
-            view.getLblRating().setText(Double.toString(feedback.getAverageRating()));
+            view.setLblRating(Double.toString(feedback.getAverageRating()));
             
+            String patientComments = "";
+
+            for (String element : feedback.getComments())
+            {
+                patientComments += element + System.lineSeparator() + System.lineSeparator();
+            }
+
+            view.setTxtComments(patientComments);
         }
         
     }
@@ -117,8 +125,11 @@ public class DoctorsListController
     {
 
         @Override
-        public void actionPerformed(ActionEvent e) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        public void actionPerformed(ActionEvent e) 
+        {
+            String administratorFeedback = view.getTxtFeedback();
+            
+            model.GiveDoctorFeedback(selectedDoctor, administratorFeedback);
         }
         
     }

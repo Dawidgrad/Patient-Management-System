@@ -14,7 +14,8 @@ import java.util.ArrayList;
 public class DoctorFeedback 
 {
     private double averageRating;
-    private String comments;
+    private ArrayList<String> comments;
+    private String administratorFeedback;
 
     public double getAverageRating() {
         return averageRating;
@@ -24,17 +25,23 @@ public class DoctorFeedback
         this.averageRating = averageRating;
     }
 
-    public String getComments() {
+    public ArrayList<String> getComments() {
         return comments;
     }
 
-    public void setComments(String comments) {
-        this.comments = comments;
+    public void setAdministratorFeedback(String administratorFeedback) {
+        this.administratorFeedback = administratorFeedback;
     }
     
     public DoctorFeedback(ArrayList<Review> reviews)
     {
         averageRating = CalculateAverageRating(reviews);
+        comments = new ArrayList<String>();
+        
+        for (Review element : reviews)
+        {
+            comments.add(element.getComment());
+        }
     }
     
     private double CalculateAverageRating(ArrayList<Review> reviews)

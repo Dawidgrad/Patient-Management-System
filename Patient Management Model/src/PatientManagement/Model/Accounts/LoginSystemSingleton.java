@@ -34,11 +34,16 @@ public class LoginSystemSingleton {
     {
         AccountListSingleton accountList = AccountListSingleton.getInstance();
         Account targetAccount = accountList.GetAccount(idNumber);
-        boolean correctInfo = ValidatieLoginInfo(targetAccount, idNumber, password);
-        
-        if (correctInfo)
+        boolean correctInfo = false;
+                
+        if (targetAccount != null)
         {
-            loggedInAccount = targetAccount;
+            correctInfo = ValidatieLoginInfo(targetAccount, idNumber, password);
+
+            if (correctInfo)
+            {
+                loggedInAccount = targetAccount;
+            }
         }
         
         //return correctInfo;

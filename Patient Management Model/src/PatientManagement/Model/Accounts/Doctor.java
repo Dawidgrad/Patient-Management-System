@@ -21,8 +21,8 @@ public class Doctor extends Account
         super(name, surname, address, idNumber, password, AccountType.DOCTOR);
     }
     
-    public void UpdateFeedback(DoctorFeedback feedback)
+    public void UpdateAdministratorFeedback(String feedback)
     {
-        this.feedback = feedback;
+        this.feedback.setAdministratorFeedback(feedback);
     }
 }
