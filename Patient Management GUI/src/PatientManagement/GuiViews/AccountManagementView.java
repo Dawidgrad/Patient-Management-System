@@ -7,6 +7,7 @@ package PatientManagement.GuiViews;
 
 import java.awt.event.ActionListener;
 import javax.swing.ButtonGroup;
+import javax.swing.JList;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
@@ -32,6 +33,11 @@ public class AccountManagementView extends javax.swing.JFrame {
     {
         btnDeleteAccount.addActionListener(removeAccountButton);
     }
+    
+    public void AddRefreshListListener(ActionListener refreshList)
+    {
+        btnRefreshList.addActionListener(refreshList);
+    }
 
     public JTextField getTxtAddress() {
         return txtAddress;
@@ -56,6 +62,11 @@ public class AccountManagementView extends javax.swing.JFrame {
     public ButtonGroup getBtngrpAccountType() {
         return btngrpAccountType;
     }
+
+    public JList<String> getAccountList() {
+        return accountList;
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -86,9 +97,10 @@ public class AccountManagementView extends javax.swing.JFrame {
         btnCreateAccount = new javax.swing.JButton();
         removeAccountTab = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        accountList = new javax.swing.JList<>();
         jLabel4 = new javax.swing.JLabel();
         btnDeleteAccount = new javax.swing.JButton();
+        btnRefreshList = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -198,18 +210,17 @@ public class AccountManagementView extends javax.swing.JFrame {
 
         accountManagementPane.addTab("Add Account", addAccountTab);
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(jList1);
+        accountList.setToolTipText("");
+        jScrollPane1.setViewportView(accountList);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel4.setText("Select the account to remove");
 
         btnDeleteAccount.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnDeleteAccount.setText("Remove the account");
+        btnDeleteAccount.setText("Remove selected account");
+
+        btnRefreshList.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnRefreshList.setText("Refresh List");
 
         javax.swing.GroupLayout removeAccountTabLayout = new javax.swing.GroupLayout(removeAccountTab);
         removeAccountTab.setLayout(removeAccountTabLayout);
@@ -218,11 +229,14 @@ public class AccountManagementView extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, removeAccountTabLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(removeAccountTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnDeleteAccount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, removeAccountTabLayout.createSequentialGroup()
                         .addComponent(jLabel4)
-                        .addGap(0, 150, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, removeAccountTabLayout.createSequentialGroup()
+                        .addComponent(btnRefreshList, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnDeleteAccount, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         removeAccountTabLayout.setVerticalGroup(
@@ -233,7 +247,9 @@ public class AccountManagementView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnDeleteAccount, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+                .addGroup(removeAccountTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnDeleteAccount, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+                    .addComponent(btnRefreshList, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -295,10 +311,12 @@ public class AccountManagementView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JList<String> accountList;
     private javax.swing.JTabbedPane accountManagementPane;
     private javax.swing.JPanel addAccountTab;
     private javax.swing.JButton btnCreateAccount;
     private javax.swing.JButton btnDeleteAccount;
+    private javax.swing.JButton btnRefreshList;
     private javax.swing.ButtonGroup btngrpAccountType;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -307,7 +325,6 @@ public class AccountManagementView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JRadioButton rbtnAdministrator;
     private javax.swing.JRadioButton rbtnDoctor;

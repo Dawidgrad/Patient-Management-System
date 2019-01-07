@@ -37,7 +37,7 @@ public class AdministratorMenuController {
         public void actionPerformed(ActionEvent e) 
         {
             AccountManagementView newView = new AccountManagementView();
-            view.setVisible(false);
+            view.dispose();
             newView.setLocation(view.getLocation());
             AccountManagementController accountManagement = new AccountManagementController(newView, model);
         }

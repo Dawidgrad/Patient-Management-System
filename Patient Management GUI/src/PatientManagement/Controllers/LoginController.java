@@ -53,28 +53,28 @@ public class LoginController {
             {
                 case DOCTOR:
                     DoctorMenuView doctorView = new DoctorMenuView();
-                    view.setVisible(false);
+                    view.dispose();
                     doctorView.setLocation(view.getLocation());
                     DoctorMenuController doctorController = 
                             new DoctorMenuController(doctorView, ((Doctor)model.getLoggedInAccount()));
                     break;
                 case SECRETARY:
                     SecretaryMenuView secretaryView = new SecretaryMenuView();
-                    view.setVisible(false);
+                    view.dispose();
                     secretaryView.setLocation(view.getLocation());
                     SecretaryMenuController secretaryController = 
                             new SecretaryMenuController(secretaryView, ((Secretary)model.getLoggedInAccount()));
                     break;
                 case ADMINISTRATOR:
                     AdministratorMenuView administratorView = new AdministratorMenuView();
-                    view.setVisible(false);
+                    view.dispose();
                     administratorView.setLocation(view.getLocation());
                     AdministratorMenuController administratorController = 
                             new AdministratorMenuController(administratorView, ((Administrator)model.getLoggedInAccount()));
                     break;
                 case PATIENT:
                     PatientMenuView patientView = new PatientMenuView();
-                    view.setVisible(false);
+                    view.dispose();
                     patientView.setLocation(view.getLocation());
                     PatientMenuController patientController = 
                             new PatientMenuController(patientView, ((Patient)model.getLoggedInAccount()));

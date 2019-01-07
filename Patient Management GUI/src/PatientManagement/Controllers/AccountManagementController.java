@@ -6,12 +6,18 @@
 package PatientManagement.Controllers;
 
 import PatientManagement.GuiViews.AccountManagementView;
+import PatientManagement.Model.Accounts.Account;
+import PatientManagement.Model.Accounts.AccountListSingleton;
 import PatientManagement.Model.Accounts.AccountListSingleton.AccountType;
 import PatientManagement.Model.Accounts.Administrator;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.List;
 import javax.swing.AbstractButton;
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 
 
@@ -33,6 +39,46 @@ public class AccountManagementController
         
         this.view.AddCreateAccountListener(new CreateAccountListener());
         this.view.AddDeleteAccountListener(new DeleteAccountListener());
+        this.view.AddRefreshListListener(new RefreshListListener());
+        
+        RefreshAccountJList();
+    }
+
+    private void RefreshAccountJList()
+    {
+        ArrayList<Account> accountList = GetAccountList();
+        PopulateAccountJList(accountList);
+    }
+
+    private ArrayList<Account> GetAccountList()
+    {
+        AccountListSingleton accounts = AccountListSingleton.getInstance();
+
+        ArrayList<Account> accountList = new ArrayList<Account>();
+
+        accountList.addAll(accounts.GetAccountTypeList(AccountType.DOCTOR));
+        accountList.addAll(accounts.GetAccountTypeList(AccountType.SECRETARY));
+
+        return accountList;
+    }
+
+    private void PopulateAccountJList(ArrayList<Account> accountList)
+    {
+        ArrayList<String> accountStringList = new ArrayList<String>();
+
+        for (Account account : accountList)
+        {
+            accountStringList.add("ID Number: " + account.getIdNumber() + " Name:" + account.getName() + " " + account.getSurname());
+        }
+
+        DefaultListModel<String> model = new DefaultListModel<>();
+
+        for (String element : accountStringList)
+        {
+            model.addElement(element);
+        }
+
+        view.getAccountList().setModel(model);
     }
     
     public class CreateAccountListener implements ActionListener
@@ -97,8 +143,29 @@ public class AccountManagementController
     {
 
         @Override
-        public void actionPerformed(ActionEvent e) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        public void actionPerformed(ActionEvent e) 
+        {
+            List<String> accountsToRemove = view.getAccountList().getSelectedValuesList();
+            String idNumber;
+            
+            for(String details : accountsToRemove)
+            {
+                int x = details.indexOf("Name:");
+                
+                idNumber = details.substring(11, x-1);
+                model.RemoveAccount(idNumber);
+            }
+        }
+        
+    }
+    
+    public class RefreshListListener implements ActionListener
+    {
+
+        @Override
+        public void actionPerformed(ActionEvent e) 
+        {
+             RefreshAccountJList();
         }
         
     }
