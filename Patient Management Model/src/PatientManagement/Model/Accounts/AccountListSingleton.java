@@ -70,25 +70,6 @@ public class AccountListSingleton {
         }
     }
     
-    public Account ValidatieLoginInfo(String idNumber, String password)
-    {
-        Account result = null;
-        
-        for (Account account : accountList)
-        {
-            if (account.getIdNumber() == idNumber)
-            {
-                if (account.getPassword() == password)
-                {
-                    result = account;
-                    break;
-                }
-            }
-        }
-        
-        return result;
-    }
-    
     public ArrayList<Account> GetAccountTypeList(AccountType type)
     {
         ArrayList<Account> typeList = new ArrayList<Account>();
@@ -102,5 +83,21 @@ public class AccountListSingleton {
         }
         
         return typeList;
+    }
+    
+    public Account GetAccount(String idNumber)
+    {
+        Account targetAccount = null;
+        
+        for (Account account : accountList)
+        {
+            if (account.getIdNumber() == idNumber)
+            {
+                targetAccount = account;
+                break;
+            }
+        }
+        
+        return targetAccount;
     }
 }

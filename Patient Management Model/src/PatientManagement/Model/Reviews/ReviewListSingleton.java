@@ -31,7 +31,7 @@ public class ReviewListSingleton
         return uniqueInstance;
     }
     
-    public static DoctorFeedback GetFeedback(String doctorId)
+    public DoctorFeedback GetFeedback(String doctorId)
     {
         ArrayList<Review> doctorReviews = new ArrayList<Review>();
         

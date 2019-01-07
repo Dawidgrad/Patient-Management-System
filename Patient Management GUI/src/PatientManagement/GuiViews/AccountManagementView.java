@@ -217,7 +217,7 @@ public class AccountManagementView extends javax.swing.JFrame {
         jLabel4.setText("Select the account to remove");
 
         btnDeleteAccount.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnDeleteAccount.setText("Remove selected account");
+        btnDeleteAccount.setText("Remove selected account(s)");
 
         btnRefreshList.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnRefreshList.setText("Refresh List");

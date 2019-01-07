@@ -33,18 +33,32 @@ public class LoginSystemSingleton {
     public boolean LogIn(String idNumber, String password)
     {
         AccountListSingleton accountList = AccountListSingleton.getInstance();
-        loggedInAccount = accountList.ValidatieLoginInfo(idNumber, password);
+        Account targetAccount = accountList.GetAccount(idNumber);
+        boolean correctInfo = ValidatieLoginInfo(targetAccount, idNumber, password);
         
-        boolean correctInfo = false;
-        
-        if (loggedInAccount != null)
+        if (correctInfo)
         {
-            correctInfo = true;
+            loggedInAccount = targetAccount;
         }
         
         //return correctInfo;
         loggedInAccount = new Administrator("root", "root", "root", "root", "root");
         return true;
+    }
+    
+    public boolean ValidatieLoginInfo(Account account, String idNumber, String password)
+    {
+        boolean result = false;
+        
+        if (account.getIdNumber() == idNumber)
+        {
+            if (account.getPassword() == password)
+            {
+                result = true;
+            }
+        }
+        
+        return result;
     }
     
     public boolean LogOut()
