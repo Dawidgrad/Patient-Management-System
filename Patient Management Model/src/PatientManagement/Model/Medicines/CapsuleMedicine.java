@@ -12,7 +12,7 @@ package PatientManagement.Model.Medicines;
 public class CapsuleMedicine extends Medicine
 {
     
-    public CapsuleMedicine(String name, String description, int amount, double price)
+    public CapsuleMedicine(String name, String description, int amount, float price)
     {
         super(name, description, amount, price);
     }

@@ -33,11 +33,16 @@ public class StockSingleton
         return uniqueInstance;
     }
     
-    public void CreateNewMedicine(String name, String description, int amount, double price, MedicineType type) 
+    public void CreateNewMedicine(String name, String description, int amount, float price, MedicineType type) 
     {
         ConcreteMedicineFactory factory = new ConcreteMedicineFactory();
         Medicine newMedicine = factory.CreateNewMedicine(name, description, amount, price, type);
         
         medicineList.add(newMedicine);
+    }
+    
+    public ArrayList<Medicine> GetMedicineList()
+    {
+        return medicineList;
     }
 }

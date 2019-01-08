@@ -14,9 +14,9 @@ public abstract class Medicine
     private String name;
     private String description;
     private int amount;
-    private double price;
+    private float price;
     
-    public Medicine(String name, String description, int amount, double price)
+    public Medicine(String name, String description, int amount, float price)
     {
         this.name = name;
         this.description = description;
@@ -46,7 +46,7 @@ public abstract class Medicine
         this.description = description;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(float price) {
         this.price = price;
     }
     
