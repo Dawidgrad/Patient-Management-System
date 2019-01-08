@@ -36,7 +36,18 @@ public class StockSingleton
     public void CreateNewMedicine(String name, String description, int amount, float price, MedicineType type) 
     {
         ConcreteMedicineFactory factory = new ConcreteMedicineFactory();
-        Medicine newMedicine = factory.CreateNewMedicine(name, description, amount, price, type);
+        
+        int highest = 0;
+        
+        for (Medicine medicine : medicineList)
+        {
+            if (medicine.getMedicineId() > highest)
+            {
+                highest = medicine.getMedicineId();
+            }
+        }
+        
+        Medicine newMedicine = factory.CreateNewMedicine(highest + 1, name, description, amount, price, type);
         
         medicineList.add(newMedicine);
     }
@@ -44,5 +55,47 @@ public class StockSingleton
     public ArrayList<Medicine> GetMedicineList()
     {
         return medicineList;
+    }
+    
+    public boolean GiveMedicine(int medicineId, int amount)
+    {
+        Medicine medicineToGive = GetMedicine(medicineId);
+        int medicineAmount = medicineToGive.getAmount();
+        
+        boolean result;
+        if (medicineAmount >= amount)
+        {
+            medicineToGive.setAmount(medicineAmount - amount);
+            result = true;
+        }
+        else
+        {
+            result = false;
+        }
+        
+        return result;
+    }
+    
+    public void OrderMedicine(int medicineId, int amount)
+    {
+        Medicine medicineToOrder = GetMedicine(medicineId);
+        int medicineAmount = medicineToOrder.getAmount();
+        
+        medicineToOrder.setAmount(medicineAmount + amount);
+    }
+    
+    public Medicine GetMedicine(int medicineId)
+    {
+        Medicine targetMedicine = null;
+        
+        for (Medicine medicine : medicineList)
+        {
+            if (medicine.getMedicineId() == medicineId)
+            {
+                targetMedicine = medicine;
+            }
+        }
+        
+        return targetMedicine;
     }
 }

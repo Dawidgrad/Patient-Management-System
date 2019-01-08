@@ -5,7 +5,7 @@
  */
 package PatientManagement.Controllers;
 
-import PatientManagement.GuiViews.MedicinesView;
+import PatientManagement.GuiViews.DoctorMedicineView;
 import PatientManagement.Model.Accounts.Doctor;
 import PatientManagement.Model.Medicines.ConcreteMedicineFactory;
 import PatientManagement.Model.Medicines.Medicine;
@@ -22,12 +22,12 @@ import javax.swing.DefaultListModel;
  *
  * @author Davio
  */
-public class MedicinesController 
+public class DoctorMedicineController 
 {
-    private MedicinesView view;
+    private DoctorMedicineView view;
     private Doctor model;
     
-    public MedicinesController(MedicinesView view, Doctor model)
+    public DoctorMedicineController(DoctorMedicineView view, Doctor model)
     {
         this.view = view;
         this.model = model;
@@ -38,7 +38,7 @@ public class MedicinesController
         RefreshMedicineJList();
     }
     
-     private void RefreshMedicineJList()
+    private void RefreshMedicineJList()
     {
         ArrayList<Medicine> medicineList = GetMedicineList();
         PopulateMedicineJList(medicineList);
@@ -86,8 +86,8 @@ public class MedicinesController
             float prive = view.getSpnPrice();
             MedicineType type = GetMedicineTypeSelection();
             
-            ConcreteMedicineFactory factory = new ConcreteMedicineFactory();
-            factory.CreateNewMedicine(name, description, amount, prive, type);
+            StockSingleton stock = StockSingleton.getInstance();
+            stock.CreateNewMedicine(name, description, amount, prive, type);
             
             RefreshMedicineJList();
         }

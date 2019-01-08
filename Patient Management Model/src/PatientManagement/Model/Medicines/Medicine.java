@@ -11,13 +11,15 @@ package PatientManagement.Model.Medicines;
  */
 public abstract class Medicine 
 {
+    private int medicineId;
     private String name;
     private String description;
     private int amount;
     private float price;
     
-    public Medicine(String name, String description, int amount, float price)
+    public Medicine(int medicineId, String name, String description, int amount, float price)
     {
+        this.medicineId = medicineId;
         this.name = name;
         this.description = description;
         this.amount = amount;
@@ -38,6 +40,10 @@ public abstract class Medicine
         return amount;
     }
 
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
     public double getPrice() {
         return price;
     }
@@ -48,6 +54,10 @@ public abstract class Medicine
 
     public void setPrice(float price) {
         this.price = price;
+    }
+
+    public int getMedicineId() {
+        return medicineId;
     }
     
     /* Methods */ 
