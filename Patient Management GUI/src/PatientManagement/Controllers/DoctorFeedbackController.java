@@ -5,7 +5,7 @@
  */
 package PatientManagement.Controllers;
 
-import PatientManagement.GuiViews.DoctorsListView;
+import PatientManagement.GuiViews.DoctorFeedbackView;
 import PatientManagement.Model.Accounts.Account;
 import PatientManagement.Model.Accounts.AccountListSingleton;
 import PatientManagement.Model.Accounts.AccountListSingleton.AccountType;
@@ -22,13 +22,13 @@ import javax.swing.DefaultListModel;
  *
  * @author Davio
  */
-public class DoctorsListController 
+public class DoctorFeedbackController 
 {
-    private DoctorsListView view;
+    private DoctorFeedbackView view;
     private Administrator model;
     private Doctor selectedDoctor = null;
     
-    public DoctorsListController(DoctorsListView view, Administrator model)
+    public DoctorFeedbackController(DoctorFeedbackView view, Administrator model)
     {
         this.view = view;
         this.model = model;
@@ -74,7 +74,7 @@ public class DoctorsListController
             model.addElement(element);
         }
 
-        view.getLstDoctors().setModel(model);
+        view.setLstDoctors(model);
     }
     
     public class SelectDoctor implements ActionListener

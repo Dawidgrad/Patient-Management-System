@@ -5,6 +5,8 @@
  */
 package PatientManagement.Model.Accounts;
 
+import PatientManagement.Model.Accounts.Patient.Gender;
+
 /**
  *
  * @author Davio
@@ -47,7 +49,7 @@ public class LoginSystemSingleton {
         }
         
         //return correctInfo;
-        loggedInAccount = new Administrator("root", "root", "root", "root", "root");
+        loggedInAccount = new Patient("root", "root", "root", "root", "root", 32, Gender.FEMALE);
         return true;
     }
     

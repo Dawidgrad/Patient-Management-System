@@ -5,6 +5,8 @@
  */
 package PatientManagement.Model.Reviews;
 
+import PatientManagement.Model.Accounts.Doctor;
+import PatientManagement.Model.Accounts.Patient;
 import java.util.ArrayList;
 
 /**
@@ -29,6 +31,13 @@ public class ReviewListSingleton
         }
         
         return uniqueInstance;
+    }
+    
+    public void AddReview(Patient patient, Doctor doctor, String comment, int rating)
+    {
+        Review review = new Review(comment, rating, doctor.getIdNumber(), patient.getIdNumber());
+        
+        reviewList.add(review);
     }
     
     public DoctorFeedback GetFeedback(String doctorId)

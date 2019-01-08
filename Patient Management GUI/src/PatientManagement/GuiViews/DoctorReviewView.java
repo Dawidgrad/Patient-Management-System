@@ -6,50 +6,66 @@
 package PatientManagement.GuiViews;
 
 import java.awt.event.ActionListener;
+import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JSpinner;
 import javax.swing.JTextArea;
 
 /**
  *
  * @author Davio
  */
-public class DoctorsListView extends javax.swing.JFrame 
-{
+public class DoctorReviewView extends javax.swing.JFrame {
 
     /**
-     * Creates new form DoctorsListView
+     * Creates new form DoctorReviewView
      */
-    public DoctorsListView() {
+    public DoctorReviewView() {
         initComponents();
     }
-
-    public JList<String> getLstDoctors() {
-        return lstDoctors;
+    
+    /* Getters / Setters */
+    
+    public void setLstDoctors(DefaultListModel<String> model) {
+        this.lstDoctors.setModel(model);
     }
 
     public void setLblRating(String rating) {
         this.lblRating.setText(rating);
     }
 
-    public void setTxtComments(String comments) {
-        this.txtComments.setText(comments);
+    public void setTxtComments(String comment) {
+        this.txtComments.setText(comment);
     }
 
-    public String getTxtFeedback() {
-        return txtFeedback.getText();
+    public JList<String> getLstDoctors() {
+        return lstDoctors;
     }
+
+    public String getTxtComment() {
+        return txtComment.getText();
+    }
+
+    public int getSpnRating() {
+        return (int)spnRating.getValue();
+    }
+    
+    /* Listeners */
     
     public void AddSelectDoctorListener(ActionListener selectDoctorButton)
     {
         btnSelectDoctor.addActionListener(selectDoctorButton);
     }
     
-    public void AddSubmitFeebackListener(ActionListener submitFeebackButton)
+    public void AddSubmitReviewListener(ActionListener submitReviewButton)
     {
-        btnSubmitFeedback.addActionListener(submitFeebackButton);
+        btnSubmitReview.addActionListener(submitReviewButton);
     }
 
+
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -59,53 +75,30 @@ public class DoctorsListView extends javax.swing.JFrame
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel2 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         lstDoctors = new javax.swing.JList<>();
-        btnSelectDoctor = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         lblRating = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
         txtComments = new javax.swing.JTextArea();
+        jLabel4 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        txtFeedback = new javax.swing.JTextArea();
-        btnSubmitFeedback = new javax.swing.JButton();
+        txtComment = new javax.swing.JTextArea();
+        btnSubmitReview = new javax.swing.JButton();
+        spnRating = new javax.swing.JSpinner();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        btnSelectDoctor = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lstDoctors.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         lstDoctors.setToolTipText("");
         jScrollPane1.setViewportView(lstDoctors);
-
-        btnSelectDoctor.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnSelectDoctor.setText("Select the doctor");
 
         jPanel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
 
@@ -119,6 +112,9 @@ public class DoctorsListView extends javax.swing.JFrame
         txtComments.setEnabled(false);
         jScrollPane4.setViewportView(txtComments);
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel4.setText("Patiens' comments:");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -128,17 +124,22 @@ public class DoctorsListView extends javax.swing.JFrame
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane4)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(85, 85, 85)
-                        .addComponent(lblRating)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(85, 85, 85)
+                                .addComponent(lblRating))
+                            .addComponent(jLabel4))
                         .addGap(0, 136, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
+                .addContainerGap(17, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
@@ -150,12 +151,20 @@ public class DoctorsListView extends javax.swing.JFrame
 
         jPanel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
 
-        txtFeedback.setColumns(20);
-        txtFeedback.setRows(5);
-        jScrollPane2.setViewportView(txtFeedback);
+        txtComment.setColumns(20);
+        txtComment.setRows(5);
+        jScrollPane2.setViewportView(txtComment);
 
-        btnSubmitFeedback.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnSubmitFeedback.setText("Submit feedback");
+        btnSubmitReview.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnSubmitReview.setText("Submit feedback");
+
+        spnRating.setModel(new javax.swing.SpinnerNumberModel(5, 1, 10, 1));
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel5.setText("Your rating:");
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel6.setText("Your comment:");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -164,21 +173,35 @@ public class DoctorsListView extends javax.swing.JFrame
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnSubmitFeedback, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnSubmitReview, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(18, 18, 18)
+                        .addComponent(spnRating, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel6))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(btnSubmitFeedback, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(spnRating, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addComponent(btnSubmitReview, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Provide Feedback", jPanel4);
+        jTabbedPane1.addTab("Write Review", jPanel4);
+
+        btnSelectDoctor.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnSelectDoctor.setText("Select the doctor");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setText("Doctor List");
@@ -196,7 +219,7 @@ public class DoctorsListView extends javax.swing.JFrame
                     .addComponent(jLabel3))
                 .addGap(18, 18, 18)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -234,32 +257,33 @@ public class DoctorsListView extends javax.swing.JFrame
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DoctorsListView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DoctorReviewView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DoctorsListView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DoctorReviewView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DoctorsListView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DoctorReviewView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DoctorsListView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DoctorReviewView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DoctorsListView().setVisible(true);
+                new DoctorReviewView().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSelectDoctor;
-    private javax.swing.JButton btnSubmitFeedback;
+    private javax.swing.JButton btnSubmitReview;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -267,7 +291,8 @@ public class DoctorsListView extends javax.swing.JFrame
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lblRating;
     private javax.swing.JList<String> lstDoctors;
+    private javax.swing.JSpinner spnRating;
+    private javax.swing.JTextArea txtComment;
     private javax.swing.JTextArea txtComments;
-    private javax.swing.JTextArea txtFeedback;
     // End of variables declaration//GEN-END:variables
 }

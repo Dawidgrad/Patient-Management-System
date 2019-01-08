@@ -6,6 +6,7 @@
 package PatientManagement.Model.Accounts;
 
 import PatientManagement.Model.Accounts.AccountListSingleton.AccountType;
+import PatientManagement.Model.Reviews.ReviewListSingleton;
 
 /**
  *
@@ -24,5 +25,11 @@ public class Patient extends Account
         
         this.age = age;
         this.gender = gender;
+    }
+    
+    public void ProvideReview(Doctor doctor, String comment, int rating)
+    {
+        ReviewListSingleton reviewList = ReviewListSingleton.getInstance();
+        reviewList.AddReview(this, doctor, comment, rating);
     }
 }
