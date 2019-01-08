@@ -18,10 +18,6 @@ public class LoginSystemSingleton {
     
     private LoginSystemSingleton() {}
     
-    public static Account getLoggedInAccount() {
-        return loggedInAccount;
-    }
-    
     public static LoginSystemSingleton getInstance()
     {
         if (uniqueInstance == null)
@@ -30,6 +26,10 @@ public class LoginSystemSingleton {
         }
         
         return uniqueInstance;
+    }
+    
+    public Account getLoggedInAccount() {
+        return loggedInAccount;
     }
         
     public boolean LogIn(String idNumber, String password)
