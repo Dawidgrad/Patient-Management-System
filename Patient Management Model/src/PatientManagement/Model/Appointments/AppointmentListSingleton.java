@@ -37,7 +37,17 @@ public class AppointmentListSingleton
     
     public void AddRequest(Patient patient, Date date, Doctor doctor, String time)
     {
-        Appointment request = new Appointment(patient, date, doctor, time);
+        int highest = 0;
+        
+        for (Appointment appointment : appointmentList)
+        {
+            if (appointment.getAppointmentId() > highest)
+            {
+                highest = appointment.getAppointmentId();
+            }
+        }
+        
+        Appointment request = new Appointment(highest, patient, date, doctor, time);
         appointmentList.add(request);
     }
     
@@ -56,8 +66,35 @@ public class AppointmentListSingleton
         return targetAppointments;
     }
     
-    public void ApproveRequest(Appointment appointment, Doctor doctor)
+    public void ApproveRequest(int appointmentId)
     {
-        appointment.ProcessRequest(doctor);
+        Appointment targetAppointment = null;
+        
+        for (Appointment appointment : appointmentList)
+        {
+            if (appointment.getAppointmentId() == appointmentId)
+            {
+                targetAppointment = appointment;
+                break;
+            }
+        }
+        
+        targetAppointment.ProcessRequest();
+    }
+    
+    public void AddAppointment(Doctor doctor, Patient patient, Date date, String time)
+    {
+        int highest = 0;
+        
+        for (Appointment appointment : appointmentList)
+        {
+            if (appointment.getAppointmentId() > highest)
+            {
+                highest = appointment.getAppointmentId();
+            }
+        }
+        
+        Appointment appointment = new Appointment(highest, patient, date, doctor, time, AppointmentState.APPROVED);
+        appointmentList.add(appointment);
     }
 }

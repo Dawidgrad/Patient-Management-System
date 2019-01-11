@@ -5,6 +5,7 @@
  */
 package PatientManagement.Controllers;
 
+import PatientManagement.GuiViews.DoctorMedicineView;
 import PatientManagement.GuiViews.DoctorMenuView;
 import PatientManagement.Model.Accounts.Doctor;
 import java.awt.event.ActionEvent;
@@ -43,8 +44,12 @@ public class DoctorMenuController {
     {
 
         @Override
-        public void actionPerformed(ActionEvent e) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        public void actionPerformed(ActionEvent e) 
+        {
+            DoctorMedicineView newView = new DoctorMedicineView();
+            newView.setLocation(view.getLocation());
+            view.dispose();
+            DoctorMedicineController doctorMedicine = new DoctorMedicineController(newView, model);
         }
         
     }

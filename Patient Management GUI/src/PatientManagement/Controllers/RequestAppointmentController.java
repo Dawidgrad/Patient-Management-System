@@ -82,7 +82,7 @@ public class RequestAppointmentController
         String idNumber;
         int x = details.indexOf("Name:");
 
-        idNumber = details.substring(11, x-1);
+        idNumber = details.substring(0, x-1);
         Doctor selectedDoctor = (Doctor)accountList.GetAccount(idNumber);
         return selectedDoctor;
     }
@@ -95,12 +95,12 @@ public class RequestAppointmentController
         @Override
         public void actionPerformed(ActionEvent e) 
         {
-            Doctor doctor = GetSelectedDoctor();
-            Date date = view.getDatAppointmentDate();
-            String time = view.getCmbAppointmentTime();
-            
             try
             {
+                Doctor doctor = GetSelectedDoctor();
+                Date date = view.getDatAppointmentDate();
+                String time = view.getCmbAppointmentTime();
+            
                 model.RequestAppointment(date, doctor, time);
             }
             catch (Exception ex)

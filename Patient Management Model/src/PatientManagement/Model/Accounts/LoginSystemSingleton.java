@@ -49,7 +49,7 @@ public class LoginSystemSingleton {
         }
         
         //return correctInfo;
-        loggedInAccount = new Patient("root", "root", "root", "root", "root", 32, Gender.FEMALE);
+        loggedInAccount = new Secretary("root", "root", "root", "root", "root");
         return true;
     }
     

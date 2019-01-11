@@ -5,6 +5,8 @@
  */
 package PatientManagement.Controllers;
 
+import PatientManagement.GuiViews.SecretaryAppointmentView;
+import PatientManagement.GuiViews.SecretaryMedicineView;
 import PatientManagement.GuiViews.SecretaryMenuView;
 import PatientManagement.Model.Accounts.Secretary;
 import java.awt.event.ActionEvent;
@@ -34,7 +36,8 @@ public class SecretaryMenuController {
     {
 
         @Override
-        public void actionPerformed(ActionEvent e) {
+        public void actionPerformed(ActionEvent e) 
+        {
             throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         }
         
@@ -44,8 +47,12 @@ public class SecretaryMenuController {
     {
 
         @Override
-        public void actionPerformed(ActionEvent e) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        public void actionPerformed(ActionEvent e) 
+        {
+            SecretaryAppointmentView newView = new SecretaryAppointmentView();
+            newView.setLocation(view.getLocation());
+            view.dispose();
+            SecretaryAppointmentController secretaryAppointment = new SecretaryAppointmentController(newView, model);
         }
         
     }
@@ -54,8 +61,12 @@ public class SecretaryMenuController {
     {
 
         @Override
-        public void actionPerformed(ActionEvent e) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        public void actionPerformed(ActionEvent e) 
+        {
+            SecretaryMedicineView newView = new SecretaryMedicineView();
+            newView.setLocation(view.getLocation());
+            view.dispose();
+            SecretaryMedicineController secretaryMedicine = new SecretaryMedicineController(newView, model);
         }
         
     }

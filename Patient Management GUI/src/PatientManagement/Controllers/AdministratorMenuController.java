@@ -7,6 +7,7 @@ package PatientManagement.Controllers;
 
 import PatientManagement.GuiViews.AccountManagementView;
 import PatientManagement.GuiViews.AdministratorMenuView;
+import PatientManagement.GuiViews.DoctorFeedbackView;
 import PatientManagement.Model.Accounts.Administrator;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -49,7 +50,10 @@ public class AdministratorMenuController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            DoctorFeedbackView newView = new DoctorFeedbackView();
+            newView.setLocation(view.getLocation());
+            view.dispose();
+            DoctorFeedbackController doctorFeedback = new DoctorFeedbackController(newView, model);
         }
         
     }

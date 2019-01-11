@@ -60,7 +60,7 @@ public class SecretaryMedicineController
 
         for (Medicine medicine : medicineList)
         {
-            medicineStringList.add("Name: " + medicine.getName() + "\t Amount: " + medicine.getAmount() + "\t Price: " + medicine.getPrice());
+            medicineStringList.add(medicine.getMedicineId() + " Name: " + medicine.getName() + "\t Amount: " + medicine.getAmount() + "\t Price: " + medicine.getPrice());
         }
 
         DefaultListModel<String> model = new DefaultListModel<>();
@@ -80,7 +80,7 @@ public class SecretaryMedicineController
         String medicineId;
         int x = details.indexOf("Name:");
 
-        medicineId = details.substring(12, x-1);
+        medicineId = details.substring(0, x-1);
         
         return Integer.parseInt(medicineId);
     }

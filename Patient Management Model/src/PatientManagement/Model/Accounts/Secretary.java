@@ -9,6 +9,7 @@ import PatientManagement.Model.Accounts.AccountListSingleton.AccountType;
 import PatientManagement.Model.Appointments.Appointment;
 import PatientManagement.Model.Appointments.AppointmentListSingleton;
 import java.util.ArrayList;
+import java.util.Date;
 
 
 /**
@@ -29,9 +30,15 @@ public class Secretary extends Account
         return appointments.GetStateList(Appointment.AppointmentState.REQUESTED);
     }
     
-    public void ProcessAppointmentRequest(Appointment appointment, Doctor doctor)
+    public void ProcessAppointmentRequest(int appointmentId)
     {
         AppointmentListSingleton appointments = AppointmentListSingleton.getInstance();
-        appointments.ApproveRequest(appointment, doctor);
+        appointments.ApproveRequest(appointmentId);
+    }
+    
+    public void CreateAppointment(Doctor doctor, Patient patient, Date date, String time)
+    {
+        AppointmentListSingleton appointments = AppointmentListSingleton.getInstance();
+        appointments.AddAppointment(doctor, patient, date, time);
     }
 }

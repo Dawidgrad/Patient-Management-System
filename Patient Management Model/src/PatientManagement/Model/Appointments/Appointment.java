@@ -22,6 +22,7 @@ public class Appointment implements Observable
 
     public static enum AppointmentState {REQUESTED, APPROVED}
     
+    private int appointmentId;
     private AppointmentState state;
     private Patient patient;
     private Doctor doctor;
@@ -31,12 +32,35 @@ public class Appointment implements Observable
     public AppointmentState getState() {
         return state;
     }
+
+    public int getAppointmentId() {
+        return appointmentId;
+    }
     
-    public Appointment(Patient patient, Date date, Doctor doctor, String time)
+    public Appointment(int id, Patient patient, Date date, Doctor doctor, String time)
     {
+        this.appointmentId = id;
         RegisterObserver((Observer)patient);
         this.doctor = doctor;
         this.state = AppointmentState.REQUESTED;
+        
+        if (ValidateDateTime(date, time))
+        {
+            this.date = date;
+            this.time = time;
+        }
+        else
+        {
+            throw new RuntimeException();
+        }
+    }
+    
+    public Appointment(int id, Patient patient, Date date, Doctor doctor, String time, AppointmentState state)
+    {
+        this.appointmentId = id;
+        RegisterObserver((Observer)patient);
+        this.doctor = doctor;
+        ProcessRequest();
         
         if (ValidateDateTime(date, time))
         {
@@ -83,10 +107,9 @@ public class Appointment implements Observable
         this.patient.Update(this);
     }
     
-    public void ProcessRequest(Doctor doctor)
+    public void ProcessRequest()
     {
         this.state = AppointmentState.APPROVED;
-        this.doctor = doctor;
         NotifyObserver();
     }
 }
