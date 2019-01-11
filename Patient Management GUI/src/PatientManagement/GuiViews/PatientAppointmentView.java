@@ -11,28 +11,23 @@ import java.awt.event.ActionListener;
  *
  * @author Davio
  */
-public class PatientMenuView extends javax.swing.JFrame {
+public class PatientAppointmentView extends javax.swing.JFrame {
 
     /**
-     * Creates new form PatientMenuView
+     * Creates new form PatientAppointmentView
      */
-    public PatientMenuView() {
+    public PatientAppointmentView() {
         initComponents();
     }
     
-    public void addAccountSettingsListener(ActionListener listenForAccountSettingsButton)
+    public void AddAppointmentHistoryListener(ActionListener appointmentHistory)
     {
-        btnAccountSettings.addActionListener(listenForAccountSettingsButton);
+        btnAppointmentHistory.addActionListener(appointmentHistory);
     }
     
-    public void addBrowseDoctorsListener(ActionListener listenForBrowseDoctorsButton)
+    public void AddRequestAppointmentListener(ActionListener requestAppointment)
     {
-        btnBrowseDoctors.addActionListener(listenForBrowseDoctorsButton);
-    }
-    
-    public void addAppointmentsListener(ActionListener listenForAppointmentsButton)
-    {
-        btnAppointments.addActionListener(listenForAppointmentsButton);
+        btnRequestAppointment.addActionListener(requestAppointment);
     }
 
     /**
@@ -45,48 +40,41 @@ public class PatientMenuView extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        btnAccountSettings = new javax.swing.JButton();
-        btnBrowseDoctors = new javax.swing.JButton();
-        btnAppointments = new javax.swing.JButton();
+        btnAppointmentHistory = new javax.swing.JButton();
+        btnRequestAppointment = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("Patient Menu");
+        jLabel1.setText("Appointment Menu");
 
-        btnAccountSettings.setText("Account Settings");
+        btnAppointmentHistory.setText("View Appointment History");
 
-        btnBrowseDoctors.setText("Browse Doctors");
-        btnBrowseDoctors.setToolTipText("");
-
-        btnAppointments.setText("Appointments");
-        btnAppointments.setToolTipText("");
+        btnRequestAppointment.setText("Request an Appointment");
+        btnRequestAppointment.setToolTipText("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(167, 167, 167)
+                .addGap(114, 114, 114)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnAccountSettings, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnBrowseDoctors, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnAppointments, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(173, Short.MAX_VALUE))
+                    .addComponent(btnAppointmentHistory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnRequestAppointment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(114, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(45, 45, 45)
+                .addGap(55, 55, 55)
                 .addComponent(jLabel1)
-                .addGap(45, 45, 45)
-                .addComponent(btnAccountSettings)
+                .addGap(41, 41, 41)
+                .addComponent(btnAppointmentHistory)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                .addComponent(btnBrowseDoctors)
-                .addGap(33, 33, 33)
-                .addComponent(btnAppointments)
-                .addGap(53, 53, 53))
+                .addComponent(btnRequestAppointment)
+                .addGap(103, 103, 103))
         );
 
         pack();
@@ -109,28 +97,27 @@ public class PatientMenuView extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PatientMenuView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PatientAppointmentView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PatientMenuView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PatientAppointmentView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PatientMenuView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PatientAppointmentView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PatientMenuView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PatientAppointmentView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PatientMenuView().setVisible(true);
+                new PatientAppointmentView().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAccountSettings;
-    private javax.swing.JButton btnAppointments;
-    private javax.swing.JButton btnBrowseDoctors;
+    private javax.swing.JButton btnAppointmentHistory;
+    private javax.swing.JButton btnRequestAppointment;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

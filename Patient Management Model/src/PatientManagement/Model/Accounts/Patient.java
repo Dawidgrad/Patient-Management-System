@@ -45,10 +45,10 @@ public class Patient extends Account implements Observer
         reviewList.AddReview(this, doctor, comment, rating);
     }
     
-    public void RequestAppointment(Date date)
+    public void RequestAppointment(Date date, Doctor doctor, String time)
     {
         AppointmentListSingleton appointments = AppointmentListSingleton.getInstance();
         
-        appointments.AddRequest(this, date);
+        appointments.AddRequest(this, date, doctor, time);
     }
 }

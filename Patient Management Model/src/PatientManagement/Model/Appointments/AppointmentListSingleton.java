@@ -35,9 +35,9 @@ public class AppointmentListSingleton
         return uniqueInstance;
     }
     
-    public void AddRequest(Patient patient, Date date)
+    public void AddRequest(Patient patient, Date date, Doctor doctor, String time)
     {
-        Appointment request = new Appointment(patient, date);
+        Appointment request = new Appointment(patient, date, doctor, time);
         appointmentList.add(request);
     }
     

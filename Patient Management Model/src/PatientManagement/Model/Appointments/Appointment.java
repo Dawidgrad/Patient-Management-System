@@ -24,16 +24,19 @@ public class Appointment implements Observable
     private Patient patient;
     private Doctor doctor;
     private Date date;
+    private String time;
 
     public AppointmentState getState() {
         return state;
     }
     
-    public Appointment(Patient patient, Date date)
+    public Appointment(Patient patient, Date date, Doctor doctor, String time)
     {
         RegisterObserver((Observer)patient);
+        this.doctor = doctor;
         this.date = date;
         this.state = AppointmentState.REQUESTED;
+        this.time = time;
     }
     
     @Override
