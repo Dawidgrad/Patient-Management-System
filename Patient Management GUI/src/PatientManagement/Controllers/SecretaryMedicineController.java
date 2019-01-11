@@ -37,7 +37,7 @@ public class SecretaryMedicineController
     }
     
      
-     private void RefreshMedicineJList()
+    private void RefreshMedicineJList()
     {
         ArrayList<Medicine> medicineList = GetMedicineList();
         PopulateMedicineJList(medicineList);

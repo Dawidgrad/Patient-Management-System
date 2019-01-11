@@ -6,18 +6,24 @@
 package PatientManagement.Model.Accounts;
 
 import PatientManagement.Model.Accounts.AccountListSingleton.AccountType;
+import PatientManagement.Model.Appointments.Appointment;
+import PatientManagement.Model.Appointments.AppointmentListSingleton;
+import PatientManagement.Model.Interfaces.Observable;
+import PatientManagement.Model.Interfaces.Observer;
 import PatientManagement.Model.Reviews.ReviewListSingleton;
+import java.util.Date;
 
 /**
  *
  * @author Davio
  */
-public class Patient extends Account
+public class Patient extends Account implements Observer
 {
     public enum Gender { MALE, FEMALE }
 
     private Gender gender;
     private int age;
+    private Appointment scheduledAppointment = null;
     
     public Patient(String name, String surname, String address, String idNumber, String password, int age, Gender gender)
     {
@@ -27,9 +33,22 @@ public class Patient extends Account
         this.gender = gender;
     }
     
+    @Override
+    public void Update(Observable o) 
+    {
+        this.scheduledAppointment = (Appointment)o;
+    }
+    
     public void ProvideReview(Doctor doctor, String comment, int rating)
     {
         ReviewListSingleton reviewList = ReviewListSingleton.getInstance();
         reviewList.AddReview(this, doctor, comment, rating);
+    }
+    
+    public void RequestAppointment(Date date)
+    {
+        AppointmentListSingleton appointments = AppointmentListSingleton.getInstance();
+        
+        appointments.AddRequest(this, date);
     }
 }
