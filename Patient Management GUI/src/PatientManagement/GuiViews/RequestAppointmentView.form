@@ -137,24 +137,24 @@
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="18">
-            <StringItem index="0" value="8:00 AM"/>
-            <StringItem index="1" value="8:30 AM"/>
-            <StringItem index="2" value="9:00 AM"/>
-            <StringItem index="3" value="9:30 AM"/>
+            <StringItem index="0" value="08:00 AM"/>
+            <StringItem index="1" value="08:30 AM"/>
+            <StringItem index="2" value="09:00 AM"/>
+            <StringItem index="3" value="09:30 AM"/>
             <StringItem index="4" value="10:00 AM"/>
             <StringItem index="5" value="10:30 AM"/>
             <StringItem index="6" value="11:00 AM"/>
             <StringItem index="7" value="11:30 AM"/>
             <StringItem index="8" value="12:00 PM"/>
             <StringItem index="9" value="12:30 PM"/>
-            <StringItem index="10" value="1:00 PM"/>
-            <StringItem index="11" value="1:30 PM"/>
-            <StringItem index="12" value="2:00 PM"/>
-            <StringItem index="13" value="2:30 PM"/>
-            <StringItem index="14" value="3:00 PM"/>
-            <StringItem index="15" value="3:30 PM"/>
-            <StringItem index="16" value="4:00 PM"/>
-            <StringItem index="17" value="4:30 PM"/>
+            <StringItem index="10" value="01:00 PM"/>
+            <StringItem index="11" value="01:30 PM"/>
+            <StringItem index="12" value="02:00 PM"/>
+            <StringItem index="13" value="02:30 PM"/>
+            <StringItem index="14" value="03:00 PM"/>
+            <StringItem index="15" value="03:30 PM"/>
+            <StringItem index="16" value="04:00 PM"/>
+            <StringItem index="17" value="04:30 PM"/>
           </StringArray>
         </Property>
       </Properties>

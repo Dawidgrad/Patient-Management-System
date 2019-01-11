@@ -9,6 +9,8 @@ import PatientManagement.Model.Accounts.Doctor;
 import PatientManagement.Model.Accounts.Patient;
 import PatientManagement.Model.Interfaces.Observable;
 import PatientManagement.Model.Interfaces.Observer;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Date;
 
 /**
@@ -34,9 +36,39 @@ public class Appointment implements Observable
     {
         RegisterObserver((Observer)patient);
         this.doctor = doctor;
-        this.date = date;
         this.state = AppointmentState.REQUESTED;
-        this.time = time;
+        
+        if (ValidateDateTime(date, time))
+        {
+            this.date = date;
+            this.time = time;
+        }
+        else
+        {
+            throw new RuntimeException();
+        }
+    }
+    
+    private boolean ValidateDateTime(Date newDate, String newTime)
+    {
+        boolean correct = false;
+        LocalDateTime currentLdt = LocalDateTime.now();
+        Date currentDate = Date.from(currentLdt.atZone(ZoneId.systemDefault()).toInstant());
+        
+        if (newDate.before(currentDate))
+        {
+            String hour, minute;
+            hour = newTime.substring(0, 2);
+            minute = newTime.substring(3, 5);
+            
+            if (currentLdt.getHour() < Integer.parseInt(hour) &&
+                    currentLdt.getMinute() < Integer.parseInt(minute))
+            {
+                correct = true;
+            }
+        }
+        
+        return correct;
     }
     
     @Override
