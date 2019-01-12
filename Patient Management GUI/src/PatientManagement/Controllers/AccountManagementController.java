@@ -68,7 +68,7 @@ public class AccountManagementController
 
         for (Account account : accountList)
         {
-            accountStringList.add("ID Number: " + account.getIdNumber() + " Name:" + account.getName() + " " + account.getSurname());
+            accountStringList.add("ID Number: " + account.getIdNumber() + " Name: " + account.getName() + " " + account.getSurname());
         }
 
         DefaultListModel<String> model = new DefaultListModel<>();

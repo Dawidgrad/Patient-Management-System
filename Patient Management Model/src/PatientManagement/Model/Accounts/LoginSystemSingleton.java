@@ -48,18 +48,16 @@ public class LoginSystemSingleton
             }
         }
         
-        //return correctInfo;
-        loggedInAccount = new Administrator("root", "root", "root", "root", "root");
-        return true;
+        return correctInfo;
     }
     
     public boolean ValidatieLoginInfo(Account account, String idNumber, String password)
     {
         boolean result = false;
         
-        if (account.getIdNumber() == idNumber)
+        if (account.getIdNumber().equals(idNumber))
         {
-            if (account.getPassword() == password)
+            if (account.getPassword().equals(password))
             {
                 result = true;
             }

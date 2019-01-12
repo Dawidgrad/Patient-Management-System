@@ -67,6 +67,7 @@ public abstract class Account implements Serializable
         this.surname = surname;
         this.address = address;
         this.idNumber = idNumber;
+        this.password = password;
         this.accountType = type;
     }
 }

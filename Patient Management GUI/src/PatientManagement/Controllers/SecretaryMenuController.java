@@ -9,8 +9,12 @@ import PatientManagement.GuiViews.SecretaryAppointmentView;
 import PatientManagement.GuiViews.SecretaryMedicineView;
 import PatientManagement.GuiViews.SecretaryMenuView;
 import PatientManagement.Model.Accounts.Secretary;
+import PatientManagement.Model.Appointments.Appointment;
+import PatientManagement.Model.Appointments.AppointmentListSingleton;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -30,6 +34,19 @@ public class SecretaryMenuController {
         this.view.addPatientAccountsListener(new PatientAccountsListener());
         this.view.addAppointmentsListener(new AppointmentsListener());
         this.view.addMedicinesListener(new MedicinesListener());
+        
+        CheckForAppointmentRequests();
+    }
+    
+    private void CheckForAppointmentRequests()
+    {
+        AppointmentListSingleton appointmentList = AppointmentListSingleton.getInstance();
+        ArrayList<Appointment> currentRequests = appointmentList.GetStateList(Appointment.AppointmentState.REQUESTED);
+        
+        if (currentRequests.size() > 0)
+        {
+            JOptionPane.showMessageDialog(null, "There are appointments waiting approval!");
+        }
     }
     
     public class PatientAccountsListener implements ActionListener

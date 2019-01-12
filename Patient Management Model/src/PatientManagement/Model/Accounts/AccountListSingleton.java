@@ -106,7 +106,7 @@ public class AccountListSingleton implements Serializable
         
         for (Account account : accountList)
         {
-            if (account.getIdNumber() == idNumber)
+            if (account.getIdNumber().equals(idNumber))
             {
                 targetAccount = account;
                 break;
