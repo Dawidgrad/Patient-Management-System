@@ -51,7 +51,7 @@ public class AppointmentListSingleton implements Serializable
     
     public void AddRequest(Patient patient, Date date, Doctor doctor, String time)
     {
-        int highest = 0;
+        int highest = 1;
         
         for (Appointment appointment : appointmentList)
         {

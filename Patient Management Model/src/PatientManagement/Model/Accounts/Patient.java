@@ -25,6 +25,7 @@ public class Patient extends Account implements Observer, Serializable
     private Gender gender;
     private int age;
     private Appointment scheduledAppointment = null;
+    private boolean appointmentJustApproved = false;
     
     public Patient(String name, String surname, String address, String idNumber, String password, int age, Gender gender)
     {
@@ -38,6 +39,7 @@ public class Patient extends Account implements Observer, Serializable
     public void Update(Observable o) 
     {
         this.scheduledAppointment = (Appointment)o;
+        appointmentJustApproved = true;
     }
     
     public void ProvideReview(Doctor doctor, String comment, int rating)

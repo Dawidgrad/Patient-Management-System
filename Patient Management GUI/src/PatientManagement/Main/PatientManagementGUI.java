@@ -8,10 +8,11 @@ import PatientManagement.Controllers.LoginController;
 import PatientManagement.GuiViews.LoginView;
 import PatientManagement.Model.Accounts.AccountListSingleton;
 import PatientManagement.Model.Accounts.LoginSystemSingleton;
+import PatientManagement.Model.Accounts.Patient;
+import PatientManagement.Model.Accounts.Patient.Gender;
 import PatientManagement.Model.Appointments.AppointmentListSingleton;
 import PatientManagement.Model.Medicines.StockSingleton;
 import PatientManagement.Model.Reviews.ReviewListSingleton;
-import javax.smartcardio.Card;
 
 /**
  *
@@ -25,6 +26,9 @@ public class PatientManagementGUI {
     public static void main(String[] args) 
     {
         ReadSerialisedObjects();
+        
+        AccountListSingleton list = AccountListSingleton.getInstance();
+        list.AddAccount(new Patient("Test", "test", "test", "PTest", "test", 31, Gender.FEMALE));
         
         LoginView view = new LoginView();
         LoginSystemSingleton model = LoginSystemSingleton.getInstance();

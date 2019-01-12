@@ -7,9 +7,12 @@ package PatientManagement.Controllers;
 
 import PatientManagement.GuiViews.SecretaryAppointmentRequestsView;
 import PatientManagement.Model.Accounts.Secretary;
+import PatientManagement.Model.Appointments.Appointment;
 import PatientManagement.Model.Appointments.AppointmentListSingleton;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -29,6 +32,42 @@ public class SecretaryAppointmentRequestsController
         this.view.setVisible(true);
         
         this.view.AddApproveAppointmentListener(new ApproveAppointmentListener());
+        RefreshAppointmentJList();
+    }
+    
+    private void RefreshAppointmentJList()
+    {
+        ArrayList<Appointment> appointmentList = GetAppointmentList();
+        PopulateAppointmentJList(appointmentList);
+    }
+
+    private ArrayList<Appointment> GetAppointmentList()
+    {
+        AppointmentListSingleton appointments = AppointmentListSingleton.getInstance();
+
+        return appointments.GetStateList(Appointment.AppointmentState.REQUESTED);
+    }
+
+    private void PopulateAppointmentJList(ArrayList<Appointment> appointmentList)
+    {
+        ArrayList<String> appointmentStringList = new ArrayList<String>();
+
+        for (Appointment appointment : appointmentList)
+        {
+            appointmentStringList.add(appointment.getAppointmentId() 
+                    + " Doctor: " + appointment.getDoctorName() 
+                    + " Patient: " + appointment.getPatientName() 
+                    + " Date: " + appointment.getDate() + " " + appointment.getTime());
+        }
+
+        DefaultListModel<String> model = new DefaultListModel<>();
+
+        for (String element : appointmentStringList)
+        {
+            model.addElement(element);
+        }
+
+        view.setLstAppointmentRequests(model);
     }
     
     private int GetSelectedAppointmentId()

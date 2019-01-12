@@ -37,6 +37,22 @@ public class Appointment implements Observable, Serializable
     public int getAppointmentId() {
         return appointmentId;
     }
+
+    public String getPatientName() {
+        return patient.getName();
+    }
+
+    public String getDoctorName() {
+        return doctor.getName();
+    }
+
+    public String getDate() {
+        return date.toString();
+    }
+
+    public String getTime() {
+        return time;
+    }
     
     public Appointment(int id, Patient patient, Date date, Doctor doctor, String time)
     {
@@ -45,7 +61,7 @@ public class Appointment implements Observable, Serializable
         this.doctor = doctor;
         this.state = AppointmentState.REQUESTED;
         
-        if (ValidateDateTime(date, time))
+        if (ValidateDate(date, time))
         {
             this.date = date;
             this.time = time;
@@ -63,7 +79,7 @@ public class Appointment implements Observable, Serializable
         this.doctor = doctor;
         ProcessRequest();
         
-        if (ValidateDateTime(date, time))
+        if (ValidateDate(date, time))
         {
             this.date = date;
             this.time = time;
@@ -74,23 +90,15 @@ public class Appointment implements Observable, Serializable
         }
     }
     
-    private boolean ValidateDateTime(Date newDate, String newTime)
+    private boolean ValidateDate(Date newDate, String newTime)
     {
         boolean correct = false;
         LocalDateTime currentLdt = LocalDateTime.now();
         Date currentDate = Date.from(currentLdt.atZone(ZoneId.systemDefault()).toInstant());
         
-        if (newDate.before(currentDate))
+        if (newDate.after(currentDate))
         {
-            String hour, minute;
-            hour = newTime.substring(0, 2);
-            minute = newTime.substring(3, 5);
-            
-            if (currentLdt.getHour() < Integer.parseInt(hour) &&
-                    currentLdt.getMinute() < Integer.parseInt(minute))
-            {
-                correct = true;
-            }
+            correct = true;
         }
         
         return correct;

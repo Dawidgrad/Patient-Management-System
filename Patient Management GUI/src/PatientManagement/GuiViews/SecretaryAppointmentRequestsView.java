@@ -6,6 +6,7 @@
 package PatientManagement.GuiViews;
 
 import java.awt.event.ActionListener;
+import javax.swing.DefaultListModel;
 import javax.swing.JList;
 
 /**
@@ -27,8 +28,8 @@ public class SecretaryAppointmentRequestsView extends javax.swing.JFrame {
         return lstAppointmentRequests;
     }
 
-    public void setLstAppointmentRequests(JList<String> lstAppointmentRequests) {
-        this.lstAppointmentRequests = lstAppointmentRequests;
+    public void setLstAppointmentRequests(DefaultListModel<String> model) {
+        this.lstAppointmentRequests.setModel(model);
     }
     
     /* Listeners */
