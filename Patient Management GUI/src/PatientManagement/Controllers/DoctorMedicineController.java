@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import javax.swing.AbstractButton;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -73,6 +74,39 @@ public class DoctorMedicineController
 
         view.setLstMedicines(model);
     }
+            
+    private MedicineType GetMedicineTypeSelection()
+    {
+
+        String typeText = "";
+
+        for (Enumeration<AbstractButton> buttons = view.getGrpMedicineType().getElements(); buttons.hasMoreElements();) 
+        {
+            AbstractButton button = buttons.nextElement();
+            if (button.isSelected()) {
+                   typeText = button.getText();
+            }
+        }      
+
+        MedicineType type;
+
+        switch(typeText)
+        {
+            case "Tablet":
+                type = MedicineType.TABLET;
+                break;
+            case "Liquid":
+                type = MedicineType.TABLET;
+                break;
+            case "Capsule":
+                type = MedicineType.TABLET;
+                break;
+            default:
+                type = null;
+        }
+
+        return type;
+    }
     
     public class NewMedicineListener implements ActionListener
     {
@@ -80,49 +114,24 @@ public class DoctorMedicineController
         @Override
         public void actionPerformed(ActionEvent e) 
         {
-            String name = view.getTxtName();
-            String description = view.getTxtDescription();
-            int amount = view.getSpnAmount();
-            float prive = view.getSpnPrice();
-            MedicineType type = GetMedicineTypeSelection();
-            
-            StockSingleton stock = StockSingleton.getInstance();
-            stock.CreateNewMedicine(name, description, amount, prive, type);
-            
-            RefreshMedicineJList();
-        }
-        
-        private MedicineType GetMedicineTypeSelection()
-        {
-            
-            String typeText = "";
-            
-            for (Enumeration<AbstractButton> buttons = view.getGrpMedicineType().getElements(); buttons.hasMoreElements();) 
+            try
             {
-                AbstractButton button = buttons.nextElement();
-                if (button.isSelected()) {
-                       typeText = button.getText();
-                }
-            }      
-            
-            MedicineType type;
-            
-            switch(typeText)
+                String name = view.getTxtName();
+                String description = view.getTxtDescription();
+                int amount = view.getSpnAmount();
+                float prive = view.getSpnPrice();
+                MedicineType type = GetMedicineTypeSelection();
+
+                StockSingleton stock = StockSingleton.getInstance();
+                stock.CreateNewMedicine(name, description, amount, prive, type);
+                JOptionPane.showMessageDialog(null, "Medicine added successfully!");
+            }
+            catch (Exception ex)
             {
-                case "Tablet":
-                    type = MedicineType.TABLET;
-                    break;
-                case "Liquid":
-                    type = MedicineType.TABLET;
-                    break;
-                case "Capsule":
-                    type = MedicineType.TABLET;
-                    break;
-                default:
-                    type = null;
+                JOptionPane.showMessageDialog(null, "Could not add the medicine!");
             }
             
-            return type;
+            RefreshMedicineJList();
         }
         
     }

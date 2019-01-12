@@ -61,7 +61,7 @@ public class RequestAppointmentController
 
         for (Account doctor : doctorList)
         {
-            doctorStringList.add(doctor.getIdNumber() + " Name:" + doctor.getName() + " " + doctor.getSurname());
+            doctorStringList.add(doctor.getIdNumber() + " Name: " + doctor.getName() + " " + doctor.getSurname());
         }
 
         DefaultListModel<String> model = new DefaultListModel<>();

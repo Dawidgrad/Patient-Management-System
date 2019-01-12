@@ -17,6 +17,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -64,7 +65,7 @@ public class DoctorFeedbackController
 
         for (Account doctor : doctorList)
         {
-            doctorStringList.add("ID Number: " + doctor.getIdNumber() + " Name:" + doctor.getName() + " " + doctor.getSurname());
+            doctorStringList.add(doctor.getIdNumber() + " Name: " + doctor.getName() + " " + doctor.getSurname());
         }
 
         DefaultListModel<String> model = new DefaultListModel<>();
@@ -83,8 +84,15 @@ public class DoctorFeedbackController
         @Override
         public void actionPerformed(ActionEvent e) 
         {
-            UpdateSelectedDoctor();
-            UpdateDoctorReviews();
+            try
+            {
+                UpdateSelectedDoctor();
+                UpdateDoctorReviews();
+            }
+            catch (Exception ex)
+            {
+                JOptionPane.showMessageDialog(null, "Could not select the doctor!");
+            }
         }
         
         private void UpdateSelectedDoctor()
@@ -95,7 +103,7 @@ public class DoctorFeedbackController
             String idNumber;
             int x = details.indexOf("Name:");
 
-            idNumber = details.substring(11, x-1);
+            idNumber = details.substring(0, x-1);
             selectedDoctor = (Doctor)accountList.GetAccount(idNumber);
         }
         
@@ -127,9 +135,16 @@ public class DoctorFeedbackController
         @Override
         public void actionPerformed(ActionEvent e) 
         {
-            String administratorFeedback = view.getTxtFeedback();
-            
-            model.GiveDoctorFeedback(selectedDoctor, administratorFeedback);
+            try
+            {
+                String administratorFeedback = view.getTxtFeedback();
+                model.GiveDoctorFeedback(selectedDoctor, administratorFeedback);
+                JOptionPane.showMessageDialog(null, "Feedback submitted successfully!");
+            }
+            catch (Exception ex)
+            {
+                JOptionPane.showMessageDialog(null, "Could not submit the feedback!");
+            }
         }
         
     }

@@ -157,9 +157,9 @@ public class AccountManagementView extends javax.swing.JFrame {
                             .addComponent(jLabel6)
                             .addComponent(jLabel5)
                             .addComponent(jLabel3)
-                            .addComponent(jLabel2)
-                            .addComponent(txtIdNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                            .addComponent(jLabel2))
+                        .addGap(0, 128, Short.MAX_VALUE))
+                    .addComponent(txtIdNumber))
                 .addGap(51, 51, 51)
                 .addGroup(addAccountTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
@@ -210,6 +210,7 @@ public class AccountManagementView extends javax.swing.JFrame {
 
         accountManagementPane.addTab("Add Account", addAccountTab);
 
+        accountList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         accountList.setToolTipText("");
         jScrollPane1.setViewportView(accountList);
 
@@ -217,7 +218,7 @@ public class AccountManagementView extends javax.swing.JFrame {
         jLabel4.setText("Select the account to remove");
 
         btnDeleteAccount.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnDeleteAccount.setText("Remove selected account(s)");
+        btnDeleteAccount.setText("Remove selected account");
 
         btnRefreshList.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnRefreshList.setText("Refresh List");
@@ -236,7 +237,7 @@ public class AccountManagementView extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, removeAccountTabLayout.createSequentialGroup()
                         .addComponent(btnRefreshList, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnDeleteAccount, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)))
+                        .addComponent(btnDeleteAccount, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         removeAccountTabLayout.setVerticalGroup(

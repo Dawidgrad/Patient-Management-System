@@ -38,6 +38,10 @@ public class SecretaryMedicineView extends javax.swing.JFrame {
     public int getSpnAmountToOrder() {
         return (int)spnAmountToOrder.getValue();
     }
+
+    public void setLstPatients(DefaultListModel<String> model) {
+        this.lstPatients.setModel(model);
+    }
     
     /* Listeners */
     
@@ -82,6 +86,8 @@ public class SecretaryMedicineView extends javax.swing.JFrame {
 
         jScrollPane2.setViewportView(lstPatients);
 
+        spnAmountToGive.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setText("Patients");
 
@@ -98,7 +104,7 @@ public class SecretaryMedicineView extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnGiveMedicine, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
+                    .addComponent(btnGiveMedicine, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE)
                     .addComponent(spnAmountToGive, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -126,6 +132,8 @@ public class SecretaryMedicineView extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Give patient's medicine", jPanel1);
 
+        spnAmountToOrder.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setText("Medicine");
 
@@ -143,7 +151,7 @@ public class SecretaryMedicineView extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(btnOrderMedicine, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE))
+                    .addComponent(btnOrderMedicine, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -170,8 +178,8 @@ public class SecretaryMedicineView extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addComponent(jLabel1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jTabbedPane1)
                 .addContainerGap())

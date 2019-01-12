@@ -6,6 +6,8 @@
 package PatientManagement.Controllers;
 
 import PatientManagement.GuiViews.SecretaryMedicineView;
+import PatientManagement.Model.Accounts.Account;
+import PatientManagement.Model.Accounts.AccountListSingleton;
 import PatientManagement.Model.Accounts.Secretary;
 import PatientManagement.Model.Medicines.Medicine;
 import PatientManagement.Model.Medicines.StockSingleton;
@@ -33,9 +35,16 @@ public class SecretaryMedicineController
        
         this.view.AddGiveMedicineListener(new GiveMedicineListener());
         this.view.AddOrderMedicineListener(new OrderMedicineListener());
+        
         RefreshMedicineJList();
+        RefreshPatientJList();
     }
     
+    private void RefreshPatientJList()
+    {
+        ArrayList<Account> patientList = GetPatientList();
+        PopulatePatientJList(patientList);
+    }
      
     private void RefreshMedicineJList()
     {
@@ -46,12 +55,8 @@ public class SecretaryMedicineController
     private ArrayList<Medicine> GetMedicineList()
     {
         StockSingleton medicines = StockSingleton.getInstance();
-
-        ArrayList<Medicine> medicineList = new ArrayList<Medicine>();
-
-        medicineList.addAll(medicines.GetMedicineList());
-
-        return medicineList;
+        
+        return medicines.GetMedicineList();
     }
 
     private void PopulateMedicineJList(ArrayList<Medicine> medicineList)
@@ -60,7 +65,7 @@ public class SecretaryMedicineController
 
         for (Medicine medicine : medicineList)
         {
-            medicineStringList.add(medicine.getMedicineId() + " Name: " + medicine.getName() + "\t Amount: " + medicine.getAmount() + "\t Price: " + medicine.getPrice());
+            medicineStringList.add(medicine.getMedicineId() + " Name: " + medicine.getName() + "\t Amount: " + medicine.getAmount() + "\t Price unit: " + medicine.getPrice());
         }
 
         DefaultListModel<String> model = new DefaultListModel<>();
@@ -71,6 +76,36 @@ public class SecretaryMedicineController
         }
 
         view.setLstMedicines(model);
+    }
+    
+    private ArrayList<Account> GetPatientList()
+    {
+        AccountListSingleton patients = AccountListSingleton.getInstance();
+
+        ArrayList<Account> patientList = new ArrayList<Account>();
+
+        patientList.addAll(patients.GetAccountTypeList(AccountListSingleton.AccountType.PATIENT));
+
+        return patientList;
+    }
+
+    private void PopulatePatientJList(ArrayList<Account> patientList)
+    {
+        ArrayList<String> patientStringList = new ArrayList<String>();
+
+        for (Account patient : patientList)
+        {
+            patientStringList.add(patient.getIdNumber()+ " Name: " + patient.getName() + " " + patient.getSurname());
+        }
+
+        DefaultListModel<String> model = new DefaultListModel<>();
+
+        for (String element : patientStringList)
+        {
+            model.addElement(element);
+        }
+
+        view.setLstPatients(model);
     }
     
     private int GetSelectedMedicineId()
@@ -98,6 +133,7 @@ public class SecretaryMedicineController
             try
             {
                 medicineList.GiveMedicine(medicineId, amountToGive);  
+                JOptionPane.showMessageDialog(null, "The medicine has been given to the patient!");
             }
             catch (Exception ex)
             {
@@ -116,16 +152,17 @@ public class SecretaryMedicineController
         public void actionPerformed(ActionEvent e) 
         {
             StockSingleton medicineList = StockSingleton.getInstance();
-            int amountToGive = view.getSpnAmountToOrder();
+            int amountToOrder = view.getSpnAmountToOrder();
             int medicineId = GetSelectedMedicineId();
             
             try
             {
-                medicineList.OrderMedicine(medicineId, amountToGive);  
+                medicineList.OrderMedicine(medicineId, amountToOrder);
+                JOptionPane.showMessageDialog(null, "The medicine has been ordered!");
             }
             catch (Exception ex)
             {
-                JOptionPane.showMessageDialog(null, "Could not give the medicine to patient!");
+                JOptionPane.showMessageDialog(null, "Could not order the medicine!");
             }
             
             RefreshMedicineJList();

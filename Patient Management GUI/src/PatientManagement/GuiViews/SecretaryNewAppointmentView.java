@@ -7,6 +7,7 @@ package PatientManagement.GuiViews;
 
 import java.awt.event.ActionListener;
 import java.util.Date;
+import javax.swing.DefaultListModel;
 import javax.swing.JList;
 
 /**
@@ -38,6 +39,14 @@ public class SecretaryNewAppointmentView extends javax.swing.JFrame {
 
     public JList<String> getLstPatients() {
         return lstPatients;
+    }
+
+    public void setLstDoctors(DefaultListModel<String> model) {
+        this.lstDoctors.setModel(model);
+    }
+
+    public void setLstPatients(DefaultListModel<String> model) {
+        this.lstPatients.setModel(model);
     }
     
     /* Listeners */
@@ -95,14 +104,14 @@ public class SecretaryNewAppointmentView extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnCreateAppointment, javax.swing.GroupLayout.DEFAULT_SIZE, 515, Short.MAX_VALUE)
+                    .addComponent(btnCreateAppointment, javax.swing.GroupLayout.DEFAULT_SIZE, 620, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(31, 31, 31)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jScrollPane1)
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel4)
                                     .addComponent(datAppointmentDate, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))

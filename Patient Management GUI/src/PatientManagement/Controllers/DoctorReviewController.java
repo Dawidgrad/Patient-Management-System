@@ -65,7 +65,7 @@ public class DoctorReviewController
 
         for (Account doctor : doctorList)
         {
-            doctorStringList.add("ID Number: " + doctor.getIdNumber() + " Name:" + doctor.getName() + " " + doctor.getSurname());
+            doctorStringList.add(doctor.getIdNumber() + " Name: " + doctor.getName() + " " + doctor.getSurname());
         }
 
         DefaultListModel<String> model = new DefaultListModel<>();
@@ -82,7 +82,7 @@ public class DoctorReviewController
     {
 
         @Override
-                public void actionPerformed(ActionEvent e) 
+        public void actionPerformed(ActionEvent e) 
         {
             UpdateSelectedDoctor();
             UpdateDoctorReviews();
@@ -96,7 +96,7 @@ public class DoctorReviewController
             String idNumber;
             int x = details.indexOf("Name:");
 
-            idNumber = details.substring(11, x-1);
+            idNumber = details.substring(0, x-1);
             selectedDoctor = (Doctor)accountList.GetAccount(idNumber);
         }
         
@@ -133,13 +133,22 @@ public class DoctorReviewController
             
             try
             {
-                model.ProvideReview(selectedDoctor, comment, rating);
-                JOptionPane.showMessageDialog(null, "Review added successfully!");
+                if (!comment.isEmpty())
+                {
+                    model.ProvideReview(selectedDoctor, comment, rating);
+                    JOptionPane.showMessageDialog(null, "Review added successfully!");
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null, "Please fill in the comment field!");
+                }
             }
             catch (Exception ex)
             {
                 JOptionPane.showMessageDialog(null, "Could not add the review!");
             }
+            
+            RefreshDoctorsJList();
         }
         
     }

@@ -12,6 +12,7 @@ import PatientManagement.Model.Interfaces.Observer;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -47,7 +48,11 @@ public class Appointment implements Observable, Serializable
     }
 
     public String getDate() {
-        return date.toString();
+        String dateString = date.toString();
+        int index = dateString.indexOf(" 00:00");
+        dateString = dateString.substring(0, index);
+        
+        return dateString;
     }
 
     public String getTime() {
@@ -80,7 +85,7 @@ public class Appointment implements Observable, Serializable
         ProcessRequest();
         
         if (ValidateDate(date, time))
-        {
+        {            
             this.date = date;
             this.time = time;
         }

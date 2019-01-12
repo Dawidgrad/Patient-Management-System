@@ -68,7 +68,7 @@ public class AccountManagementController
 
         for (Account account : accountList)
         {
-            accountStringList.add("ID Number: " + account.getIdNumber() + " Name: " + account.getName() + " " + account.getSurname());
+            accountStringList.add(account.getIdNumber() + " Name: " + account.getName() + " " + account.getSurname());
         }
 
         DefaultListModel<String> model = new DefaultListModel<>();
@@ -145,15 +145,20 @@ public class AccountManagementController
         @Override
         public void actionPerformed(ActionEvent e) 
         {
-            List<String> accountsToRemove = view.getAccountList().getSelectedValuesList();
-            String idNumber;
-            
-            for(String details : accountsToRemove)
+            try
             {
-                int x = details.indexOf("Name:");
-                
-                idNumber = details.substring(11, x-1);
+                String accountToRemove = view.getAccountList().getSelectedValue();
+                String idNumber;
+
+                int x = accountToRemove.indexOf("Name:");
+                idNumber = accountToRemove.substring(0, x-1);
                 model.RemoveAccount(idNumber);
+                RefreshAccountJList();
+                JOptionPane.showMessageDialog(null, "The account has been deleted!");
+            }
+            catch (Exception ex)
+            {
+                JOptionPane.showMessageDialog(null, "Could not delete the account!");
             }
         }
         
@@ -165,7 +170,14 @@ public class AccountManagementController
         @Override
         public void actionPerformed(ActionEvent e) 
         {
-             RefreshAccountJList();
+            try
+            {
+                RefreshAccountJList();
+            }
+            catch (Exception ex)
+            {
+                JOptionPane.showMessageDialog(null, "Could not refresh the list!");
+            }
         }
         
     }
