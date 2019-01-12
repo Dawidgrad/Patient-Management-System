@@ -49,7 +49,7 @@ public class AppointmentListSingleton implements Serializable
         return uniqueInstance;
     }
     
-    public void AddRequest(Patient patient, Date date, Doctor doctor, String time)
+    public void addRequest(Patient patient, Date date, Doctor doctor, String time)
     {
         int highest = 1;
         
@@ -65,7 +65,7 @@ public class AppointmentListSingleton implements Serializable
         appointmentList.add(request);
     }
     
-    public ArrayList<Appointment> GetStateList(AppointmentState state)
+    public ArrayList<Appointment> getStateList(AppointmentState state)
     {
         ArrayList<Appointment> targetAppointments = new ArrayList<Appointment>();
         
@@ -80,7 +80,7 @@ public class AppointmentListSingleton implements Serializable
         return targetAppointments;
     }
     
-    public void ApproveRequest(int appointmentId)
+    public void approveRequest(int appointmentId)
     {
         Appointment targetAppointment = null;
         
@@ -96,7 +96,7 @@ public class AppointmentListSingleton implements Serializable
         targetAppointment.ProcessRequest();
     }
     
-    public void AddAppointment(Doctor doctor, Patient patient, Date date, String time)
+    public void addAppointment(Doctor doctor, Patient patient, Date date, String time)
     {
         int highest = 1;
         
@@ -110,5 +110,43 @@ public class AppointmentListSingleton implements Serializable
         
         Appointment appointment = new Appointment(highest, patient, date, doctor, time, AppointmentState.APPROVED);
         appointmentList.add(appointment);
+    }
+    
+    public ArrayList<Appointment> getPatientHistory(Patient patient)
+    {
+        ArrayList<Appointment> targetAppointments = new ArrayList<Appointment>();
+        
+        for (Appointment element : appointmentList)
+        {
+            if (element.getState() == AppointmentState.ARCHIVED && element.getPatient() == patient)
+            {
+                targetAppointments.add(element);
+            }
+        }
+        
+        return targetAppointments;
+    }
+    
+    public void completeAppointment(Appointment appointment)
+    {
+        appointment.setState(AppointmentState.ARCHIVED);
+        appointment.getPatient().completeAppointment();
+        
+    }
+    
+    public Appointment getAppointment(int appointmentId)
+    {
+        Appointment targetAppointment = null;
+        
+        for (Appointment appointment : appointmentList)
+        {
+            if (appointment.getAppointmentId() == appointmentId)
+            {
+                targetAppointment = appointment;
+                break;
+            }
+        }
+        
+        return targetAppointment;
     }
 }

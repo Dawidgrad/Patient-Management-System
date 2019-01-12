@@ -5,33 +5,34 @@
  */
 package PatientManagement.Controllers;
 
-import PatientManagement.GuiViews.SecretaryAppointmentRequestsView;
-import PatientManagement.Model.Accounts.Secretary;
+import PatientManagement.GuiViews.PatientHistoryView;
+import PatientManagement.Model.Accounts.Patient;
 import PatientManagement.Model.Appointments.Appointment;
 import PatientManagement.Model.Appointments.AppointmentListSingleton;
+import PatientManagement.Model.Appointments.PrescriptionMedicine;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
-import javax.swing.JOptionPane;
 
 /**
  *
  * @author Davio
  */
-public class SecretaryAppointmentRequestsController 
+public class PatientViewHistoryController 
 {
-    private SecretaryAppointmentRequestsView view;
-    private Secretary model;
+    private PatientHistoryView view;
+    private Patient model;
     
-    public SecretaryAppointmentRequestsController(SecretaryAppointmentRequestsView view, Secretary model)
+    public PatientViewHistoryController(PatientHistoryView view, Patient model)
     {
         this.view = view;
         this.model = model;
         
         this.view.setVisible(true);
         
-        this.view.AddApproveAppointmentListener(new ApproveAppointmentListener());
+        this.view.addSelectAppointmentListener(new SelectAppointmentListener());
+        
         RefreshAppointmentJList();
     }
     
@@ -45,7 +46,7 @@ public class SecretaryAppointmentRequestsController
     {
         AppointmentListSingleton appointments = AppointmentListSingleton.getInstance();
 
-        return appointments.getStateList(Appointment.AppointmentState.REQUESTED);
+        return appointments.getPatientHistory(model);
     }
 
     private void PopulateAppointmentJList(ArrayList<Appointment> appointmentList)
@@ -67,37 +68,49 @@ public class SecretaryAppointmentRequestsController
             model.addElement(element);
         }
 
-        view.setLstAppointmentRequests(model);
+        view.setLstAppointments(model);
     }
     
     private int GetSelectedAppointmentId()
     {
-        String details = view.getLstAppointmentRequests().getSelectedValue();
+        String details = view.getLstAppointments().getSelectedValue();
 
         String appointmentId;
-        int x = details.indexOf("Doctor");
+        int index = details.indexOf(" Doctor");
 
-        appointmentId = details.substring(0, x-1);
+        appointmentId = details.substring(0, index);
         
         return Integer.parseInt(appointmentId);
     }
     
-    public class ApproveAppointmentListener implements ActionListener
+    public class SelectAppointmentListener implements ActionListener
     {
 
         @Override
         public void actionPerformed(ActionEvent e) 
         {
-            try
+            AppointmentListSingleton appointmentList = AppointmentListSingleton.getInstance();
+            int appointmentId = GetSelectedAppointmentId();
+            
+            Appointment selectedAppointment = appointmentList.getAppointment(appointmentId);
+            
+            view.setLblDoctorName(selectedAppointment.getDoctorName());
+            view.setLblDoctorAddress(selectedAppointment.getDoctor().getAddress());
+            view.setLblPatientName(selectedAppointment.getPatientName());
+            view.setLblPatientAddress(selectedAppointment.getPatient().getAddress());
+            view.setLblSex(selectedAppointment.getPatient().getGender().toString());
+            view.setLblAge(String.valueOf(selectedAppointment.getPatient().getAge()));
+            view.setLblDate(selectedAppointment.getDate() + " " + selectedAppointment.getTime());
+            
+            ArrayList<PrescriptionMedicine> prescribedMedicine = selectedAppointment.getPrescription().getMedicine();
+            
+            String prescription = "";
+            for (PrescriptionMedicine element : prescribedMedicine)
             {
-                int appointmentId = GetSelectedAppointmentId();
-                model.ProcessAppointmentRequest(appointmentId);
-                JOptionPane.showMessageDialog(null, "Appointment has been approved!");
+                prescription += element.getDetails() + System.lineSeparator();
             }
-            catch (Exception ex)
-            {
-                JOptionPane.showMessageDialog(null, "Cannot approve the appointment!");
-            }
+            
+            view.setTxtPrescription(prescription);
         }
         
     }

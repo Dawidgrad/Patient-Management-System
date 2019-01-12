@@ -28,18 +28,18 @@ public class Secretary extends Account implements Serializable
     {
         AppointmentListSingleton appointments = AppointmentListSingleton.getInstance();
         
-        return appointments.GetStateList(Appointment.AppointmentState.REQUESTED);
+        return appointments.getStateList(Appointment.AppointmentState.REQUESTED);
     }
     
     public void ProcessAppointmentRequest(int appointmentId)
     {
         AppointmentListSingleton appointments = AppointmentListSingleton.getInstance();
-        appointments.ApproveRequest(appointmentId);
+        appointments.approveRequest(appointmentId);
     }
     
     public void CreateAppointment(Doctor doctor, Patient patient, Date date, String time)
     {
         AppointmentListSingleton appointments = AppointmentListSingleton.getInstance();
-        appointments.AddAppointment(doctor, patient, date, time);
+        appointments.addAppointment(doctor, patient, date, time);
     }
 }

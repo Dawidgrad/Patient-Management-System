@@ -35,6 +35,14 @@ public class Patient extends Account implements Observer, Serializable
         this.gender = gender;
     }
 
+    public Gender getGender() {
+        return gender;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
     public boolean isAppointmentJustApproved() {
         return appointmentJustApproved;
     }
@@ -44,22 +52,28 @@ public class Patient extends Account implements Observer, Serializable
     }
     
     @Override
-    public void Update(Observable o) 
+    public void update(Observable o) 
     {
         this.scheduledAppointment = (Appointment)o;
         appointmentJustApproved = true;
     }
     
-    public void ProvideReview(Doctor doctor, String comment, int rating)
+    public void provideReview(Doctor doctor, String comment, int rating)
     {
         ReviewListSingleton reviewList = ReviewListSingleton.getInstance();
         reviewList.AddReview(this, doctor, comment, rating);
     }
     
-    public void RequestAppointment(Date date, Doctor doctor, String time)
+    public void requestAppointment(Date date, Doctor doctor, String time)
     {
         AppointmentListSingleton appointments = AppointmentListSingleton.getInstance();
         
-        appointments.AddRequest(this, date, doctor, time);
+        appointments.addRequest(this, date, doctor, time);
+    }
+    
+    public void completeAppointment()
+    {
+        scheduledAppointment = null;
+        setAppointmentJustApproved(false);
     }
 }

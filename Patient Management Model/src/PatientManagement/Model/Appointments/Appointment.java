@@ -12,6 +12,7 @@ import PatientManagement.Model.Interfaces.Observer;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -22,7 +23,7 @@ import java.util.Date;
 public class Appointment implements Observable, Serializable
 {
 
-    public static enum AppointmentState {REQUESTED, APPROVED}
+    public static enum AppointmentState {REQUESTED, APPROVED, ARCHIVED}
     
     private int appointmentId;
     private AppointmentState state;
@@ -30,6 +31,7 @@ public class Appointment implements Observable, Serializable
     private Doctor doctor;
     private Date date;
     private String time;
+    private Prescription prescription;
 
     public AppointmentState getState() {
         return state;
@@ -46,6 +48,16 @@ public class Appointment implements Observable, Serializable
     public String getDoctorName() {
         return doctor.getName();
     }
+    
+    public Patient getPatient()
+    {
+        return patient;
+    }
+    
+    public Doctor getDoctor()
+    {
+        return doctor;
+    }
 
     public String getDate() {
         String dateString = date.toString();
@@ -57,6 +69,14 @@ public class Appointment implements Observable, Serializable
 
     public String getTime() {
         return time;
+    }
+
+    public Prescription getPrescription() {
+        return prescription;
+    }
+
+    public void setState(AppointmentState state) {
+        this.state = state;
     }
     
     public Appointment(int id, Patient patient, Date date, Doctor doctor, String time)
@@ -118,12 +138,17 @@ public class Appointment implements Observable, Serializable
     @Override
     public void NotifyObserver() 
     {
-        this.patient.Update(this);
+        this.patient.update(this);
     }
     
     public void ProcessRequest()
     {
         this.state = AppointmentState.APPROVED;
         NotifyObserver();
+    }
+    
+    public void createPrescription(Notes notes, ArrayList<PrescriptionMedicine> medicine)
+    {
+        this.prescription = new Prescription(notes, medicine);
     }
 }

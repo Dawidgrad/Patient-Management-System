@@ -107,7 +107,7 @@ public class DoctorReviewController
             // Updates feedback for selected doctor
             DoctorFeedback feedback = reviewList.GetFeedback(selectedDoctor.getIdNumber());
             
-            // Update UI
+            // update UI
             view.setLblRating(Double.toString(feedback.getAverageRating()));
             
             String patientComments = "";
@@ -135,7 +135,7 @@ public class DoctorReviewController
             {
                 if (!comment.isEmpty())
                 {
-                    model.ProvideReview(selectedDoctor, comment, rating);
+                    model.provideReview(selectedDoctor, comment, rating);
                     JOptionPane.showMessageDialog(null, "Review added successfully!");
                 }
                 else

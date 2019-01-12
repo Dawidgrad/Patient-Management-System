@@ -11,5 +11,5 @@ package PatientManagement.Model.Interfaces;
  */
 public interface Observer 
 {
-    public void Update(Observable o);
+    public void update(Observable o);
 }

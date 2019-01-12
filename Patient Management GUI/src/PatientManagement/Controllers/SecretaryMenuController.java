@@ -41,7 +41,7 @@ public class SecretaryMenuController {
     private void CheckForAppointmentRequests()
     {
         AppointmentListSingleton appointmentList = AppointmentListSingleton.getInstance();
-        ArrayList<Appointment> currentRequests = appointmentList.GetStateList(Appointment.AppointmentState.REQUESTED);
+        ArrayList<Appointment> currentRequests = appointmentList.getStateList(Appointment.AppointmentState.REQUESTED);
         
         if (currentRequests.size() > 0)
         {

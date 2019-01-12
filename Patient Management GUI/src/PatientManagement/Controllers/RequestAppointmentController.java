@@ -101,7 +101,7 @@ public class RequestAppointmentController
                 Date date = view.getDatAppointmentDate();
                 String time = view.getCmbAppointmentTime();
             
-                model.RequestAppointment(date, doctor, time);
+                model.requestAppointment(date, doctor, time);
                 JOptionPane.showMessageDialog(null, "Appointment requested!\n"
                         + "You will receive notification when one of the Secretaries approves it.");
             }
