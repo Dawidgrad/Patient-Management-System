@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  *
@@ -53,12 +54,12 @@ public class Serialiser
         
         try 
         {
-         FileInputStream fileIn = new FileInputStream(name);
-         ObjectInputStream in = new ObjectInputStream(fileIn);
-         loadedObject = (Serializable) in.readObject();
-         in.close();
-         fileIn.close();
-         System.out.println("Data loaded from: "+ name);
+            FileInputStream fileIn = new FileInputStream(name);
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            loadedObject = (Serializable) in.readObject();
+            in.close();
+            fileIn.close();
+            System.out.println("Data loaded from: "+ name);
         } 
         catch (IOException i) 
         {
@@ -79,13 +80,15 @@ public class Serialiser
      * @param object
      * @return
      */
-    public boolean writeObject(Serializable object)
+    public boolean writeObject(ArrayList<Serializable> list)
     {
         try 
         {
             FileOutputStream fileOut = new FileOutputStream(name);
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
-            out.writeObject(object);
+            
+            out.writeObject(list);
+            
             out.close();
             fileOut.close();
             System.out.println("Serialized data is saved in: " + name);

@@ -9,6 +9,7 @@ import PatientManagement.GuiViews.*;
 import PatientManagement.Model.Accounts.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -43,7 +44,7 @@ public class LoginController {
             }
             else
             {
-                view.setLblResult("Could not log in!");
+                JOptionPane.showMessageDialog(null, "Could not log in! Please check ID Number and Password!");
             }
         }
         

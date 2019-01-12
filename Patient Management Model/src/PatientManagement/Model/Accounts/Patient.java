@@ -24,8 +24,8 @@ public class Patient extends Account implements Observer, Serializable
 
     private Gender gender;
     private int age;
-    private Appointment scheduledAppointment = null;
-    private boolean appointmentJustApproved = false;
+    private Appointment scheduledAppointment;
+    private boolean appointmentJustApproved;
     
     public Patient(String name, String surname, String address, String idNumber, String password, int age, Gender gender)
     {
@@ -33,6 +33,14 @@ public class Patient extends Account implements Observer, Serializable
         
         this.age = age;
         this.gender = gender;
+    }
+
+    public boolean isAppointmentJustApproved() {
+        return appointmentJustApproved;
+    }
+
+    public void setAppointmentJustApproved(boolean appointmentJustApproved) {
+        this.appointmentJustApproved = appointmentJustApproved;
     }
     
     @Override

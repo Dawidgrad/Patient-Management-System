@@ -11,6 +11,7 @@ import PatientManagement.GuiViews.PatientMenuView;
 import PatientManagement.Model.Accounts.Patient;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -30,6 +31,17 @@ public class PatientMenuController {
         this.view.addAccountSettingsListener(new AccountSettingsListener());
         this.view.addBrowseDoctorsListener(new BrowseDoctorsListener());
         this.view.addAppointmentsListener(new AppointmentsListener());
+        
+        CheckIfAppointmentApproved();
+    }
+    
+    private void CheckIfAppointmentApproved()
+    {
+        if (model.isAppointmentJustApproved() == true)
+        {
+            JOptionPane.showMessageDialog(null, "Your appointment has been approved by the Secretary!");
+            model.setAppointmentJustApproved(false);
+        }
     }
     
     public class AccountSettingsListener implements ActionListener

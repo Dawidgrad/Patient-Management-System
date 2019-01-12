@@ -92,6 +92,7 @@ public class SecretaryAppointmentRequestsController
             {
                 int appointmentId = GetSelectedAppointmentId();
                 model.ProcessAppointmentRequest(appointmentId);
+                JOptionPane.showMessageDialog(null, "Appointment has been approved!");
             }
             catch (Exception ex)
             {
