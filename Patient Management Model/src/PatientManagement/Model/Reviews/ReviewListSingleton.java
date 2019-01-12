@@ -7,16 +7,19 @@ package PatientManagement.Model.Reviews;
 
 import PatientManagement.Model.Accounts.Doctor;
 import PatientManagement.Model.Accounts.Patient;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author Davio
  */
-public class ReviewListSingleton 
+public class ReviewListSingleton implements Serializable
 {
     private static ReviewListSingleton uniqueInstance = null;
-    private static ArrayList<Review> reviewList;
+    private ArrayList<Review> reviewList;
     
     private ReviewListSingleton()
     {
@@ -30,6 +33,17 @@ public class ReviewListSingleton
             uniqueInstance = new ReviewListSingleton();
         }
         
+        return uniqueInstance;
+    }    
+    
+    private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException 
+    {
+        ois.defaultReadObject();
+        uniqueInstance = this;
+    }   
+    
+    private Object readResolve()
+    {
         return uniqueInstance;
     }
     

@@ -5,13 +5,14 @@
  */
 package PatientManagement.Model.Reviews;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author Davio
  */
-public class DoctorFeedback 
+public class DoctorFeedback implements Serializable
 {
     private double averageRating;
     private ArrayList<String> comments;

@@ -9,6 +9,7 @@ import PatientManagement.Model.Accounts.Doctor;
 import PatientManagement.Model.Accounts.Patient;
 import PatientManagement.Model.Interfaces.Observable;
 import PatientManagement.Model.Interfaces.Observer;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
@@ -17,7 +18,7 @@ import java.util.Date;
  *
  * @author Davio
  */
-public class Appointment implements Observable
+public class Appointment implements Observable, Serializable
 {
 
     public static enum AppointmentState {REQUESTED, APPROVED}

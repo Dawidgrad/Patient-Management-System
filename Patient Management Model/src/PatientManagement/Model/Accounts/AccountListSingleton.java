@@ -5,17 +5,21 @@
  */
 package PatientManagement.Model.Accounts;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author Davio
  */
-public class AccountListSingleton {
-    public static enum AccountType {ADMINISTRATOR, DOCTOR, SECRETARY, PATIENT}
+public class AccountListSingleton implements Serializable
+{
+    public static enum AccountType implements Serializable {ADMINISTRATOR, DOCTOR, SECRETARY, PATIENT}
     
     private static AccountListSingleton uniqueInstance = null;
-    private static ArrayList<Account> accountList;
+    private ArrayList<Account> accountList;
     
     private AccountListSingleton()
     {
@@ -29,6 +33,17 @@ public class AccountListSingleton {
             uniqueInstance = new AccountListSingleton();
         }
         
+        return uniqueInstance;
+    }
+    
+    private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException 
+    {
+        ois.defaultReadObject();
+        uniqueInstance = this;
+    }   
+    
+    private Object readResolve()
+    {
         return uniqueInstance;
     }
     

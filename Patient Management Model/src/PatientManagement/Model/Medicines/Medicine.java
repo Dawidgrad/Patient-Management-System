@@ -5,11 +5,13 @@
  */
 package PatientManagement.Model.Medicines;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Davio
  */
-public abstract class Medicine 
+public abstract class Medicine implements Serializable
 {
     private int medicineId;
     private String name;

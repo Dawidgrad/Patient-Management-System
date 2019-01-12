@@ -5,14 +5,14 @@
  */
 package PatientManagement.Model.Accounts;
 
-import PatientManagement.Model.Accounts.Patient.Gender;
+import java.io.Serializable;
 
 /**
  *
  * @author Davio
  */
-public class LoginSystemSingleton {
-    
+public class LoginSystemSingleton
+{    
     private static Account loggedInAccount = null;
     private static LoginSystemSingleton uniqueInstance = null;
     
@@ -49,7 +49,7 @@ public class LoginSystemSingleton {
         }
         
         //return correctInfo;
-        loggedInAccount = new Secretary("root", "root", "root", "root", "root");
+        loggedInAccount = new Administrator("root", "root", "root", "root", "root");
         return true;
     }
     

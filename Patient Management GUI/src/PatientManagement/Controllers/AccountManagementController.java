@@ -6,6 +6,7 @@
 package PatientManagement.Controllers;
 
 import PatientManagement.GuiViews.AccountManagementView;
+import PatientManagement.Main.PatientManagementGUI;
 import PatientManagement.Model.Accounts.Account;
 import PatientManagement.Model.Accounts.AccountListSingleton;
 import PatientManagement.Model.Accounts.AccountListSingleton.AccountType;
@@ -17,7 +18,6 @@ import java.util.Enumeration;
 import java.util.List;
 import javax.swing.AbstractButton;
 import javax.swing.DefaultListModel;
-import javax.swing.JList;
 import javax.swing.JOptionPane;
 
 

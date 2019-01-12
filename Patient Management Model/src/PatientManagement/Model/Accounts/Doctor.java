@@ -7,12 +7,13 @@ package PatientManagement.Model.Accounts;
 
 import PatientManagement.Model.Accounts.AccountListSingleton.AccountType;
 import PatientManagement.Model.Reviews.DoctorFeedback;
+import java.io.Serializable;
 
 /**
  *
  * @author Davio
  */
-public class Doctor extends Account 
+public class Doctor extends Account implements Serializable
 {
     private DoctorFeedback feedback;
             

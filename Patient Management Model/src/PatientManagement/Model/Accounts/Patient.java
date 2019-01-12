@@ -11,13 +11,14 @@ import PatientManagement.Model.Appointments.AppointmentListSingleton;
 import PatientManagement.Model.Interfaces.Observable;
 import PatientManagement.Model.Interfaces.Observer;
 import PatientManagement.Model.Reviews.ReviewListSingleton;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
  * @author Davio
  */
-public class Patient extends Account implements Observer
+public class Patient extends Account implements Observer, Serializable
 {
     public enum Gender { MALE, FEMALE }
 

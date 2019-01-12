@@ -5,11 +5,13 @@
  */
 package PatientManagement.Model.Reviews;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Davio
  */
-public class Rating 
+public class Rating implements Serializable
 {
     private double rating;
     

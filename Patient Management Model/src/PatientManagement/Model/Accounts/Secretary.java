@@ -8,6 +8,7 @@ package PatientManagement.Model.Accounts;
 import PatientManagement.Model.Accounts.AccountListSingleton.AccountType;
 import PatientManagement.Model.Appointments.Appointment;
 import PatientManagement.Model.Appointments.AppointmentListSingleton;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -16,7 +17,7 @@ import java.util.Date;
  *
  * @author Davio
  */
-public class Secretary extends Account
+public class Secretary extends Account implements Serializable
 {
     public Secretary(String name, String surname, String address, String idNumber, String password)
     {

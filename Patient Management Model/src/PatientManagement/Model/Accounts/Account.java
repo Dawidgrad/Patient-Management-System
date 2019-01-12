@@ -6,12 +6,14 @@
 package PatientManagement.Model.Accounts;
 
 import PatientManagement.Model.Accounts.AccountListSingleton.AccountType;
+import java.io.Serializable;
 
 /**
  *
  * @author Davio
  */
-public abstract class Account {
+public abstract class Account implements Serializable
+{
     private String name;
     private String surname;
     private String address;

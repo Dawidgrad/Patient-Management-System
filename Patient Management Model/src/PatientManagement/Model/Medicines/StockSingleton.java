@@ -5,13 +5,16 @@
  */
 package PatientManagement.Model.Medicines;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author Davio
  */
-public class StockSingleton 
+public class StockSingleton implements Serializable
 {
     public static enum MedicineType {TABLET, LIQUID, CAPSULE}
     
@@ -30,6 +33,17 @@ public class StockSingleton
             uniqueInstance = new StockSingleton();
         }
         
+        return uniqueInstance;
+    }    
+    
+    private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException 
+    {
+        ois.defaultReadObject();
+        uniqueInstance = this;
+    }   
+    
+    private Object readResolve()
+    {
         return uniqueInstance;
     }
     

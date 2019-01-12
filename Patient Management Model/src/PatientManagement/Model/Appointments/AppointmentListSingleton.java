@@ -8,17 +8,20 @@ package PatientManagement.Model.Appointments;
 import PatientManagement.Model.Accounts.Doctor;
 import PatientManagement.Model.Accounts.Patient;
 import PatientManagement.Model.Appointments.Appointment.AppointmentState;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.Date;
+import java.io.Serializable;
 
 /**
  *
  * @author Davio
  */
-public class AppointmentListSingleton 
+public class AppointmentListSingleton implements Serializable
 {
     private static AppointmentListSingleton uniqueInstance = null;
-    private static ArrayList<Appointment> appointmentList = null;
+    private ArrayList<Appointment> appointmentList = null;
     
     private AppointmentListSingleton()
     {
@@ -32,6 +35,17 @@ public class AppointmentListSingleton
             uniqueInstance = new AppointmentListSingleton();
         }
         
+        return uniqueInstance;
+    }    
+    
+    private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException 
+    {
+        ois.defaultReadObject();
+        uniqueInstance = this;
+    }   
+    
+    private Object readResolve()
+    {
         return uniqueInstance;
     }
     

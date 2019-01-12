@@ -5,11 +5,13 @@
  */
 package PatientManagement.Model.Reviews;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Davio
  */
-public class Comment 
+public class Comment implements Serializable
 {
     private String commentText;
 
