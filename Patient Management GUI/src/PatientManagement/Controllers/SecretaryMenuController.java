@@ -101,7 +101,7 @@ public class SecretaryMenuController
             SecretaryAppointmentView newView = new SecretaryAppointmentView();
             newView.setLocation(view.getLocation());
             view.dispose();
-            SecretaryAppointmentController secretaryAppointment = new SecretaryAppointmentController(newView, model);
+            SecretaryAppointmentController appointmentController = new SecretaryAppointmentController(newView, model);
         }
         
     }
@@ -115,7 +115,7 @@ public class SecretaryMenuController
             SecretaryMedicineView newView = new SecretaryMedicineView();
             newView.setLocation(view.getLocation());
             view.dispose();
-            SecretaryMedicineController secretaryMedicine = new SecretaryMedicineController(newView, model);
+            SecretaryMedicineController medicineController = new SecretaryMedicineController(newView, model);
         }
         
     }

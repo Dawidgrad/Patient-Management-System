@@ -39,16 +39,16 @@ public class DoctorFeedbackController
         this.view.AddSelectDoctorListener(new SelectDoctor());
         this.view.AddSubmitFeebackListener(new SubmitFeedback());
         
-        RefreshDoctorsJList();
+        refreshDoctorsJList();
     }
     
-    private void RefreshDoctorsJList()
+    private void refreshDoctorsJList()
     {
-        ArrayList<Account> doctorList = GetDoctorList();
-        PopulateDoctorJList(doctorList);
+        ArrayList<Account> doctorList = getDoctorList();
+        populateDoctorJList(doctorList);
     }
 
-    private ArrayList<Account> GetDoctorList()
+    private ArrayList<Account> getDoctorList()
     {
         AccountListSingleton accounts = AccountListSingleton.getInstance();
 
@@ -59,7 +59,7 @@ public class DoctorFeedbackController
         return doctorList;
     }
 
-    private void PopulateDoctorJList(ArrayList<Account> doctorList)
+    private void populateDoctorJList(ArrayList<Account> doctorList)
     {
         ArrayList<String> doctorStringList = new ArrayList<String>();
 
@@ -86,8 +86,8 @@ public class DoctorFeedbackController
         {
             try
             {
-                UpdateSelectedDoctor();
-                UpdateDoctorReviews();
+                updateSelectedDoctor();
+                updateDoctorReviews();
             }
             catch (Exception ex)
             {
@@ -95,7 +95,7 @@ public class DoctorFeedbackController
             }
         }
         
-        private void UpdateSelectedDoctor()
+        private void updateSelectedDoctor()
         {
             String details = view.getLstDoctors().getSelectedValue();
             AccountListSingleton accountList = AccountListSingleton.getInstance();
@@ -107,7 +107,7 @@ public class DoctorFeedbackController
             selectedDoctor = (Doctor)accountList.getAccount(idNumber);
         }
         
-        private void UpdateDoctorReviews()
+        private void updateDoctorReviews()
         {
             ReviewListSingleton reviewList = ReviewListSingleton.getInstance();
             

@@ -21,6 +21,8 @@ public class DoctorMenuView extends javax.swing.JFrame {
         initComponents();
     }
     
+    /* Listeners */
+    
     public void addAppointmentsListener(ActionListener listenForAppointmentsButton)
     {
         btnAppointments.addActionListener(listenForAppointmentsButton);

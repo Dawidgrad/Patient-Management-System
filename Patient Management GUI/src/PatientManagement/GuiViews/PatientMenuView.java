@@ -20,6 +20,8 @@ public class PatientMenuView extends javax.swing.JFrame {
         initComponents();
     }
     
+    /* Listeners */
+    
     public void addAccountSettingsListener(ActionListener listenForAccountSettingsButton)
     {
         btnAccountSettings.addActionListener(listenForAccountSettingsButton);

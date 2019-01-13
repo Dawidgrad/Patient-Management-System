@@ -35,22 +35,30 @@ public class LoginController {
         @Override
         public void actionPerformed(ActionEvent e) 
         {
-            String idNumber = view.getTxtIdNumber().getText();
-            String password = new String(view.getTxtPassword().getPassword());
-            
-            boolean result = model.LogIn(idNumber, password);
-            
-            if (result)
+            try
             {
-                DetermineAccountType();
+                String idNumber = view.getTxtIdNumber();
+                String password = view.getTxtPassword();
+
+                boolean result = model.LogIn(idNumber, password);
+
+                if (result)
+                {
+                    determineAccountType();
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null, "Could not log in! Please check ID Number and Password!");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                JOptionPane.showMessageDialog(null, "Could not log in! Please check ID Number and Password!");
+                JOptionPane.showMessageDialog(null, "Please provide the information!");
             }
+            
         }
         
-        private void DetermineAccountType()
+        private void determineAccountType()
         {
             switch (model.getLoggedInAccount().getAccountType())
             {

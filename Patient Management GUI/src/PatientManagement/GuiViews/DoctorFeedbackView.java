@@ -25,7 +25,7 @@ public class DoctorFeedbackView extends javax.swing.JFrame
         initComponents();
     }
 
-    /* Getters / Setters */
+    /* Getters and Setters */
     
     public JList<String> getLstDoctors() {
         return lstDoctors;

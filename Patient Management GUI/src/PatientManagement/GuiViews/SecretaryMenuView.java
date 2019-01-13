@@ -20,6 +20,8 @@ public class SecretaryMenuView extends javax.swing.JFrame {
         initComponents();
     }
     
+    /* Listeners */
+    
     public void addPatientAccountsListener(ActionListener listenForPatientAccountsButton)
     {
         btnPatientAccounts.addActionListener(listenForPatientAccountsButton);

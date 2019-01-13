@@ -23,36 +23,23 @@ public class AccountManagementView extends javax.swing.JFrame {
     public AccountManagementView() {
         initComponents();
     }
-    
-    public void AddCreateAccountListener(ActionListener addAccountButton)
-    {
-        btnCreateAccount.addActionListener(addAccountButton);
-    }
-    
-    public void AddDeleteAccountListener(ActionListener removeAccountButton)
-    {
-        btnDeleteAccount.addActionListener(removeAccountButton);
-    }
-    
-    public void AddRefreshListListener(ActionListener refreshList)
-    {
-        btnRefreshList.addActionListener(refreshList);
+
+    /* Getters and Setters */
+
+    public String getTxtAddress() {
+        return txtAddress.getText();
     }
 
-    public JTextField getTxtAddress() {
-        return txtAddress;
+    public String getTxtFirstName() {
+        return txtFirstName.getText();
     }
 
-    public JTextField getTxtFirstName() {
-        return txtFirstName;
+    public String getTxtLastName() {
+        return txtLastName.getText();
     }
 
-    public JTextField getTxtLastName() {
-        return txtLastName;
-    }
-
-    public JPasswordField getTxtPassword() {
-        return txtPassword;
+    public String getTxtPassword() {
+        return (new String(txtPassword.getPassword()));
     }
 
     public ButtonGroup getBtngrpAccountType() {
@@ -62,7 +49,23 @@ public class AccountManagementView extends javax.swing.JFrame {
     public JList<String> getAccountList() {
         return accountList;
     }
-
+    
+    /* Listeners */
+    
+    public void addCreateAccountListener(ActionListener addAccountButton)
+    {
+        btnCreateAccount.addActionListener(addAccountButton);
+    }
+    
+    public void addDeleteAccountListener(ActionListener removeAccountButton)
+    {
+        btnDeleteAccount.addActionListener(removeAccountButton);
+    }
+    
+    public void addRefreshListListener(ActionListener refreshList)
+    {
+        btnRefreshList.addActionListener(refreshList);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

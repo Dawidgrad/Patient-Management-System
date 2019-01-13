@@ -40,7 +40,7 @@ public class AdministratorMenuController {
             AccountManagementView newView = new AccountManagementView();
             newView.setLocation(view.getLocation());
             view.dispose();
-            AccountManagementController accountManagement = new AccountManagementController(newView, model);
+            AccountManagementController accountController = new AccountManagementController(newView, model);
         }
         
     }
@@ -53,7 +53,7 @@ public class AdministratorMenuController {
             DoctorFeedbackView newView = new DoctorFeedbackView();
             newView.setLocation(view.getLocation());
             view.dispose();
-            DoctorFeedbackController doctorFeedback = new DoctorFeedbackController(newView, model);
+            DoctorFeedbackController feedbackController = new DoctorFeedbackController(newView, model);
         }
         
     }

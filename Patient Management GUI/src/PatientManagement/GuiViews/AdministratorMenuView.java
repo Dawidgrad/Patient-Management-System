@@ -21,7 +21,8 @@ public class AdministratorMenuView extends javax.swing.JFrame {
         initComponents();
     }
     
-        
+    /* Listeners */
+    
     public void addAccountListener(ActionListener accountButton)
     {
         btnAccountsManagement.addActionListener(accountButton);

@@ -37,20 +37,20 @@ public class AccountManagementController
         
         this.view.setVisible(true);
         
-        this.view.AddCreateAccountListener(new CreateAccountListener());
-        this.view.AddDeleteAccountListener(new DeleteAccountListener());
-        this.view.AddRefreshListListener(new RefreshListListener());
+        this.view.addCreateAccountListener(new CreateAccountListener());
+        this.view.addDeleteAccountListener(new DeleteAccountListener());
+        this.view.addRefreshListListener(new RefreshListListener());
         
-        RefreshAccountJList();
+        refreshAccountJList();
     }
 
-    private void RefreshAccountJList()
+    private void refreshAccountJList()
     {
-        ArrayList<Account> accountList = GetAccountList();
-        PopulateAccountJList(accountList);
+        ArrayList<Account> accountList = getAccountList();
+        populateAccountJList(accountList);
     }
 
-    private ArrayList<Account> GetAccountList()
+    private ArrayList<Account> getAccountList()
     {
         AccountListSingleton accounts = AccountListSingleton.getInstance();
 
@@ -62,7 +62,7 @@ public class AccountManagementController
         return accountList;
     }
 
-    private void PopulateAccountJList(ArrayList<Account> accountList)
+    private void populateAccountJList(ArrayList<Account> accountList)
     {
         ArrayList<String> accountStringList = new ArrayList<String>();
 
@@ -85,18 +85,19 @@ public class AccountManagementController
     {
 
         @Override
-        public void actionPerformed(ActionEvent e) {
-            String firstName = view.getTxtFirstName().getText();
-            String lastName = view.getTxtLastName().getText();
-            String address = view.getTxtAddress().getText();
-            String password = new String(view.getTxtPassword().getPassword());
-            AccountType type = getSelectedType();
-            
-            AccountListSingleton accountList = AccountListSingleton.getInstance();
-            String idNumber = accountList.getNextIdNumber(type);
-            
+        public void actionPerformed(ActionEvent e) 
+        {
             try
             {
+                String firstName = view.getTxtFirstName();
+                String lastName = view.getTxtLastName();
+                String address = view.getTxtAddress();
+                String password = view.getTxtPassword();
+                AccountType type = getSelectedType();
+
+                AccountListSingleton accountList = AccountListSingleton.getInstance();
+                String idNumber = accountList.getNextIdNumber(type);
+            
                 boolean result = model.CreateNewAccount(firstName, lastName, address, idNumber, password, type);
                 
                 if (result)
@@ -111,7 +112,7 @@ public class AccountManagementController
             }
             catch(Exception ex)
             {
-                JOptionPane.showMessageDialog(null, "Unknown Error!");
+                JOptionPane.showMessageDialog(null, "Could not add account!");
             }
         }
         
@@ -164,7 +165,7 @@ public class AccountManagementController
                 Account targetAccount = accountList.getAccount(idNumber);
                 model.RemoveAccount(targetAccount);
                 
-                RefreshAccountJList();
+                refreshAccountJList();
                 JOptionPane.showMessageDialog(null, "The account has been deleted!");
             }
             catch (Exception ex)
@@ -183,7 +184,7 @@ public class AccountManagementController
         {
             try
             {
-                RefreshAccountJList();
+                refreshAccountJList();
             }
             catch (Exception ex)
             {

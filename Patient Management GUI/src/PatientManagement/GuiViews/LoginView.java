@@ -26,12 +26,12 @@ public class LoginView extends javax.swing.JFrame {
 
     /* Getters and Setters */
     
-    public JTextField getTxtIdNumber() {
-        return txtIdNumber;
+    public String getTxtIdNumber() {
+        return txtIdNumber.getText();
     }
 
-    public JPasswordField getTxtPassword() {
-        return txtPassword;
+    public String getTxtPassword() {
+        return (new String(txtPassword.getPassword()));
     }
     
     /* Listeners */
