@@ -20,23 +20,23 @@ import java.util.Date;
  */
 public class Patient extends Account implements Observer, Serializable
 {
-    public enum Gender { MALE, FEMALE }
+    public enum Sex { MALE, FEMALE }
 
-    private Gender gender;
+    private Sex sex;
     private int age;
     private Appointment scheduledAppointment;
     private boolean appointmentJustApproved;
     
-    public Patient(String name, String surname, String address, String idNumber, String password, int age, Gender gender)
+    public Patient(String name, String surname, String address, String idNumber, String password, int age, Sex sex)
     {
         super(name, surname, address, idNumber, password, AccountType.PATIENT);
         
         this.age = age;
-        this.gender = gender;
+        this.sex = sex;
     }
 
-    public Gender getGender() {
-        return gender;
+    public Sex getSex() {
+        return sex;
     }
 
     public int getAge() {

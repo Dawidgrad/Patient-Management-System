@@ -35,7 +35,7 @@ public class LoginSystemSingleton
     public boolean LogIn(String idNumber, String password)
     {
         AccountListSingleton accountList = AccountListSingleton.getInstance();
-        Account targetAccount = accountList.GetAccount(idNumber);
+        Account targetAccount = accountList.getAccount(idNumber);
         boolean correctInfo = false;
                 
         if (targetAccount != null)

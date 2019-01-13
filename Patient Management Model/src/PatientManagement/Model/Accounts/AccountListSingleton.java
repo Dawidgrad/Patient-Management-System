@@ -20,10 +20,12 @@ public class AccountListSingleton implements Serializable
     
     private static AccountListSingleton uniqueInstance = null;
     private ArrayList<Account> accountList;
+    private int accountCount;
     
     private AccountListSingleton()
     {
         accountList = new ArrayList<Account>();
+        accountCount = 1;
     }
     
     public static AccountListSingleton getInstance()
@@ -47,7 +49,33 @@ public class AccountListSingleton implements Serializable
         return uniqueInstance;
     }
     
-    public boolean AddAccount(Account newAccount)
+    public String getNextIdNumber(AccountType type)
+    {
+        String letter = "";
+        
+        switch (type)
+        {
+            case ADMINISTRATOR:
+                letter = "A";
+                break;
+            case DOCTOR:
+                letter = "D";
+                break;
+            case SECRETARY:
+                letter = "S";
+                break;
+            case PATIENT:
+                letter = "P";
+                break;
+        }
+        
+        String idNumber = letter + String.format("%04d", accountCount);
+        accountCount++;
+        
+        return idNumber;
+    }
+    
+    public boolean addAccount(Account newAccount)
     {
         boolean uniqueAccount = true;
         
@@ -67,7 +95,7 @@ public class AccountListSingleton implements Serializable
         return uniqueAccount;
     }
     
-    public void RemoveAccount(String idNumber)
+    public void removeAccount(String idNumber)
     {
         Account accountToRemove = null;
         
@@ -85,7 +113,7 @@ public class AccountListSingleton implements Serializable
         }
     }
     
-    public ArrayList<Account> GetAccountTypeList(AccountType type)
+    public ArrayList<Account> getAccountTypeList(AccountType type)
     {
         ArrayList<Account> typeList = new ArrayList<Account>();
         
@@ -100,7 +128,7 @@ public class AccountListSingleton implements Serializable
         return typeList;
     }
     
-    public Account GetAccount(String idNumber)
+    public Account getAccount(String idNumber)
     {
         Account targetAccount = null;
         

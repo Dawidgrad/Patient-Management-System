@@ -85,7 +85,7 @@ public class SecretaryMedicineController
 
         ArrayList<Account> patientList = new ArrayList<Account>();
 
-        patientList.addAll(patients.GetAccountTypeList(AccountListSingleton.AccountType.PATIENT));
+        patientList.addAll(patients.getAccountTypeList(AccountListSingleton.AccountType.PATIENT));
 
         return patientList;
     }

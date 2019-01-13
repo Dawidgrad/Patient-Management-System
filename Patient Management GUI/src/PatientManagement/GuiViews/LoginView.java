@@ -24,6 +24,8 @@ public class LoginView extends javax.swing.JFrame {
         initComponents();
     }
 
+    /* Getters and Setters */
+    
     public JTextField getTxtIdNumber() {
         return txtIdNumber;
     }
@@ -32,9 +34,16 @@ public class LoginView extends javax.swing.JFrame {
         return txtPassword;
     }
     
+    /* Listeners */
+    
     public void addSubmitListener(ActionListener listenForSubmitButton)
     {
         btnSubmit.addActionListener(listenForSubmitButton);
+    }
+    
+    public void addRequestAccountListener(ActionListener requestAccount)
+    {
+        btnRequestAccount.addActionListener(requestAccount);
     }
     
     public void displayErrorMessage(String errorMessage)
@@ -58,6 +67,7 @@ public class LoginView extends javax.swing.JFrame {
         txtPassword = new javax.swing.JPasswordField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        btnRequestAccount = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -65,12 +75,18 @@ public class LoginView extends javax.swing.JFrame {
         jLabel1.setText("Log-in");
         jLabel1.setToolTipText("");
 
+        btnSubmit.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnSubmit.setText("Submit");
         btnSubmit.setName(""); // NOI18N
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel2.setText("ID Number");
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel3.setText("Password");
+
+        btnRequestAccount.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnRequestAccount.setText("Request patient account");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -82,23 +98,20 @@ public class LoginView extends javax.swing.JFrame {
                         .addGap(172, 172, 172)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(128, 128, 128)
+                        .addGap(108, 108, 108)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtIdNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtIdNumber)
-                                .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE))
-                            .addComponent(jLabel3))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 160, Short.MAX_VALUE)
-                .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(155, 155, 155))
+                            .addComponent(jLabel3)
+                            .addComponent(btnRequestAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(101, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(39, 39, 39)
+                .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(35, 35, 35)
                 .addComponent(jLabel2)
@@ -108,9 +121,11 @@ public class LoginView extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
-                .addComponent(btnSubmit)
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addComponent(btnRequestAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         pack();
@@ -167,6 +182,7 @@ public class LoginView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnRequestAccount;
     private javax.swing.JButton btnSubmit;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

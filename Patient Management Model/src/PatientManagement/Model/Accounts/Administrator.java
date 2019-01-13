@@ -24,7 +24,7 @@ public class Administrator extends Account
         Account newAccount = accountFactory.CreateAccount(name, surname, address, idNumber, password, type);
         
         AccountListSingleton accountList = AccountListSingleton.getInstance();
-        boolean success = accountList.AddAccount(newAccount);
+        boolean success = accountList.addAccount(newAccount);
         
         return success;
     }
@@ -32,7 +32,7 @@ public class Administrator extends Account
     public void RemoveAccount(String idNumber)
     {
         AccountListSingleton accountList = AccountListSingleton.getInstance();
-        accountList.RemoveAccount(idNumber);
+        accountList.removeAccount(idNumber);
     }
     
     public void GiveDoctorFeedback(Doctor doctor, String feedback)

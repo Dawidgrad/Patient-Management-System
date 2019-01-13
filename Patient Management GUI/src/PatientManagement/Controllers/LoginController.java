@@ -7,6 +7,7 @@ package PatientManagement.Controllers;
 
 import PatientManagement.GuiViews.*;
 import PatientManagement.Model.Accounts.*;
+import PatientManagement.Model.PatientAccountManagement.AccountVerificationSingleton;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
@@ -25,6 +26,7 @@ public class LoginController {
         this.model = model;
         
         this.view.addSubmitListener(new SubmitListener());
+        this.view.addRequestAccountListener(new RequestAccountListener());
     }
     
     class SubmitListener implements ActionListener
@@ -81,6 +83,21 @@ public class LoginController {
                             new PatientMenuController(patientView, ((Patient)model.getLoggedInAccount()));
                     break;
             }
+        }
+        
+    }
+    
+    public class RequestAccountListener implements ActionListener
+    {
+
+        @Override
+        public void actionPerformed(ActionEvent e) 
+        {
+            RequestAccountView newView = new RequestAccountView();
+            view.dispose();
+            newView.setLocation(view.getLocation());
+            RequestAccountController requestAccount = 
+                    new RequestAccountController(newView, AccountVerificationSingleton.getInstance());
         }
         
     }

@@ -54,7 +54,7 @@ public class DoctorFeedbackController
 
         ArrayList<Account> doctorList = new ArrayList<Account>();
 
-        doctorList.addAll(accounts.GetAccountTypeList(AccountType.DOCTOR));
+        doctorList.addAll(accounts.getAccountTypeList(AccountType.DOCTOR));
 
         return doctorList;
     }
@@ -104,7 +104,7 @@ public class DoctorFeedbackController
             int x = details.indexOf("Name:");
 
             idNumber = details.substring(0, x-1);
-            selectedDoctor = (Doctor)accountList.GetAccount(idNumber);
+            selectedDoctor = (Doctor)accountList.getAccount(idNumber);
         }
         
         private void UpdateDoctorReviews()

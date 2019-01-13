@@ -50,7 +50,7 @@ public class RequestAppointmentController
 
         ArrayList<Account> doctorList = new ArrayList<Account>();
 
-        doctorList.addAll(accounts.GetAccountTypeList(AccountListSingleton.AccountType.DOCTOR));
+        doctorList.addAll(accounts.getAccountTypeList(AccountListSingleton.AccountType.DOCTOR));
 
         return doctorList;
     }
@@ -83,7 +83,7 @@ public class RequestAppointmentController
         int x = details.indexOf("Name:");
 
         idNumber = details.substring(0, x-1);
-        Doctor selectedDoctor = (Doctor)accountList.GetAccount(idNumber);
+        Doctor selectedDoctor = (Doctor)accountList.getAccount(idNumber);
         return selectedDoctor;
     }
         

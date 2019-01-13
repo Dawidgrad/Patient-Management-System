@@ -113,7 +113,7 @@ public class PatientHistoryController
             view.setLblDoctorAddress(selectedAppointment.getDoctor().getAddress());
             view.setLblPatientName(selectedAppointment.getPatientName());
             view.setLblPatientAddress(selectedAppointment.getPatient().getAddress());
-            view.setLblSex(selectedAppointment.getPatient().getGender().toString());
+            view.setLblSex(selectedAppointment.getPatient().getSex().toString());
             view.setLblAge(String.valueOf(selectedAppointment.getPatient().getAge()));
             view.setLblDate(selectedAppointment.getDate() + " " + selectedAppointment.getTime());
             

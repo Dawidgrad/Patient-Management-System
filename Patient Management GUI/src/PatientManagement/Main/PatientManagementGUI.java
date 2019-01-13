@@ -10,7 +10,7 @@ import PatientManagement.Model.Accounts.AccountListSingleton;
 import PatientManagement.Model.Accounts.Administrator;
 import PatientManagement.Model.Accounts.LoginSystemSingleton;
 import PatientManagement.Model.Accounts.Patient;
-import PatientManagement.Model.Accounts.Patient.Gender;
+import PatientManagement.Model.Accounts.Patient.Sex;
 import PatientManagement.Model.Appointments.AppointmentListSingleton;
 import PatientManagement.Model.Medicines.StockSingleton;
 import PatientManagement.Model.Reviews.ReviewListSingleton;
@@ -31,8 +31,8 @@ public class PatientManagementGUI {
         ReadSerialisedObjects();
         
         AccountListSingleton list = AccountListSingleton.getInstance();
-//        list.AddAccount(new Patient("Test", "test", "test", "PTest", "test", 31, Gender.FEMALE));
-//        list.AddAccount(new Administrator("root", "root", "root", "root", "root"));
+//        list.addAccount(new Patient("Test", "test", "test", "PTest", "test", 31, Sex.FEMALE));
+//        list.addAccount(new Administrator("root", "root", "root", "root", "root"));
         
         LoginView view = new LoginView();
         LoginSystemSingleton model = LoginSystemSingleton.getInstance();

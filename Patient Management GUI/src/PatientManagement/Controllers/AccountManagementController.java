@@ -56,8 +56,8 @@ public class AccountManagementController
 
         ArrayList<Account> accountList = new ArrayList<Account>();
 
-        accountList.addAll(accounts.GetAccountTypeList(AccountType.DOCTOR));
-        accountList.addAll(accounts.GetAccountTypeList(AccountType.SECRETARY));
+        accountList.addAll(accounts.getAccountTypeList(AccountType.DOCTOR));
+        accountList.addAll(accounts.getAccountTypeList(AccountType.SECRETARY));
 
         return accountList;
     }
@@ -86,12 +86,37 @@ public class AccountManagementController
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            String idNumber = view.getTxtIdNumber().getText();
             String firstName = view.getTxtFirstName().getText();
             String lastName = view.getTxtLastName().getText();
             String address = view.getTxtAddress().getText();
             String password = new String(view.getTxtPassword().getPassword());
+            AccountType type = getSelectedType();
             
+            AccountListSingleton accountList = AccountListSingleton.getInstance();
+            String idNumber = accountList.getNextIdNumber(type);
+            
+            try
+            {
+                boolean result = model.CreateNewAccount(firstName, lastName, address, idNumber, password, type);
+                
+                if (result)
+                {
+                    JOptionPane.showMessageDialog(null, "Account added successfully!");
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null, "Account with given credentials could not be added! "
+                            + "Account with that ID Number might already exist.");
+                }
+            }
+            catch(Exception ex)
+            {
+                JOptionPane.showMessageDialog(null, "Unknown Error!");
+            }
+        }
+        
+        private AccountType getSelectedType()
+        {
             String typeText = "";
             
             for (Enumeration<AbstractButton> buttons = view.getBtngrpAccountType().getElements(); buttons.hasMoreElements();) 
@@ -117,26 +142,8 @@ public class AccountManagementController
                     break;
             }
             
-            try
-            {
-                boolean result = model.CreateNewAccount(firstName, lastName, address, idNumber, password, type);
-                
-                if (result)
-                {
-                    JOptionPane.showMessageDialog(null, "Account added successfully!");
-                }
-                else
-                {
-                    JOptionPane.showMessageDialog(null, "Account with given credentials could not be added! "
-                            + "Account with that ID Number might already exist.");
-                }
-            }
-            catch(Exception ex)
-            {
-                JOptionPane.showMessageDialog(null, "Unknown Error!");
-            }
+            return type;
         }
-        
     }
     
     public class DeleteAccountListener implements ActionListener

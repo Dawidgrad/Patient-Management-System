@@ -58,7 +58,7 @@ public class SecretaryNewAppointmentController
 
         ArrayList<Account> patientList = new ArrayList<Account>();
 
-        patientList.addAll(patients.GetAccountTypeList(AccountListSingleton.AccountType.PATIENT));
+        patientList.addAll(patients.getAccountTypeList(AccountListSingleton.AccountType.PATIENT));
 
         return patientList;
     }
@@ -88,7 +88,7 @@ public class SecretaryNewAppointmentController
 
         ArrayList<Account> doctorList = new ArrayList<Account>();
 
-        doctorList.addAll(accounts.GetAccountTypeList(AccountListSingleton.AccountType.DOCTOR));
+        doctorList.addAll(accounts.getAccountTypeList(AccountListSingleton.AccountType.DOCTOR));
 
         return doctorList;
     }
@@ -121,7 +121,7 @@ public class SecretaryNewAppointmentController
         int x = details.indexOf("Name:");
 
         idNumber = details.substring(0, x-1);
-        Doctor selectedDoctor = (Doctor)accountList.GetAccount(idNumber);
+        Doctor selectedDoctor = (Doctor)accountList.getAccount(idNumber);
         return selectedDoctor;
     }
     
@@ -134,7 +134,7 @@ public class SecretaryNewAppointmentController
         int x = details.indexOf("Name:");
 
         idNumber = details.substring(0, x-1);
-        Patient selectedPatient = (Patient)accountList.GetAccount(idNumber);
+        Patient selectedPatient = (Patient)accountList.getAccount(idNumber);
         return selectedPatient;
     }
     
