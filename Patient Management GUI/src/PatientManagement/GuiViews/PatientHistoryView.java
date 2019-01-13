@@ -99,6 +99,7 @@ public class PatientHistoryView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        lstAppointments.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(lstAppointments);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -107,8 +108,10 @@ public class PatientHistoryView extends javax.swing.JFrame {
         btnSelectAppointment.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnSelectAppointment.setText("Select the appointment");
 
+        txtPrescription.setEditable(false);
         txtPrescription.setColumns(20);
         txtPrescription.setRows(5);
+        txtPrescription.setDisabledTextColor(new java.awt.Color(0, 102, 102));
         jScrollPane2.setViewportView(txtPrescription);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -125,20 +128,6 @@ public class PatientHistoryView extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel3.setText("Date");
-
-        lblDoctorName.setText("name");
-
-        lblPatientName.setText("name");
-
-        lblDoctorAddress.setText("address");
-
-        lblPatientAddress.setText("address");
-
-        lblDate.setText("date");
-
-        lblSex.setText("sex");
-
-        lblAge.setText("age");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -203,7 +192,7 @@ public class PatientHistoryView extends javax.swing.JFrame {
                         .addComponent(lblSex)
                         .addGap(18, 18, 18)
                         .addComponent(lblAge)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lblDate)

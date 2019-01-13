@@ -5,11 +5,11 @@
  */
 package PatientManagement.Controllers;
 
+import PatientManagement.GuiViews.DoctorAppointmentView;
 import PatientManagement.GuiViews.PatientHistoryView;
-import PatientManagement.Model.Accounts.Patient;
+import PatientManagement.Model.Accounts.Doctor;
 import PatientManagement.Model.Appointments.Appointment;
 import PatientManagement.Model.Appointments.AppointmentListSingleton;
-import PatientManagement.Model.Appointments.PrescriptionMedicine;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -19,19 +19,20 @@ import javax.swing.DefaultListModel;
  *
  * @author Davio
  */
-public class PatientViewHistoryController 
+public class DoctorAppointmentController 
 {
-    private PatientHistoryView view;
-    private Patient model;
+    private DoctorAppointmentView view;
+    private Doctor model;
     
-    public PatientViewHistoryController(PatientHistoryView view, Patient model)
+    public DoctorAppointmentController(DoctorAppointmentView view, Doctor model)
     {
         this.view = view;
         this.model = model;
         
         this.view.setVisible(true);
         
-        this.view.addSelectAppointmentListener(new SelectAppointmentListener());
+        this.view.addInspectHistoryListener(new InspectHistoryListener());
+        this.view.addStartAppointmentListener(new StartAppointmentListener());
         
         RefreshAppointmentJList();
     }
@@ -46,7 +47,7 @@ public class PatientViewHistoryController
     {
         AppointmentListSingleton appointments = AppointmentListSingleton.getInstance();
 
-        return appointments.getPatientHistory(model);
+        return appointments.getScheduledAppointments(model);
     }
 
     private void PopulateAppointmentJList(ArrayList<Appointment> appointmentList)
@@ -83,7 +84,7 @@ public class PatientViewHistoryController
         return Integer.parseInt(appointmentId);
     }
     
-    public class SelectAppointmentListener implements ActionListener
+    public class InspectHistoryListener implements ActionListener
     {
 
         @Override
@@ -94,23 +95,20 @@ public class PatientViewHistoryController
             
             Appointment selectedAppointment = appointmentList.getAppointment(appointmentId);
             
-            view.setLblDoctorName(selectedAppointment.getDoctorName());
-            view.setLblDoctorAddress(selectedAppointment.getDoctor().getAddress());
-            view.setLblPatientName(selectedAppointment.getPatientName());
-            view.setLblPatientAddress(selectedAppointment.getPatient().getAddress());
-            view.setLblSex(selectedAppointment.getPatient().getGender().toString());
-            view.setLblAge(String.valueOf(selectedAppointment.getPatient().getAge()));
-            view.setLblDate(selectedAppointment.getDate() + " " + selectedAppointment.getTime());
-            
-            ArrayList<PrescriptionMedicine> prescribedMedicine = selectedAppointment.getPrescription().getMedicine();
-            
-            String prescription = "";
-            for (PrescriptionMedicine element : prescribedMedicine)
-            {
-                prescription += element.getDetails() + System.lineSeparator();
-            }
-            
-            view.setTxtPrescription(prescription);
+            PatientHistoryView newView = new PatientHistoryView();
+            newView.setLocation(view.getLocation());
+            view.dispose();
+            PatientHistoryController doctorMedicine = new PatientHistoryController(newView, selectedAppointment.getPatient(), model);
+        }
+        
+    }
+    
+    public class StartAppointmentListener implements ActionListener
+    {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         }
         
     }

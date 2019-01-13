@@ -127,6 +127,21 @@ public class AppointmentListSingleton implements Serializable
         return targetAppointments;
     }
     
+    public ArrayList<Appointment> getScheduledAppointments(Doctor doctor)
+    {
+        ArrayList<Appointment> targetAppointments = new ArrayList<Appointment>();
+        
+        for (Appointment element : appointmentList)
+        {
+            if (element.getState() == AppointmentState.APPROVED && element.getDoctor() == doctor)
+            {
+                targetAppointments.add(element);
+            }
+        }
+        
+        return targetAppointments;
+    }
+    
     public void completeAppointment(Appointment appointment)
     {
         appointment.setState(AppointmentState.ARCHIVED);
