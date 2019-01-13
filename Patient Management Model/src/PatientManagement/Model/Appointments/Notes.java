@@ -5,11 +5,13 @@
  */
 package PatientManagement.Model.Appointments;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Davio
  */
-public class Notes 
+public class Notes implements Serializable
 {
     private String note;
     

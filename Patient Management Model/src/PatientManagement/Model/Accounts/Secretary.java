@@ -8,6 +8,7 @@ package PatientManagement.Model.Accounts;
 import PatientManagement.Model.Accounts.AccountListSingleton.AccountType;
 import PatientManagement.Model.Appointments.Appointment;
 import PatientManagement.Model.Appointments.AppointmentListSingleton;
+import PatientManagement.Model.PatientAccountManagement.AccountVerificationSingleton;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -41,5 +42,11 @@ public class Secretary extends Account implements Serializable
     {
         AppointmentListSingleton appointments = AppointmentListSingleton.getInstance();
         appointments.addAppointment(doctor, patient, date, time);
+    }
+    
+    public void verifyAccount(Patient patient)
+    {
+        AccountVerificationSingleton verificationList = AccountVerificationSingleton.getInstance();
+        verificationList.verifyAccount(patient);
     }
 }

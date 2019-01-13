@@ -5,12 +5,15 @@
  */
 package PatientManagement.Controllers;
 
+import PatientManagement.GuiViews.SecretaryAccountView;
 import PatientManagement.GuiViews.SecretaryAppointmentView;
 import PatientManagement.GuiViews.SecretaryMedicineView;
 import PatientManagement.GuiViews.SecretaryMenuView;
+import PatientManagement.Model.Accounts.Patient;
 import PatientManagement.Model.Accounts.Secretary;
 import PatientManagement.Model.Appointments.Appointment;
 import PatientManagement.Model.Appointments.AppointmentListSingleton;
+import PatientManagement.Model.PatientAccountManagement.AccountVerificationSingleton;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -20,7 +23,8 @@ import javax.swing.JOptionPane;
  *
  * @author Davio
  */
-public class SecretaryMenuController {
+public class SecretaryMenuController 
+{
     private SecretaryMenuView view;
     private Secretary model;
     
@@ -36,6 +40,7 @@ public class SecretaryMenuController {
         this.view.addMedicinesListener(new MedicinesListener());
         
         CheckForAppointmentRequests();
+        CheckForAccountRequests();
     }
     
     private void CheckForAppointmentRequests()
@@ -45,7 +50,18 @@ public class SecretaryMenuController {
         
         if (currentRequests.size() > 0)
         {
-            JOptionPane.showMessageDialog(null, "There are appointments waiting approval!");
+            JOptionPane.showMessageDialog(null, "There are appointments awaiting approval!");
+        }
+    }
+    
+    private void CheckForAccountRequests()
+    {
+        AccountVerificationSingleton accountRequests = AccountVerificationSingleton.getInstance();
+        ArrayList<Patient> requestList = accountRequests.getVerificationRequests();
+        
+        if (requestList.size() > 0)
+        {
+            JOptionPane.showMessageDialog(null, "There are account requests awaiting validation!");
         }
     }
     
@@ -55,7 +71,10 @@ public class SecretaryMenuController {
         @Override
         public void actionPerformed(ActionEvent e) 
         {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            SecretaryAccountView newView = new SecretaryAccountView();
+            newView.setLocation(view.getLocation());
+            view.dispose();
+            SecretaryAccountController accountController = new SecretaryAccountController(newView, model);
         }
         
     }

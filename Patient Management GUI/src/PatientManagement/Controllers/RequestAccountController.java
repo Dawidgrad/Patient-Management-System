@@ -58,8 +58,9 @@ public class RequestAccountController
                 model.addVerificationRequest(request);
                         
                 JOptionPane.showMessageDialog(null, "Account requested successfully!" + System.lineSeparator() 
-                        + "Your new ID is " + idNumber 
-                        + ". Before you log in, you will need to wait for Secretary to validate your account.");
+                        + "Your new ID is " + idNumber + "." + System.lineSeparator()
+                        + "Before you log in Secretary needs to validate your account." + System.lineSeparator() 
+                        + "You will be emailed your account is validated, after that you can log in.");
             }
             catch (Exception ex)
             {

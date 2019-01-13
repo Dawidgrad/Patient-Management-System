@@ -16,7 +16,7 @@ import java.util.ArrayList;
  *
  * @author Davio
  */
-public class AccountVerificationSingleton implements Serializable
+public class AccountTerminationSingleton implements Serializable
 {
     private static AccountVerificationSingleton uniqueInstance = null;
     private ArrayList<Patient> accountsToVerify;
@@ -57,10 +57,10 @@ public class AccountVerificationSingleton implements Serializable
         accountsToVerify.add(patient);
     }
     
-    public void verifyAccount(Patient patient)
+    public void removeAccount(Patient patient)
     {
         AccountListSingleton accountList = AccountListSingleton.getInstance();
-        accountList.addAccount(patient);
+        accountList.removeAccount(patient);
     }
     
     public Patient getPatient(String idNumber)

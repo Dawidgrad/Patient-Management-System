@@ -6,12 +6,13 @@
 package PatientManagement.Model.Appointments;
 
 import PatientManagement.Model.Medicines.Medicine;
+import java.io.Serializable;
 
 /**
  *
  * @author Davio
  */
-public class PrescriptionMedicine 
+public class PrescriptionMedicine implements Serializable
 {
     private Medicine medicine;
     private int quantity;

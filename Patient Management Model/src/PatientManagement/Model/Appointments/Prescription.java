@@ -5,13 +5,14 @@
  */
 package PatientManagement.Model.Appointments;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author Davio
  */
-public class Prescription 
+public class Prescription implements Serializable
 {
     private Notes notes;
     private ArrayList<PrescriptionMedicine> medicine;
