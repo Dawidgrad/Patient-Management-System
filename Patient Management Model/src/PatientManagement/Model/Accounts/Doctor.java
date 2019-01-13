@@ -6,8 +6,10 @@
 package PatientManagement.Model.Accounts;
 
 import PatientManagement.Model.Accounts.AccountListSingleton.AccountType;
+import PatientManagement.Model.Appointments.AppointmentListSingleton;
 import PatientManagement.Model.Reviews.DoctorFeedback;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  *
@@ -25,5 +27,11 @@ public class Doctor extends Account implements Serializable
     public void UpdateAdministratorFeedback(String feedback)
     {
         this.feedback.setAdministratorFeedback(feedback);
+    }
+    
+    public void CreateAppointment(Doctor doctor, Patient patient, Date date, String time)
+    {
+        AppointmentListSingleton appointments = AppointmentListSingleton.getInstance();
+        appointments.addAppointment(doctor, patient, date, time);
     }
 }

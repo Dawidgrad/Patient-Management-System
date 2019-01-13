@@ -8,12 +8,15 @@ package PatientManagement.Controllers;
 import PatientManagement.GuiViews.DoctorStartAppointmentView;
 import PatientManagement.Model.Accounts.Doctor;
 import PatientManagement.Model.Appointments.Appointment;
+import PatientManagement.Model.Appointments.Notes;
+import PatientManagement.Model.Appointments.Prescription;
 import PatientManagement.Model.Appointments.PrescriptionMedicine;
 import PatientManagement.Model.Medicines.Medicine;
 import PatientManagement.Model.Medicines.StockSingleton;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
@@ -26,14 +29,14 @@ public class DoctorStartAppointmentController
     private DoctorStartAppointmentView view;
     private Doctor model;
     private Appointment currentAppointment;
-    private ArrayList<PrescriptionMedicine> currentPrescription;
+    private ArrayList<PrescriptionMedicine> prescribedMedicine;
     
     public DoctorStartAppointmentController(DoctorStartAppointmentView view, Doctor model, Appointment currentAppointment)
     {
         this.view = view;
         this.model = model;
         this.currentAppointment = currentAppointment;
-        currentPrescription = new ArrayList<PrescriptionMedicine>();
+        prescribedMedicine = new ArrayList<PrescriptionMedicine>();
         
         this.view.setVisible(true);
         
@@ -112,7 +115,7 @@ public class DoctorStartAppointmentController
                     model.addElement(selectedMedicine.getMedicineId() + " Name: " + selectedMedicine.getName() + "\t Quantity: " + selectedMedicine.getQuantity());
                     view.setLstCurrentPrescription(model);
 
-                    currentPrescription.add(new PrescriptionMedicine(selectedMedicine, selectedMedicine.getQuantity(), dosage));
+                    prescribedMedicine.add(new PrescriptionMedicine(selectedMedicine, selectedMedicine.getQuantity(), dosage));
                     JOptionPane.showMessageDialog(null, "Medicine added successfully!");
                 }
                 else
@@ -134,7 +137,16 @@ public class DoctorStartAppointmentController
         @Override
         public void actionPerformed(ActionEvent e) 
         {
-            
+            try
+            {
+                String notes = view.getTxtNotes();
+                Prescription prescription = new Prescription(new Notes(notes), prescribedMedicine);
+                JOptionPane.showMessageDialog(null, "Prescription created successfully!");
+            }
+            catch (Exception ex)
+            {
+                JOptionPane.showMessageDialog(null, "Could not create prescription!");
+            }
         }
 
     }
@@ -145,7 +157,18 @@ public class DoctorStartAppointmentController
         @Override
         public void actionPerformed(ActionEvent e) 
         {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            try
+            {
+                Date date = view.getDatAppointmentDate();
+                String time = view.getCmbAppointmentTime();
+            
+                model.CreateAppointment(model, currentAppointment.getPatient(), date, time);
+                JOptionPane.showMessageDialog(null, "Appointment created successfully!");
+            }
+            catch (Exception ex)
+            {
+                JOptionPane.showMessageDialog(null, "Could not create the appointment!");
+            }
         }
 
     }

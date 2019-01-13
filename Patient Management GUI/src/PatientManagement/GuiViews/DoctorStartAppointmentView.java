@@ -6,6 +6,7 @@
 package PatientManagement.GuiViews;
 
 import java.awt.event.ActionListener;
+import java.util.Date;
 import javax.swing.DefaultListModel;
 import javax.swing.JComboBox;
 import javax.swing.JList;
@@ -43,14 +44,14 @@ public class DoctorStartAppointmentView extends javax.swing.JFrame {
         return (DefaultListModel<String>)lstCurrentPrescription.getModel();
     }
 
-    public JComboBox<String> getCmbAppointmentTime() {
-        return cmbAppointmentTime;
+    public String getCmbAppointmentTime() {
+        return cmbAppointmentTime.getSelectedItem().toString();
     }
 
-    public JXDatePicker getDatAppointmentDate() {
-        return datAppointmentDate;
+    public Date getDatAppointmentDate() {
+        return datAppointmentDate.getDate();
     }
-
+    
     public void setLstMedicines(DefaultListModel<String> model) {
         this.lstMedicines.setModel(model);
     }
