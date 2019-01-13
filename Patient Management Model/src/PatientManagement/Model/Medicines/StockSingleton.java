@@ -47,7 +47,7 @@ public class StockSingleton implements Serializable
         return uniqueInstance;
     }
     
-    public void CreateNewMedicine(String name, String description, int amount, float price, MedicineType type) 
+    public void CreateNewMedicine(String name, String description, int quantity, float price, int amount, MedicineType type) 
     {
         ConcreteMedicineFactory factory = new ConcreteMedicineFactory();
         
@@ -61,7 +61,7 @@ public class StockSingleton implements Serializable
             }
         }
         
-        Medicine newMedicine = factory.CreateNewMedicine(highest + 1, name, description, amount, price, type);
+        Medicine newMedicine = factory.CreateNewMedicine(highest + 1, name, description, quantity, price, amount, type);
         
         medicineList.add(newMedicine);
     }
@@ -74,12 +74,12 @@ public class StockSingleton implements Serializable
     public boolean GiveMedicine(int medicineId, int amount)
     {
         Medicine medicineToGive = GetMedicine(medicineId);
-        int medicineAmount = medicineToGive.getAmount();
+        int medicineAmount = medicineToGive.getAmountInStock();
         
         boolean result;
         if (medicineAmount >= amount)
         {
-            medicineToGive.setAmount(medicineAmount - amount);
+            medicineToGive.getFromStock(amount);
             result = true;
         }
         else
@@ -93,9 +93,9 @@ public class StockSingleton implements Serializable
     public void OrderMedicine(int medicineId, int amount)
     {
         Medicine medicineToOrder = GetMedicine(medicineId);
-        int medicineAmount = medicineToOrder.getAmount();
+        int medicineAmount = medicineToOrder.getAmountInStock();
         
-        medicineToOrder.setAmount(medicineAmount + amount);
+        medicineToOrder.addToStock(amount);
     }
     
     public Medicine GetMedicine(int medicineId)

@@ -16,16 +16,18 @@ public abstract class Medicine implements Serializable
     private int medicineId;
     private String name;
     private String description;
-    private int amount;
+    private int quantity;
     private float price;
+    private int amountInStock;
     
-    public Medicine(int medicineId, String name, String description, int amount, float price)
+    public Medicine(int medicineId, String name, String description, int quantity, float price, int amount)
     {
         this.medicineId = medicineId;
         this.name = name;
         this.description = description;
-        this.amount = amount;
+        this.quantity = quantity;
         this.price = price;
+        this.amountInStock = amount;
     }
 
     /* Getters and Setters */
@@ -38,12 +40,12 @@ public abstract class Medicine implements Serializable
         return description;
     }
 
-    public int getAmount() {
-        return amount;
+    public int getAmountInStock() {
+        return amountInStock;
     }
 
-    public void setAmount(int amount) {
-        this.amount = amount;
+    public int getQuantity() {
+        return quantity;
     }
 
     public double getPrice() {
@@ -65,4 +67,14 @@ public abstract class Medicine implements Serializable
     /* Methods */ 
     
     public abstract String GetInformation();
+    
+    public void addToStock(int amount) 
+    {
+        this.amountInStock += amount;
+    }
+    
+    public void getFromStock(int amount)
+    {
+        this.amountInStock -= amount;
+    }
 }

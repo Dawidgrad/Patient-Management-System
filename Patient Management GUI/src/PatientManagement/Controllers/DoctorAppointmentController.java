@@ -6,6 +6,7 @@
 package PatientManagement.Controllers;
 
 import PatientManagement.GuiViews.DoctorAppointmentView;
+import PatientManagement.GuiViews.DoctorStartAppointmentView;
 import PatientManagement.GuiViews.PatientHistoryView;
 import PatientManagement.Model.Accounts.Doctor;
 import PatientManagement.Model.Appointments.Appointment;
@@ -107,8 +108,17 @@ public class DoctorAppointmentController
     {
 
         @Override
-        public void actionPerformed(ActionEvent e) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        public void actionPerformed(ActionEvent e) 
+        {
+            AppointmentListSingleton appointmentList = AppointmentListSingleton.getInstance();
+            int appointmentId = GetSelectedAppointmentId();
+            
+            Appointment selectedAppointment = appointmentList.getAppointment(appointmentId);
+            
+            DoctorStartAppointmentView newView = new DoctorStartAppointmentView();
+            newView.setLocation(view.getLocation());
+            view.dispose();
+            DoctorStartAppointmentController startAppointment = new DoctorStartAppointmentController(newView, model, selectedAppointment);
         }
         
     }

@@ -15,20 +15,20 @@ public class ConcreteMedicineFactory extends MedicineFactory
 {
 
     @Override
-    public Medicine CreateNewMedicine(int medicineId, String name, String description, int amount, float price, MedicineType type) 
+    public Medicine CreateNewMedicine(int medicineId, String name, String description, int quantity, float price, int amount, MedicineType type) 
     {
         Medicine newMedicine;
         
         switch (type)
         {
             case TABLET:
-                newMedicine = new TabletMedicine(medicineId, name, description, amount, price);
+                newMedicine = new TabletMedicine(medicineId, name, description, quantity, price, amount);
                 break;
             case LIQUID:
-                newMedicine = new LiquidMedicine(medicineId, name, description, amount, price);
+                newMedicine = new LiquidMedicine(medicineId, name, description, quantity, price, amount);
                 break;
             case CAPSULE:
-                newMedicine = new CapsuleMedicine(medicineId, name, description, amount, price);
+                newMedicine = new CapsuleMedicine(medicineId, name, description, quantity, price, amount);
                 break;
             default:
                 newMedicine = null;

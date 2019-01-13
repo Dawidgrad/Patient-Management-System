@@ -12,9 +12,9 @@ package PatientManagement.Model.Medicines;
 public class CapsuleMedicine extends Medicine
 {
     
-    public CapsuleMedicine(int medicineId, String name, String description, int amount, float price)
+    public CapsuleMedicine(int medicineId, String name, String description, int quantity, float price, int amount)
     {
-        super(medicineId, name, description, amount, price);
+        super(medicineId, name, description, quantity, price, amount);
     }
 
     @Override

@@ -11,9 +11,9 @@ package PatientManagement.Model.Medicines;
  */
 public class LiquidMedicine extends Medicine
 {
-    public LiquidMedicine(int medicineId, String name, String description, int amount, float price)
+    public LiquidMedicine(int medicineId, String name, String description, int quantity, float price, int amount)
     {
-        super(medicineId, name, description, amount, price);
+        super(medicineId, name, description, quantity, price, amount);
     }
 
     @Override

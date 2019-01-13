@@ -62,7 +62,8 @@ public class DoctorMedicineController
 
         for (Medicine medicine : medicineList)
         {
-            medicineStringList.add("Name: " + medicine.getName() + "\t Amount: " + medicine.getAmount() + "\t Price: " + medicine.getPrice());
+            medicineStringList.add(medicine.getMedicineId() + " Name: " + medicine.getName() 
+                    + "\t Quantity: " + medicine.getQuantity() + "\t Price: " + medicine.getPrice() + " Stock: " + medicine.getAmountInStock());
         }
 
         DefaultListModel<String> model = new DefaultListModel<>();
@@ -118,12 +119,12 @@ public class DoctorMedicineController
             {
                 String name = view.getTxtName();
                 String description = view.getTxtDescription();
-                int amount = view.getSpnAmount();
-                float prive = view.getSpnPrice();
+                int quantity = view.getSpnAmount();
+                float price = view.getSpnPrice();
                 MedicineType type = GetMedicineTypeSelection();
 
                 StockSingleton stock = StockSingleton.getInstance();
-                stock.CreateNewMedicine(name, description, amount, prive, type);
+                stock.CreateNewMedicine(name, description, quantity, price, 0, type);
                 JOptionPane.showMessageDialog(null, "Medicine added successfully!");
             }
             catch (Exception ex)

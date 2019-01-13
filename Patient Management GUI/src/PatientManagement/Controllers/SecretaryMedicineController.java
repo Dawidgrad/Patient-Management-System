@@ -65,7 +65,8 @@ public class SecretaryMedicineController
 
         for (Medicine medicine : medicineList)
         {
-            medicineStringList.add(medicine.getMedicineId() + " Name: " + medicine.getName() + "\t Amount: " + medicine.getAmount() + "\t Price unit: " + medicine.getPrice());
+            medicineStringList.add(medicine.getMedicineId() + " Name: " + medicine.getName() + "\t Quantity: " 
+                    + medicine.getQuantity() + "\t Price unit: " + medicine.getPrice() + " Stock: " + medicine.getAmountInStock());
         }
 
         DefaultListModel<String> model = new DefaultListModel<>();
