@@ -13,6 +13,7 @@ import PatientManagement.Model.Accounts.Patient;
 import PatientManagement.Model.Accounts.Secretary;
 import PatientManagement.Model.Appointments.Appointment;
 import PatientManagement.Model.Appointments.AppointmentListSingleton;
+import PatientManagement.Model.PatientAccountManagement.AccountTerminationSingleton;
 import PatientManagement.Model.PatientAccountManagement.AccountVerificationSingleton;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -41,6 +42,7 @@ public class SecretaryMenuController
         
         CheckForAppointmentRequests();
         CheckForAccountRequests();
+        CheckForAccountTerminations();
     }
     
     private void CheckForAppointmentRequests()
@@ -62,6 +64,17 @@ public class SecretaryMenuController
         if (requestList.size() > 0)
         {
             JOptionPane.showMessageDialog(null, "There are account requests awaiting validation!");
+        }
+    }
+    
+    private void CheckForAccountTerminations()
+    {
+        AccountTerminationSingleton accountTerminations = AccountTerminationSingleton.getInstance();
+        ArrayList<Patient> terminationList = accountTerminations.getTerminationRequests();
+        
+        if (terminationList.size() > 0)
+        {
+            JOptionPane.showMessageDialog(null, "There are account terminations awaiting approval!");
         }
     }
     

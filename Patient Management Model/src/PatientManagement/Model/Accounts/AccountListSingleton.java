@@ -95,22 +95,9 @@ public class AccountListSingleton implements Serializable
         return uniqueAccount;
     }
     
-    public void removeAccount(String idNumber)
+    public void removeAccount(Account accountToRemove)
     {
-        Account accountToRemove = null;
-        
-        for (Account account : accountList)
-        {
-            if (account.getIdNumber().equals(idNumber))
-            {
-                accountToRemove = account;
-            } 
-        }
-        
-        if (accountToRemove != null)
-        {
-            accountList.remove(accountToRemove);
-        }
+        accountList.remove(accountToRemove);
     }
     
     public ArrayList<Account> getAccountTypeList(AccountType type)

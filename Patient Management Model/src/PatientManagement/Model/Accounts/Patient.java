@@ -10,6 +10,7 @@ import PatientManagement.Model.Appointments.Appointment;
 import PatientManagement.Model.Appointments.AppointmentListSingleton;
 import PatientManagement.Model.Interfaces.Observable;
 import PatientManagement.Model.Interfaces.Observer;
+import PatientManagement.Model.PatientAccountManagement.AccountTerminationSingleton;
 import PatientManagement.Model.Reviews.ReviewListSingleton;
 import java.io.Serializable;
 import java.util.Date;
@@ -75,5 +76,11 @@ public class Patient extends Account implements Observer, Serializable
     {
         scheduledAppointment = null;
         setAppointmentJustApproved(false);
+    }
+    
+    public void requestAccountTermination()
+    {
+        AccountTerminationSingleton accountTerminations = AccountTerminationSingleton.getInstance();
+        accountTerminations.addTerminationRequest(this);
     }
 }

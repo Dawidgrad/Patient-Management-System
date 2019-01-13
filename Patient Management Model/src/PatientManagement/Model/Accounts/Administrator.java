@@ -29,10 +29,10 @@ public class Administrator extends Account
         return success;
     }
     
-    public void RemoveAccount(String idNumber)
+    public void RemoveAccount(Account account)
     {
         AccountListSingleton accountList = AccountListSingleton.getInstance();
-        accountList.removeAccount(idNumber);
+        accountList.removeAccount(account);
     }
     
     public void GiveDoctorFeedback(Doctor doctor, String feedback)

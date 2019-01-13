@@ -159,7 +159,11 @@ public class AccountManagementController
 
                 int x = accountToRemove.indexOf("Name:");
                 idNumber = accountToRemove.substring(0, x-1);
-                model.RemoveAccount(idNumber);
+                
+                AccountListSingleton accountList = AccountListSingleton.getInstance();
+                Account targetAccount = accountList.getAccount(idNumber);
+                model.RemoveAccount(targetAccount);
+                
                 RefreshAccountJList();
                 JOptionPane.showMessageDialog(null, "The account has been deleted!");
             }

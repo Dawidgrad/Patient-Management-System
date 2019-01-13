@@ -13,6 +13,7 @@ import PatientManagement.Model.Accounts.Patient;
 import PatientManagement.Model.Accounts.Patient.Sex;
 import PatientManagement.Model.Appointments.AppointmentListSingleton;
 import PatientManagement.Model.Medicines.StockSingleton;
+import PatientManagement.Model.PatientAccountManagement.AccountTerminationSingleton;
 import PatientManagement.Model.PatientAccountManagement.AccountVerificationSingleton;
 import PatientManagement.Model.Reviews.ReviewListSingleton;
 import java.io.Serializable;
@@ -60,6 +61,7 @@ public class PatientManagementGUI {
         singletonList.add(StockSingleton.getInstance());
         singletonList.add(ReviewListSingleton.getInstance());
         singletonList.add(AccountVerificationSingleton.getInstance());
+        singletonList.add(AccountTerminationSingleton.getInstance());
         
         Serialiser serialiser = new Serialiser("data.ser");
         serialiser.writeObject(singletonList);

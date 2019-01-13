@@ -18,19 +18,19 @@ import java.util.ArrayList;
  */
 public class AccountTerminationSingleton implements Serializable
 {
-    private static AccountVerificationSingleton uniqueInstance = null;
-    private ArrayList<Patient> accountsToVerify;
+    private static AccountTerminationSingleton uniqueInstance = null;
+    private ArrayList<Patient> accountsToTerminate;
     
-    private AccountVerificationSingleton()
+    private AccountTerminationSingleton()
     {
-        accountsToVerify = new ArrayList<Patient>();
+        accountsToTerminate = new ArrayList<Patient>();
     }
     
-    public static AccountVerificationSingleton getInstance()
+    public static AccountTerminationSingleton getInstance()
     {
         if (uniqueInstance == null)
         {
-            uniqueInstance = new AccountVerificationSingleton();
+            uniqueInstance = new AccountTerminationSingleton();
         }
         
         return uniqueInstance;
@@ -47,14 +47,14 @@ public class AccountTerminationSingleton implements Serializable
         return uniqueInstance;
     }
     
-    public ArrayList<Patient> getVerificationRequests()
+    public ArrayList<Patient> getTerminationRequests()
     {
-        return accountsToVerify;
+        return accountsToTerminate;
     }
     
-    public void addVerificationRequest(Patient patient)
+    public void addTerminationRequest(Patient patient)
     {
-        accountsToVerify.add(patient);
+        accountsToTerminate.add(patient);
     }
     
     public void removeAccount(Patient patient)
@@ -67,7 +67,7 @@ public class AccountTerminationSingleton implements Serializable
     {
         Patient targetAccount = null;
         
-        for (Patient account : accountsToVerify)
+        for (Patient account : accountsToTerminate)
         {
             if (account.getIdNumber().equals(idNumber))
             {

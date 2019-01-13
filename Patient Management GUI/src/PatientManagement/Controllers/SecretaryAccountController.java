@@ -6,9 +6,9 @@
 package PatientManagement.Controllers;
 
 import PatientManagement.GuiViews.SecretaryAccountView;
-import PatientManagement.Model.Accounts.AccountListSingleton;
 import PatientManagement.Model.Accounts.Patient;
 import PatientManagement.Model.Accounts.Secretary;
+import PatientManagement.Model.PatientAccountManagement.AccountTerminationSingleton;
 import PatientManagement.Model.PatientAccountManagement.AccountVerificationSingleton;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -70,41 +70,54 @@ public class SecretaryAccountController
         view.setLstAccountsToVerify(model);
     }
     
-//    private void RefreshTerminationJList()
-//    {
-//        ArrayList<Patient> accountList = GetTerminationList();
-//        PopulateTerminationJList(accountList);
-//    }
-//
-//    private ArrayList<Patient> GetTerminationList()
-//    {
-//        AccountVerificationSingleton accounts = AccountVerificationSingleton.getInstance();
-//
-//        return accounts.getVerificationRequests();
-//    }
-//
-//    private void PopulateTerminationJList(ArrayList<Patient> accountList)
-//    {
-//        ArrayList<String> accountStringList = new ArrayList<String>();
-//
-//        for (Patient account : accountList)
-//        {
-//            accountStringList.add(account.getIdNumber() + " Name: " + account.getName() + " " + account.getSurname());
-//        }
-//
-//        DefaultListModel<String> model = new DefaultListModel<>();
-//
-//        for (String element : accountStringList)
-//        {
-//            model.addElement(element);
-//        }
-//
-//        view.setLstAccountsToTerminate(model);
-//    }
+    private void RefreshTerminationJList()
+    {
+        ArrayList<Patient> accountList = GetTerminationList();
+        PopulateTerminationJList(accountList);
+    }
+
+    private ArrayList<Patient> GetTerminationList()
+    {
+        AccountTerminationSingleton accounts = AccountTerminationSingleton.getInstance();
+
+        return accounts.getTerminationRequests();
+    }
+
+    private void PopulateTerminationJList(ArrayList<Patient> accountList)
+    {
+        ArrayList<String> accountStringList = new ArrayList<String>();
+
+        for (Patient account : accountList)
+        {
+            accountStringList.add(account.getIdNumber() + " Name: " + account.getName() + " " + account.getSurname());
+        }
+
+        DefaultListModel<String> model = new DefaultListModel<>();
+
+        for (String element : accountStringList)
+        {
+            model.addElement(element);
+        }
+
+        view.setLstAccountsToTerminate(model);
+    }
     
-    private Patient getSelectedPatient()
+    private Patient getSelectedAccountToVerify()
     {
         String details = view.getLstAccountsToVerify().getSelectedValue();
+        AccountVerificationSingleton accountList = AccountVerificationSingleton.getInstance();
+
+        String idNumber;
+        int index = details.indexOf(" Name:");
+
+        idNumber = details.substring(0, index);
+        Patient selectedPatient = accountList.getPatient(idNumber);
+        return selectedPatient;
+    }
+    
+    private Patient getSelectedAccountToTerminate()
+    {
+        String details = view.getLstAccountsToTerminate().getSelectedValue();
         AccountVerificationSingleton accountList = AccountVerificationSingleton.getInstance();
 
         String idNumber;
@@ -123,7 +136,7 @@ public class SecretaryAccountController
         {
             try
             {
-                Patient patient = getSelectedPatient();
+                Patient patient = getSelectedAccountToVerify();
                 model.verifyAccount(patient);
                 JOptionPane.showMessageDialog(null, "Account verified successfully!");
             }
@@ -143,11 +156,13 @@ public class SecretaryAccountController
         {
             try
             {
-               
+               Patient patient = getSelectedAccountToTerminate();
+               model.terminateAccount(patient);
+               JOptionPane.showMessageDialog(null, "Account terminated successfully!");
             }
             catch (Exception ex)
             {
-                
+                JOptionPane.showMessageDialog(null, "Could not terminate the account!");
             }
         }
         
