@@ -39,15 +39,16 @@ public class PatientAccountController
         {
             try
             {
-                int dialogResult = JOptionPane.showConfirmDialog(null, "Are you sure you want to terminate your account?");  
-                if (dialogResult == JOptionPane.YES_OPTION)
-                {
-                    model.requestAccountTermination();
-                }
+                String currentPassword = view.getTxtCurrentPassword();
+                String newPassword = view.getTxtNewPassword();
+                String newPasswordConfirm = view.getTxtNewPasswordConfirm();
+                
+                model.changePassword(currentPassword, newPassword, newPasswordConfirm);
+                JOptionPane.showMessageDialog(null, "Password changed successfully!");
             }
             catch (Exception ex)
             {
-                JOptionPane.showMessageDialog(null, "Could not request the account termination!");
+                JOptionPane.showMessageDialog(null, "Could not change the password!");
             }
         }
         
@@ -61,11 +62,23 @@ public class PatientAccountController
         {
             try
             {
+                if (model.getPassword().equals(view.getTxtPasswordTermination()))
+                {
+                    int dialogResult = JOptionPane.showConfirmDialog(null, "Are you sure you want to terminate your account?");  
+                    if (dialogResult == JOptionPane.YES_OPTION)
+                    {
+                        model.requestAccountTermination();
+                    } 
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null, "Incorrect password!");
+                }
                 
             }
             catch (Exception ex)
             {
-                
+                JOptionPane.showMessageDialog(null, "Could not request the account termination!");
             }
         }
         

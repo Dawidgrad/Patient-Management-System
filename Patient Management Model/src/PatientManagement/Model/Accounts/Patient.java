@@ -83,4 +83,19 @@ public class Patient extends Account implements Observer, Serializable
         AccountTerminationSingleton accountTerminations = AccountTerminationSingleton.getInstance();
         accountTerminations.addTerminationRequest(this);
     }
+    
+    public boolean changePassword(String password, String newPassword, String newPasswordConfirm)
+    {
+        boolean changedPassword = false;
+        
+        if (password.equals(this.getPassword()) 
+                && newPassword.equals(this.getPassword()) == false 
+                && newPasswordConfirm.equals(newPassword))
+        {
+            this.setPassword(newPassword);
+            changedPassword = true;
+        }
+        
+        return changedPassword;
+    }
 }
