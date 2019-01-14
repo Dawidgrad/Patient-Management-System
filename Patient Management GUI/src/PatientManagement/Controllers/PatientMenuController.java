@@ -33,10 +33,10 @@ public class PatientMenuController {
         this.view.addBrowseDoctorsListener(new BrowseDoctorsListener());
         this.view.addAppointmentsListener(new AppointmentsListener());
         
-        CheckIfAppointmentApproved();
+        checkIfAppointmentApproved();
     }
     
-    private void CheckIfAppointmentApproved()
+    private void checkIfAppointmentApproved()
     {
         if (model.isAppointmentJustApproved() == true)
         {

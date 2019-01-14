@@ -24,6 +24,8 @@ public class PatientHistoryView extends javax.swing.JFrame {
         initComponents();
     }
 
+    /* Getters and Setters */
+    
     public void setLstAppointments(DefaultListModel<String> model) {
         this.lstAppointments.setModel(model);
     }
@@ -63,6 +65,8 @@ public class PatientHistoryView extends javax.swing.JFrame {
     public void setTxtPrescription(String txtPrescription) {
         this.txtPrescription.setText(txtPrescription);
     }
+    
+    /* Listeners */
     
     public void addSelectAppointmentListener(ActionListener selectAppointment)
     {

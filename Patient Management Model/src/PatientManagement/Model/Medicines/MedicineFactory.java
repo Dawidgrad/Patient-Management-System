@@ -13,5 +13,5 @@ import PatientManagement.Model.Medicines.StockSingleton.MedicineType;
  */
 public abstract class MedicineFactory 
 {
-    public abstract Medicine CreateNewMedicine(int medicineId, String name, String description, int quantity, float price, int amount, MedicineType type); 
+    public abstract Medicine createNewMedicine(int medicineId, String name, String description, int quantity, float price, int amount, MedicineType type); 
 }

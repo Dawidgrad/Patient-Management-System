@@ -53,12 +53,12 @@ public class DoctorReviewView extends javax.swing.JFrame {
     
     /* Listeners */
     
-    public void AddSelectDoctorListener(ActionListener selectDoctorButton)
+    public void addSelectDoctorListener(ActionListener selectDoctorButton)
     {
         btnSelectDoctor.addActionListener(selectDoctorButton);
     }
     
-    public void AddSubmitReviewListener(ActionListener submitReviewButton)
+    public void addSubmitReviewListener(ActionListener submitReviewButton)
     {
         btnSubmitReview.addActionListener(submitReviewButton);
     }

@@ -7,13 +7,14 @@ package PatientManagement.Model.Medicines;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author Davio
  */
-public class OrderRequestSingleton 
+public class OrderRequestSingleton implements Serializable
 {
     private static OrderRequestSingleton uniqueInstance = null;
     private ArrayList<MedicineOrder> medicineToOrder;

@@ -21,6 +21,8 @@ public class DoctorAppointmentView extends javax.swing.JFrame {
     public DoctorAppointmentView() {
         initComponents();
     }
+    
+    /* Getters and setters */
 
     public JList<String> getLstAppointments() {
         return lstAppointments;
@@ -29,6 +31,8 @@ public class DoctorAppointmentView extends javax.swing.JFrame {
     public void setLstAppointments(DefaultListModel<String> model) {
         this.lstAppointments.setModel(model);
     }
+    
+    /* Listeners */
     
     public void addInspectHistoryListener(ActionListener inspectHistory)
     {

@@ -13,5 +13,5 @@ import PatientManagement.Model.Accounts.AccountListSingleton.AccountType;
  */
 public abstract class AccountFactory 
 {
-    public abstract Account CreateAccount(String name, String surname, String address, String idNumber, String password, AccountType type);
+    public abstract Account createAccount(String name, String surname, String address, String idNumber, String password, AccountType type);
 }

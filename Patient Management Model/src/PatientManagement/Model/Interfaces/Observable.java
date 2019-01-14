@@ -11,6 +11,6 @@ package PatientManagement.Model.Interfaces;
  */
 public interface Observable 
 {
-    public void RegisterObserver(Observer o);
-    public void NotifyObserver();
+    public void registerObserver(Observer o);
+    public void notifyObserver();
 }

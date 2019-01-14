@@ -20,12 +20,14 @@ public class SecretaryAppointmentView extends javax.swing.JFrame {
         initComponents();
     }
     
-    public void AddRequestListener(ActionListener request)
+    /* Listeners */
+    
+    public void addRequestListener(ActionListener request)
     {
         btnRequests.addActionListener(request);
     }
     
-    public void AddCreateNewListener(ActionListener createNew)
+    public void addCreateNewListener(ActionListener createNew)
     {
         btnCreateNew.addActionListener(createNew);
     }

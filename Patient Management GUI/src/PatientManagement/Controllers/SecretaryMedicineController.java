@@ -35,33 +35,33 @@ public class SecretaryMedicineController
         
         this.view.setVisible(true);
        
-        this.view.AddGiveMedicineListener(new GiveMedicineListener());
-        this.view.AddOrderMedicineListener(new OrderMedicineListener());
+        this.view.addGiveMedicineListener(new GiveMedicineListener());
+        this.view.addOrderMedicineListener(new OrderMedicineListener());
         
-        RefreshMedicineJList();
-        RefreshPatientJList();
+        refreshMedicineJList();
+        refreshPatientJList();
     }
     
-    private void RefreshPatientJList()
+    private void refreshPatientJList()
     {
-        ArrayList<Account> patientList = GetPatientList();
-        PopulatePatientJList(patientList);
+        ArrayList<Account> patientList = getPatientList();
+        populatePatientJList(patientList);
     }
      
-    private void RefreshMedicineJList()
+    private void refreshMedicineJList()
     {
-        ArrayList<Medicine> medicineList = GetMedicineList();
-        PopulateMedicineJList(medicineList);
+        ArrayList<Medicine> medicineList = getMedicineList();
+        populateMedicineJList(medicineList);
     }
 
-    private ArrayList<Medicine> GetMedicineList()
+    private ArrayList<Medicine> getMedicineList()
     {
         StockSingleton medicines = StockSingleton.getInstance();
         
-        return medicines.GetMedicineList();
+        return medicines.getMedicineList();
     }
 
-    private void PopulateMedicineJList(ArrayList<Medicine> medicineList)
+    private void populateMedicineJList(ArrayList<Medicine> medicineList)
     {
         ArrayList<String> medicineStringList = new ArrayList<String>();
 
@@ -81,7 +81,7 @@ public class SecretaryMedicineController
         view.setLstMedicines(model);
     }
     
-    private ArrayList<Account> GetPatientList()
+    private ArrayList<Account> getPatientList()
     {
         AccountListSingleton patients = AccountListSingleton.getInstance();
 
@@ -92,7 +92,7 @@ public class SecretaryMedicineController
         return patientList;
     }
 
-    private void PopulatePatientJList(ArrayList<Account> patientList)
+    private void populatePatientJList(ArrayList<Account> patientList)
     {
         ArrayList<String> patientStringList = new ArrayList<String>();
 
@@ -111,7 +111,7 @@ public class SecretaryMedicineController
         view.setLstPatients(model);
     }
     
-    private int GetSelectedMedicineId()
+    private int getSelectedMedicineId()
     {
         String details = view.getLstMedicines().getSelectedValue();
 
@@ -178,11 +178,11 @@ public class SecretaryMedicineController
         {
             StockSingleton medicineList = StockSingleton.getInstance();
             int amountToGive = view.getSpnAmountToGive();
-            int medicineId = GetSelectedMedicineId();
+            int medicineId = getSelectedMedicineId();
             
             try
             {
-                medicineList.GiveMedicine(medicineId, amountToGive);  
+                medicineList.giveMedicine(medicineId, amountToGive);  
                 JOptionPane.showMessageDialog(null, "The medicine has been given to the patient!");
             }
             catch (Exception ex)
@@ -190,7 +190,7 @@ public class SecretaryMedicineController
                 JOptionPane.showMessageDialog(null, "Could not give the medicine to patient!");
             }
             
-            RefreshMedicineJList();
+            refreshMedicineJList();
         }
         
     }
@@ -207,7 +207,7 @@ public class SecretaryMedicineController
             
             try
             {
-                medicineList.OrderMedicine(order.getMedicine().getMedicineId(), amountToOrder);
+                medicineList.orderMedicine(order.getMedicine().getMedicineId(), amountToOrder);
                 JOptionPane.showMessageDialog(null, "The medicine has been ordered!");
             }
             catch (Exception ex)
@@ -215,7 +215,7 @@ public class SecretaryMedicineController
                 JOptionPane.showMessageDialog(null, "Could not order the medicine!");
             }
             
-            RefreshMedicineJList();
+            refreshMedicineJList();
         }
         
     }

@@ -20,12 +20,14 @@ public class PatientAppointmentView extends javax.swing.JFrame {
         initComponents();
     }
     
-    public void AddAppointmentHistoryListener(ActionListener appointmentHistory)
+    /* Listeners */
+    
+    public void addAppointmentHistoryListener(ActionListener appointmentHistory)
     {
         btnAppointmentHistory.addActionListener(appointmentHistory);
     }
     
-    public void AddRequestAppointmentListener(ActionListener requestAppointment)
+    public void addRequestAppointmentListener(ActionListener requestAppointment)
     {
         btnRequestAppointment.addActionListener(requestAppointment);
     }

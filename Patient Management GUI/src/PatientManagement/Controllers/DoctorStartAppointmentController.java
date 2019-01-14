@@ -44,27 +44,27 @@ public class DoctorStartAppointmentController
         this.view.addCompletePrescriptionListener(new CompletePrescriptionListener());
         this.view.addCreateAppointmentListener(new CreateAppointmentListener());
         
-        RefreshMedicineJList();
+        refreshMedicineJList();
     }
     
-    private void RefreshMedicineJList()
+    private void refreshMedicineJList()
     {
-        ArrayList<Medicine> medicineList = GetMedicineList();
-        PopulateMedicineJList(medicineList);
+        ArrayList<Medicine> medicineList = getMedicineList();
+        populateMedicineJList(medicineList);
     }
 
-    private ArrayList<Medicine> GetMedicineList()
+    private ArrayList<Medicine> getMedicineList()
     {
         StockSingleton medicines = StockSingleton.getInstance();
 
         ArrayList<Medicine> medicineList = new ArrayList<Medicine>();
 
-        medicineList.addAll(medicines.GetMedicineList());
+        medicineList.addAll(medicines.getMedicineList());
 
         return medicineList;
     }
 
-    private void PopulateMedicineJList(ArrayList<Medicine> medicineList)
+    private void populateMedicineJList(ArrayList<Medicine> medicineList)
     {
         ArrayList<String> medicineStringList = new ArrayList<String>();
 
@@ -84,7 +84,7 @@ public class DoctorStartAppointmentController
         view.setLstMedicines(model);
     }
     
-    private Medicine GetSelectedMedicine()
+    private Medicine getSelectedMedicine()
     {
         String details = view.getLstMedicines().getSelectedValue();
         StockSingleton stock = StockSingleton.getInstance();
@@ -93,7 +93,7 @@ public class DoctorStartAppointmentController
         int index = details.indexOf(" Name:");
 
         idNumber = details.substring(0, index);
-        Medicine selectedMedicine = (Medicine)stock.GetMedicine(Integer.parseInt(idNumber));
+        Medicine selectedMedicine = (Medicine)stock.getMedicine(Integer.parseInt(idNumber));
         
         return selectedMedicine;
     }
@@ -106,7 +106,7 @@ public class DoctorStartAppointmentController
         {
             try
             {
-                Medicine selectedMedicine = GetSelectedMedicine();
+                Medicine selectedMedicine = getSelectedMedicine();
                 String dosage = view.getTxtDosage();
                 
                 if (selectedMedicine.getAmountInStock() >= 1)

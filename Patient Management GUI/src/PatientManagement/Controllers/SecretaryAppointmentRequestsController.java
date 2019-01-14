@@ -31,24 +31,24 @@ public class SecretaryAppointmentRequestsController
         
         this.view.setVisible(true);
         
-        this.view.AddApproveAppointmentListener(new ApproveAppointmentListener());
-        RefreshAppointmentJList();
+        this.view.addApproveAppointmentListener(new ApproveAppointmentListener());
+        refreshAppointmentJList();
     }
     
-    private void RefreshAppointmentJList()
+    private void refreshAppointmentJList()
     {
-        ArrayList<Appointment> appointmentList = GetAppointmentList();
-        PopulateAppointmentJList(appointmentList);
+        ArrayList<Appointment> appointmentList = getAppointmentList();
+        populateAppointmentJList(appointmentList);
     }
 
-    private ArrayList<Appointment> GetAppointmentList()
+    private ArrayList<Appointment> getAppointmentList()
     {
         AppointmentListSingleton appointments = AppointmentListSingleton.getInstance();
 
         return appointments.getStateList(Appointment.AppointmentState.REQUESTED);
     }
 
-    private void PopulateAppointmentJList(ArrayList<Appointment> appointmentList)
+    private void populateAppointmentJList(ArrayList<Appointment> appointmentList)
     {
         ArrayList<String> appointmentStringList = new ArrayList<String>();
 
@@ -70,7 +70,7 @@ public class SecretaryAppointmentRequestsController
         view.setLstAppointmentRequests(model);
     }
     
-    private int GetSelectedAppointmentId()
+    private int getSelectedAppointmentId()
     {
         String details = view.getLstAppointmentRequests().getSelectedValue();
 
@@ -90,8 +90,8 @@ public class SecretaryAppointmentRequestsController
         {
             try
             {
-                int appointmentId = GetSelectedAppointmentId();
-                model.ProcessAppointmentRequest(appointmentId);
+                int appointmentId = getSelectedAppointmentId();
+                model.processAppointmentRequest(appointmentId);
                 JOptionPane.showMessageDialog(null, "Appointment has been approved!");
             }
             catch (Exception ex)

@@ -47,14 +47,14 @@ public class ReviewListSingleton implements Serializable
         return uniqueInstance;
     }
     
-    public void AddReview(Patient patient, Doctor doctor, String comment, int rating)
+    public void addReview(Patient patient, Doctor doctor, String comment, int rating)
     {
         Review review = new Review(comment, rating, doctor.getIdNumber(), patient.getIdNumber());
         
         reviewList.add(review);
     }
     
-    public DoctorFeedback GetFeedback(String doctorId)
+    public DoctorFeedback getFeedback(String doctorId)
     {
         ArrayList<Review> doctorReviews = new ArrayList<Review>();
         

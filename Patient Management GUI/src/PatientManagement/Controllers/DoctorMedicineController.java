@@ -36,8 +36,8 @@ public class DoctorMedicineController
         
         this.view.setVisible(true);
         
-        this.view.AddNewMedicineListener(new NewMedicineListener());
-        this.view.AddRequestOrderListener(new RequestOrderListener());
+        this.view.addNewMedicineListener(new NewMedicineListener());
+        this.view.addRequestOrderListener(new RequestOrderListener());
         
         refreshMedicineJList();
     }
@@ -52,7 +52,7 @@ public class DoctorMedicineController
     {
         StockSingleton medicines = StockSingleton.getInstance();
 
-        return medicines.GetMedicineList();
+        return medicines.getMedicineList();
     }
 
     private void populateMedicineJList(ArrayList<Medicine> medicineList)
@@ -118,7 +118,7 @@ public class DoctorMedicineController
         medicineId = details.substring(0, index);
         
         StockSingleton stock = StockSingleton.getInstance();
-        Medicine selectedMedicine = stock.GetMedicine(Integer.parseInt(medicineId));
+        Medicine selectedMedicine = stock.getMedicine(Integer.parseInt(medicineId));
                 
         return selectedMedicine;
     }
@@ -138,7 +138,7 @@ public class DoctorMedicineController
                 MedicineType type = getMedicineTypeSelection();
 
                 StockSingleton stock = StockSingleton.getInstance();
-                stock.CreateNewMedicine(name, description, quantity, price, 0, type);
+                stock.createNewMedicine(name, description, quantity, price, 0, type);
                 JOptionPane.showMessageDialog(null, "Medicine added successfully!");
             }
             catch (Exception ex)

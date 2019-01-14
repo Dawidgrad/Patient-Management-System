@@ -62,12 +62,12 @@ public class DoctorMedicineView extends javax.swing.JFrame {
     
     /* Listeners */
     
-    public void AddNewMedicineListener(ActionListener newMedicine)
+    public void addNewMedicineListener(ActionListener newMedicine)
     {
         btnSubmit.addActionListener(newMedicine);
     }
     
-    public void AddRequestOrderListener(ActionListener requestOrder)
+    public void addRequestOrderListener(ActionListener requestOrder)
     {
         btnRequestOrder.addActionListener(requestOrder);
     }
@@ -108,6 +108,7 @@ public class DoctorMedicineView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        lstMedicines.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(lstMedicines);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N

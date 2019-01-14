@@ -29,6 +29,41 @@ public class LoginController {
         this.view.addRequestAccountListener(new RequestAccountListener());
     }
     
+    private void determineAccountType()
+    {
+        switch (model.getLoggedInAccount().getAccountType())
+        {
+            case DOCTOR:
+                DoctorMenuView doctorView = new DoctorMenuView();
+                view.dispose();
+                doctorView.setLocation(view.getLocation());
+                DoctorMenuController doctorController = 
+                        new DoctorMenuController(doctorView, ((Doctor)model.getLoggedInAccount()));
+                break;
+            case SECRETARY:
+                SecretaryMenuView secretaryView = new SecretaryMenuView();
+                view.dispose();
+                secretaryView.setLocation(view.getLocation());
+                SecretaryMenuController secretaryController = 
+                        new SecretaryMenuController(secretaryView, ((Secretary)model.getLoggedInAccount()));
+                break;
+            case ADMINISTRATOR:
+                AdministratorMenuView administratorView = new AdministratorMenuView();
+                view.dispose();
+                administratorView.setLocation(view.getLocation());
+                AdministratorMenuController administratorController = 
+                        new AdministratorMenuController(administratorView, ((Administrator)model.getLoggedInAccount()));
+                break;
+            case PATIENT:
+                PatientMenuView patientView = new PatientMenuView();
+                view.dispose();
+                patientView.setLocation(view.getLocation());
+                PatientMenuController patientController = 
+                        new PatientMenuController(patientView, ((Patient)model.getLoggedInAccount()));
+                break;
+        }
+    }
+    
     class SubmitListener implements ActionListener
     {
 
@@ -40,7 +75,7 @@ public class LoginController {
                 String idNumber = view.getTxtIdNumber();
                 String password = view.getTxtPassword();
 
-                boolean result = model.LogIn(idNumber, password);
+                boolean result = model.logIn(idNumber, password);
 
                 if (result)
                 {
@@ -57,42 +92,6 @@ public class LoginController {
             }
             
         }
-        
-        private void determineAccountType()
-        {
-            switch (model.getLoggedInAccount().getAccountType())
-            {
-                case DOCTOR:
-                    DoctorMenuView doctorView = new DoctorMenuView();
-                    view.dispose();
-                    doctorView.setLocation(view.getLocation());
-                    DoctorMenuController doctorController = 
-                            new DoctorMenuController(doctorView, ((Doctor)model.getLoggedInAccount()));
-                    break;
-                case SECRETARY:
-                    SecretaryMenuView secretaryView = new SecretaryMenuView();
-                    view.dispose();
-                    secretaryView.setLocation(view.getLocation());
-                    SecretaryMenuController secretaryController = 
-                            new SecretaryMenuController(secretaryView, ((Secretary)model.getLoggedInAccount()));
-                    break;
-                case ADMINISTRATOR:
-                    AdministratorMenuView administratorView = new AdministratorMenuView();
-                    view.dispose();
-                    administratorView.setLocation(view.getLocation());
-                    AdministratorMenuController administratorController = 
-                            new AdministratorMenuController(administratorView, ((Administrator)model.getLoggedInAccount()));
-                    break;
-                case PATIENT:
-                    PatientMenuView patientView = new PatientMenuView();
-                    view.dispose();
-                    patientView.setLocation(view.getLocation());
-                    PatientMenuController patientController = 
-                            new PatientMenuController(patientView, ((Patient)model.getLoggedInAccount()));
-                    break;
-            }
-        }
-        
     }
     
     public class RequestAccountListener implements ActionListener

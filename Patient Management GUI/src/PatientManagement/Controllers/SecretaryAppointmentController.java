@@ -28,8 +28,8 @@ public class SecretaryAppointmentController
         
         this.view.setVisible(true);
         
-        this.view.AddCreateNewListener(new CreateNewListener());
-        this.view.AddRequestListener(new RequestListener());
+        this.view.addCreateNewListener(new CreateNewListener());
+        this.view.addRequestListener(new RequestListener());
     }
     
     public class CreateNewListener implements ActionListener

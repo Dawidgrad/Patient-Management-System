@@ -32,7 +32,7 @@ public class LoginSystemSingleton
         return loggedInAccount;
     }
         
-    public boolean LogIn(String idNumber, String password)
+    public boolean logIn(String idNumber, String password)
     {
         AccountListSingleton accountList = AccountListSingleton.getInstance();
         Account targetAccount = accountList.getAccount(idNumber);
@@ -40,7 +40,7 @@ public class LoginSystemSingleton
                 
         if (targetAccount != null)
         {
-            correctInfo = ValidatieLoginInfo(targetAccount, idNumber, password);
+            correctInfo = validatieLoginInfo(targetAccount, idNumber, password);
 
             if (correctInfo)
             {
@@ -51,7 +51,7 @@ public class LoginSystemSingleton
         return correctInfo;
     }
     
-    public boolean ValidatieLoginInfo(Account account, String idNumber, String password)
+    public boolean validatieLoginInfo(Account account, String idNumber, String password)
     {
         boolean result = false;
         
@@ -66,7 +66,7 @@ public class LoginSystemSingleton
         return result;
     }
     
-    public boolean LogOut()
+    public boolean logOut()
     {
         return false;
     }

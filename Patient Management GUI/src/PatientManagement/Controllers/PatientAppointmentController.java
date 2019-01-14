@@ -27,8 +27,8 @@ public class PatientAppointmentController
         
         this.view.setVisible(true);
         
-        this.view.AddAppointmentHistoryListener(new AppointmentHistoryListener());
-        this.view.AddRequestAppointmentListener(new RequestAppointmentListener());
+        this.view.addAppointmentHistoryListener(new AppointmentHistoryListener());
+        this.view.addRequestAppointmentListener(new RequestAppointmentListener());
     }
     
     public class AppointmentHistoryListener implements ActionListener

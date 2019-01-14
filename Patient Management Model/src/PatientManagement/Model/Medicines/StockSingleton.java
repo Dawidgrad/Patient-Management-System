@@ -47,7 +47,7 @@ public class StockSingleton implements Serializable
         return uniqueInstance;
     }
     
-    public void CreateNewMedicine(String name, String description, int quantity, float price, int amount, MedicineType type) 
+    public void createNewMedicine(String name, String description, int quantity, float price, int amount, MedicineType type) 
     {
         ConcreteMedicineFactory factory = new ConcreteMedicineFactory();
         
@@ -61,19 +61,19 @@ public class StockSingleton implements Serializable
             }
         }
         
-        Medicine newMedicine = factory.CreateNewMedicine(highest + 1, name, description, quantity, price, amount, type);
+        Medicine newMedicine = factory.createNewMedicine(highest + 1, name, description, quantity, price, amount, type);
         
         medicineList.add(newMedicine);
     }
     
-    public ArrayList<Medicine> GetMedicineList()
+    public ArrayList<Medicine> getMedicineList()
     {
         return medicineList;
     }
     
-    public boolean GiveMedicine(int medicineId, int amount)
+    public boolean giveMedicine(int medicineId, int amount)
     {
-        Medicine medicineToGive = GetMedicine(medicineId);
+        Medicine medicineToGive = getMedicine(medicineId);
         int medicineAmount = medicineToGive.getAmountInStock();
         
         boolean result;
@@ -90,15 +90,15 @@ public class StockSingleton implements Serializable
         return result;
     }
     
-    public void OrderMedicine(int medicineId, int amount)
+    public void orderMedicine(int medicineId, int amount)
     {
-        Medicine medicineToOrder = GetMedicine(medicineId);
+        Medicine medicineToOrder = getMedicine(medicineId);
         int medicineAmount = medicineToOrder.getAmountInStock();
         
         medicineToOrder.addToStock(amount);
     }
     
-    public Medicine GetMedicine(int medicineId)
+    public Medicine getMedicine(int medicineId)
     {
         Medicine targetMedicine = null;
         

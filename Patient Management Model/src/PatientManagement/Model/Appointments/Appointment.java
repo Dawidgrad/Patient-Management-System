@@ -32,7 +32,43 @@ public class Appointment implements Observable, Serializable
     private Date date;
     private String time;
     private Prescription prescription;
-
+    
+    public Appointment(int id, Patient patient, Date date, Doctor doctor, String time)
+    {
+        this.appointmentId = id;
+        registerObserver((Observer)patient);
+        this.doctor = doctor;
+        this.state = AppointmentState.REQUESTED;
+        
+        if (validateDate(date, time))
+        {
+            this.date = date;
+            this.time = time;
+        }
+        else
+        {
+            throw new RuntimeException();
+        }
+    }
+    
+    public Appointment(int id, Patient patient, Date date, Doctor doctor, String time, AppointmentState state)
+    {
+        this.appointmentId = id;
+        registerObserver((Observer)patient);
+        this.doctor = doctor;
+        processRequest();
+        
+        if (validateDate(date, time))
+        {            
+            this.date = date;
+            this.time = time;
+        }
+        else
+        {
+            throw new RuntimeException();
+        }
+    }
+    
     public AppointmentState getState() {
         return state;
     }
@@ -79,43 +115,7 @@ public class Appointment implements Observable, Serializable
         this.state = state;
     }
     
-    public Appointment(int id, Patient patient, Date date, Doctor doctor, String time)
-    {
-        this.appointmentId = id;
-        RegisterObserver((Observer)patient);
-        this.doctor = doctor;
-        this.state = AppointmentState.REQUESTED;
-        
-        if (ValidateDate(date, time))
-        {
-            this.date = date;
-            this.time = time;
-        }
-        else
-        {
-            throw new RuntimeException();
-        }
-    }
-    
-    public Appointment(int id, Patient patient, Date date, Doctor doctor, String time, AppointmentState state)
-    {
-        this.appointmentId = id;
-        RegisterObserver((Observer)patient);
-        this.doctor = doctor;
-        ProcessRequest();
-        
-        if (ValidateDate(date, time))
-        {            
-            this.date = date;
-            this.time = time;
-        }
-        else
-        {
-            throw new RuntimeException();
-        }
-    }
-    
-    private boolean ValidateDate(Date newDate, String newTime)
+    private boolean validateDate(Date newDate, String newTime)
     {
         boolean correct = false;
         LocalDateTime currentLdt = LocalDateTime.now();
@@ -130,21 +130,21 @@ public class Appointment implements Observable, Serializable
     }
     
     @Override
-    public void RegisterObserver(Observer o) 
+    public void registerObserver(Observer o) 
     {
         this.patient = (Patient)o;
     }
 
     @Override
-    public void NotifyObserver() 
+    public void notifyObserver() 
     {
         this.patient.update(this);
     }
     
-    public void ProcessRequest()
+    public void processRequest()
     {
         this.state = AppointmentState.APPROVED;
-        NotifyObserver();
+        notifyObserver();
     }
     
     public void createPrescription(Notes notes, ArrayList<PrescriptionMedicine> medicine)

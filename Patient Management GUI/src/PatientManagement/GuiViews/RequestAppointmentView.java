@@ -44,7 +44,7 @@ public class RequestAppointmentView extends javax.swing.JFrame {
     
     /* Listeners */
     
-    public void AddRequestAppointmentListener(ActionListener requestAppointment)
+    public void addRequestAppointmentListener(ActionListener requestAppointment)
     {
         btnRequestAppointment.addActionListener(requestAppointment);
     }

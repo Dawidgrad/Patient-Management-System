@@ -51,7 +51,7 @@ public class SecretaryNewAppointmentView extends javax.swing.JFrame {
     
     /* Listeners */
     
-    public void AddCreateAppointmentListener(ActionListener createAppointment)
+    public void addCreateAppointmentListener(ActionListener createAppointment)
     {
         btnCreateAppointment.addActionListener(createAppointment);
     }

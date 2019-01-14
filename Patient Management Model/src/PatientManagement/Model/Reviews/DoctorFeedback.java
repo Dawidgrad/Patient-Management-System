@@ -17,6 +17,17 @@ public class DoctorFeedback implements Serializable
     private double averageRating;
     private ArrayList<String> comments;
     private String administratorFeedback;
+    
+    public DoctorFeedback(ArrayList<Review> reviews)
+    {
+        averageRating = calculateAverageRating(reviews);
+        comments = new ArrayList<String>();
+        
+        for (Review element : reviews)
+        {
+            comments.add(element.getComment());
+        }
+    }
 
     public double getAverageRating() {
         return averageRating;
@@ -34,18 +45,7 @@ public class DoctorFeedback implements Serializable
         this.administratorFeedback = administratorFeedback;
     }
     
-    public DoctorFeedback(ArrayList<Review> reviews)
-    {
-        averageRating = CalculateAverageRating(reviews);
-        comments = new ArrayList<String>();
-        
-        for (Review element : reviews)
-        {
-            comments.add(element.getComment());
-        }
-    }
-    
-    private double CalculateAverageRating(ArrayList<Review> reviews)
+    private double calculateAverageRating(ArrayList<Review> reviews)
     {
         double counter = 0;
         double sum = 0;

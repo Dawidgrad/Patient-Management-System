@@ -5,11 +5,13 @@
  */
 package PatientManagement.Model.Medicines;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Davio
  */
-public class MedicineOrder 
+public class MedicineOrder implements Serializable
 {
     private int orderId;
     private Medicine medicine;

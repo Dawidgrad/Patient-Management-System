@@ -33,18 +33,18 @@ public class RequestAppointmentController
         
         this.view.setVisible(true);
         
-        this.view.AddRequestAppointmentListener(new RequestAppointmentListener());
+        this.view.addRequestAppointmentListener(new RequestAppointmentListener());
         
-        RefreshDoctorsJList();
+        refreshDoctorsJList();
     }
     
-    private void RefreshDoctorsJList()
+    private void refreshDoctorsJList()
     {
-        ArrayList<Account> doctorList = GetDoctorList();
-        PopulateDoctorJList(doctorList);
+        ArrayList<Account> doctorList = getDoctorList();
+        populateDoctorJList(doctorList);
     }
 
-    private ArrayList<Account> GetDoctorList()
+    private ArrayList<Account> getDoctorList()
     {
         AccountListSingleton accounts = AccountListSingleton.getInstance();
 
@@ -55,7 +55,7 @@ public class RequestAppointmentController
         return doctorList;
     }
 
-    private void PopulateDoctorJList(ArrayList<Account> doctorList)
+    private void populateDoctorJList(ArrayList<Account> doctorList)
     {
         ArrayList<String> doctorStringList = new ArrayList<String>();
 
@@ -74,7 +74,7 @@ public class RequestAppointmentController
         view.setLstDoctors(model);
     }
     
-    private Doctor GetSelectedDoctor()
+    private Doctor getSelectedDoctor()
     {
         String details = view.getLstDoctors().getSelectedValue();
         AccountListSingleton accountList = AccountListSingleton.getInstance();
@@ -97,7 +97,7 @@ public class RequestAppointmentController
         {
             try
             {
-                Doctor doctor = GetSelectedDoctor();
+                Doctor doctor = getSelectedDoctor();
                 Date date = view.getDatAppointmentDate();
                 String time = view.getCmbAppointmentTime();
             

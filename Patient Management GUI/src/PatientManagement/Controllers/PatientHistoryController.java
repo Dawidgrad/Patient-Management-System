@@ -15,6 +15,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -35,7 +36,7 @@ public class PatientHistoryController
         
         this.view.addSelectAppointmentListener(new SelectAppointmentListener());
         
-        RefreshAppointmentJList();
+        refreshAppointmentJList();
     }
     
     public PatientHistoryController(PatientHistoryView view, Patient model, Doctor doctorAccess)
@@ -48,23 +49,23 @@ public class PatientHistoryController
         
         this.view.addSelectAppointmentListener(new SelectAppointmentListener());
         
-        RefreshAppointmentJList();
+        refreshAppointmentJList();
     }
     
-    private void RefreshAppointmentJList()
+    private void refreshAppointmentJList()
     {
-        ArrayList<Appointment> appointmentList = GetAppointmentList();
-        PopulateAppointmentJList(appointmentList);
+        ArrayList<Appointment> appointmentList = getAppointmentList();
+        populateAppointmentJList(appointmentList);
     }
 
-    private ArrayList<Appointment> GetAppointmentList()
+    private ArrayList<Appointment> getAppointmentList()
     {
         AppointmentListSingleton appointments = AppointmentListSingleton.getInstance();
 
         return appointments.getPatientHistory(model);
     }
 
-    private void PopulateAppointmentJList(ArrayList<Appointment> appointmentList)
+    private void populateAppointmentJList(ArrayList<Appointment> appointmentList)
     {
         ArrayList<String> appointmentStringList = new ArrayList<String>();
 
@@ -86,7 +87,7 @@ public class PatientHistoryController
         view.setLstAppointments(model);
     }
     
-    private int GetSelectedAppointmentId()
+    private int getSelectedAppointmentId()
     {
         String details = view.getLstAppointments().getSelectedValue();
 
@@ -104,28 +105,35 @@ public class PatientHistoryController
         @Override
         public void actionPerformed(ActionEvent e) 
         {
-            AppointmentListSingleton appointmentList = AppointmentListSingleton.getInstance();
-            int appointmentId = GetSelectedAppointmentId();
-            
-            Appointment selectedAppointment = appointmentList.getAppointment(appointmentId);
-            
-            view.setLblDoctorName(selectedAppointment.getDoctorName());
-            view.setLblDoctorAddress(selectedAppointment.getDoctor().getAddress());
-            view.setLblPatientName(selectedAppointment.getPatientName());
-            view.setLblPatientAddress(selectedAppointment.getPatient().getAddress());
-            view.setLblSex(selectedAppointment.getPatient().getSex().toString());
-            view.setLblAge(String.valueOf(selectedAppointment.getPatient().getAge()));
-            view.setLblDate(selectedAppointment.getDate() + " " + selectedAppointment.getTime());
-            
-            ArrayList<PrescriptionMedicine> prescribedMedicine = selectedAppointment.getPrescription().getMedicine();
-            
-            String prescription = "";
-            for (PrescriptionMedicine element : prescribedMedicine)
+            try
             {
-                prescription += element.getDetails() + System.lineSeparator();
+                AppointmentListSingleton appointmentList = AppointmentListSingleton.getInstance();
+                int appointmentId = getSelectedAppointmentId();
+
+                Appointment selectedAppointment = appointmentList.getAppointment(appointmentId);
+
+                view.setLblDoctorName(selectedAppointment.getDoctorName());
+                view.setLblDoctorAddress(selectedAppointment.getDoctor().getAddress());
+                view.setLblPatientName(selectedAppointment.getPatientName());
+                view.setLblPatientAddress(selectedAppointment.getPatient().getAddress());
+                view.setLblSex(selectedAppointment.getPatient().getSex().toString());
+                view.setLblAge(String.valueOf(selectedAppointment.getPatient().getAge()));
+                view.setLblDate(selectedAppointment.getDate() + " " + selectedAppointment.getTime());
+
+                ArrayList<PrescriptionMedicine> prescribedMedicine = selectedAppointment.getPrescription().getMedicine();
+
+                String prescription = "";
+                for (PrescriptionMedicine element : prescribedMedicine)
+                {
+                    prescription += element.getDetails() + System.lineSeparator();
+                }
+
+                view.setTxtPrescription(prescription); 
             }
-            
-            view.setTxtPrescription(prescription);
+            catch(Exception ex)
+            {
+                JOptionPane.showMessageDialog(null, "Could not select the appointment!");
+            }
         }
         
     }

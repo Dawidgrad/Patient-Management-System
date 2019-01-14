@@ -15,7 +15,7 @@ public class ConcreteMedicineFactory extends MedicineFactory
 {
 
     @Override
-    public Medicine CreateNewMedicine(int medicineId, String name, String description, int quantity, float price, int amount, MedicineType type) 
+    public Medicine createNewMedicine(int medicineId, String name, String description, int quantity, float price, int amount, MedicineType type) 
     {
         Medicine newMedicine;
         

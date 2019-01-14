@@ -36,6 +36,33 @@ public class RequestAccountController
         this.view.addRequestAccountListener(new RequestAccountListener());
     }
     
+    private Sex getSelectedSex()
+    {
+        String selectionText = "";
+
+        for (Enumeration<AbstractButton> buttons = view.getGrpSex().getElements(); buttons.hasMoreElements();) 
+        {
+            AbstractButton button = buttons.nextElement();
+            if (button.isSelected()) {
+                   selectionText = button.getText();
+            }
+        }      
+
+        Sex type = null;
+
+        switch(selectionText)
+        {
+            case "Male":
+                type = Sex.MALE;
+                break;
+            case "Female":
+                type = Sex.FEMALE;
+                break;
+        }
+
+        return type;
+    }
+    
     public class RequestAccountListener implements ActionListener
     {
 
@@ -66,33 +93,6 @@ public class RequestAccountController
             {
                 JOptionPane.showMessageDialog(null, "Could not request the account!");
             }
-        }
-        
-        private Sex getSelectedSex()
-        {
-            String selectionText = "";
-            
-            for (Enumeration<AbstractButton> buttons = view.getGrpSex().getElements(); buttons.hasMoreElements();) 
-            {
-                AbstractButton button = buttons.nextElement();
-                if (button.isSelected()) {
-                       selectionText = button.getText();
-                }
-            }      
-            
-            Sex type = null;
-            
-            switch(selectionText)
-            {
-                case "Male":
-                    type = Sex.MALE;
-                    break;
-                case "Female":
-                    type = Sex.FEMALE;
-                    break;
-            }
-            
-            return type;
         }
         
     }

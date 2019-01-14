@@ -35,20 +35,20 @@ public class DoctorReviewController
         
         this.view.setVisible(true);
         
-        this.view.AddSelectDoctorListener(new SelectDoctor());
-        this.view.AddSubmitReviewListener(new SubmitReview());
+        this.view.addSelectDoctorListener(new SelectDoctor());
+        this.view.addSubmitReviewListener(new SubmitReview());
         
-        RefreshDoctorsJList();
+        refreshDoctorsJList();
     }
     
         
-    private void RefreshDoctorsJList()
+    private void refreshDoctorsJList()
     {
-        ArrayList<Account> doctorList = GetDoctorList();
-        PopulateDoctorJList(doctorList);
+        ArrayList<Account> doctorList = getDoctorList();
+        populateDoctorJList(doctorList);
     }
 
-    private ArrayList<Account> GetDoctorList()
+    private ArrayList<Account> getDoctorList()
     {
         AccountListSingleton accounts = AccountListSingleton.getInstance();
 
@@ -59,7 +59,7 @@ public class DoctorReviewController
         return doctorList;
     }
 
-    private void PopulateDoctorJList(ArrayList<Account> doctorList)
+    private void populateDoctorJList(ArrayList<Account> doctorList)
     {
         ArrayList<String> doctorStringList = new ArrayList<String>();
 
@@ -84,11 +84,11 @@ public class DoctorReviewController
         @Override
         public void actionPerformed(ActionEvent e) 
         {
-            UpdateSelectedDoctor();
-            UpdateDoctorReviews();
+            updateSelectedDoctor();
+            updateDoctorReviews();
         }
         
-        private void UpdateSelectedDoctor()
+        private void updateSelectedDoctor()
         {
             String details = view.getLstDoctors().getSelectedValue();
             AccountListSingleton accountList = AccountListSingleton.getInstance();
@@ -100,12 +100,12 @@ public class DoctorReviewController
             selectedDoctor = (Doctor)accountList.getAccount(idNumber);
         }
         
-        private void UpdateDoctorReviews()
+        private void updateDoctorReviews()
         {
             ReviewListSingleton reviewList = ReviewListSingleton.getInstance();
             
             // Updates feedback for selected doctor
-            DoctorFeedback feedback = reviewList.GetFeedback(selectedDoctor.getIdNumber());
+            DoctorFeedback feedback = reviewList.getFeedback(selectedDoctor.getIdNumber());
             
             // update UI
             view.setLblRating(Double.toString(feedback.getAverageRating()));
@@ -119,7 +119,6 @@ public class DoctorReviewController
 
             view.setTxtComments(patientComments);
         }
-        
     }
     
     public class SubmitReview implements ActionListener
@@ -148,7 +147,7 @@ public class DoctorReviewController
                 JOptionPane.showMessageDialog(null, "Could not add the review!");
             }
             
-            RefreshDoctorsJList();
+            refreshDoctorsJList();
         }
         
     }

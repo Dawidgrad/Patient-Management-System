@@ -35,23 +35,23 @@ public class SecretaryAccountController
         this.view.addVerificationListener(new VerificationListener());
         this.view.addTerminationListener(new TerminationListener());
         
-        RefreshVerificationJList();
+        refreshVerificationJList();
     }
     
-    private void RefreshVerificationJList()
+    private void refreshVerificationJList()
     {
-        ArrayList<Patient> accountList = GetVerificationList();
-        PopulateVerificationJList(accountList);
+        ArrayList<Patient> accountList = getVerificationList();
+        populateVerificationJList(accountList);
     }
 
-    private ArrayList<Patient> GetVerificationList()
+    private ArrayList<Patient> getVerificationList()
     {
         AccountVerificationSingleton accounts = AccountVerificationSingleton.getInstance();
 
         return accounts.getVerificationRequests();
     }
 
-    private void PopulateVerificationJList(ArrayList<Patient> accountList)
+    private void populateVerificationJList(ArrayList<Patient> accountList)
     {
         ArrayList<String> accountStringList = new ArrayList<String>();
 
@@ -70,20 +70,20 @@ public class SecretaryAccountController
         view.setLstAccountsToVerify(model);
     }
     
-    private void RefreshTerminationJList()
+    private void refreshTerminationJList()
     {
-        ArrayList<Patient> accountList = GetTerminationList();
-        PopulateTerminationJList(accountList);
+        ArrayList<Patient> accountList = getTerminationList();
+        populateTerminationJList(accountList);
     }
 
-    private ArrayList<Patient> GetTerminationList()
+    private ArrayList<Patient> getTerminationList()
     {
         AccountTerminationSingleton accounts = AccountTerminationSingleton.getInstance();
 
         return accounts.getTerminationRequests();
     }
 
-    private void PopulateTerminationJList(ArrayList<Patient> accountList)
+    private void populateTerminationJList(ArrayList<Patient> accountList)
     {
         ArrayList<String> accountStringList = new ArrayList<String>();
 

@@ -17,7 +17,7 @@ public class LiquidMedicine extends Medicine
     }
 
     @Override
-    public String GetInformation() {
+    public String getInformation() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

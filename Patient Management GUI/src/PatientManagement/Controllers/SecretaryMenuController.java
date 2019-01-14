@@ -40,12 +40,12 @@ public class SecretaryMenuController
         this.view.addAppointmentsListener(new AppointmentsListener());
         this.view.addMedicinesListener(new MedicinesListener());
         
-        CheckForAppointmentRequests();
-        CheckForAccountRequests();
-        CheckForAccountTerminations();
+        checkForAppointmentRequests();
+        checkForAccountRequests();
+        checkForAccountTerminations();
     }
     
-    private void CheckForAppointmentRequests()
+    private void checkForAppointmentRequests()
     {
         AppointmentListSingleton appointmentList = AppointmentListSingleton.getInstance();
         ArrayList<Appointment> currentRequests = appointmentList.getStateList(Appointment.AppointmentState.REQUESTED);
@@ -56,7 +56,7 @@ public class SecretaryMenuController
         }
     }
     
-    private void CheckForAccountRequests()
+    private void checkForAccountRequests()
     {
         AccountVerificationSingleton accountRequests = AccountVerificationSingleton.getInstance();
         ArrayList<Patient> requestList = accountRequests.getVerificationRequests();
@@ -67,7 +67,7 @@ public class SecretaryMenuController
         }
     }
     
-    private void CheckForAccountTerminations()
+    private void checkForAccountTerminations()
     {
         AccountTerminationSingleton accountTerminations = AccountTerminationSingleton.getInstance();
         ArrayList<Patient> terminationList = accountTerminations.getTerminationRequests();

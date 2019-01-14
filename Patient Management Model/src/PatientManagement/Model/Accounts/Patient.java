@@ -62,7 +62,7 @@ public class Patient extends Account implements Observer, Serializable
     public void provideReview(Doctor doctor, String comment, int rating)
     {
         ReviewListSingleton reviewList = ReviewListSingleton.getInstance();
-        reviewList.AddReview(this, doctor, comment, rating);
+        reviewList.addReview(this, doctor, comment, rating);
     }
     
     public void requestAppointment(Date date, Doctor doctor, String time)

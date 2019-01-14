@@ -98,7 +98,7 @@ public class AccountManagementController
                 AccountListSingleton accountList = AccountListSingleton.getInstance();
                 String idNumber = accountList.getNextIdNumber(type);
             
-                boolean result = model.CreateNewAccount(firstName, lastName, address, idNumber, password, type);
+                boolean result = model.createNewAccount(firstName, lastName, address, idNumber, password, type);
                 
                 if (result)
                 {
@@ -163,7 +163,7 @@ public class AccountManagementController
                 
                 AccountListSingleton accountList = AccountListSingleton.getInstance();
                 Account targetAccount = accountList.getAccount(idNumber);
-                model.RemoveAccount(targetAccount);
+                model.removeAccount(targetAccount);
                 
                 refreshAccountJList();
                 JOptionPane.showMessageDialog(null, "The account has been deleted!");

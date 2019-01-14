@@ -36,8 +36,8 @@ public class DoctorFeedbackController
         
         this.view.setVisible(true);
         
-        this.view.AddSelectDoctorListener(new SelectDoctor());
-        this.view.AddSubmitFeebackListener(new SubmitFeedback());
+        this.view.addSelectDoctorListener(new SelectDoctor());
+        this.view.addSubmitFeebackListener(new SubmitFeedback());
         
         refreshDoctorsJList();
     }
@@ -112,7 +112,7 @@ public class DoctorFeedbackController
             ReviewListSingleton reviewList = ReviewListSingleton.getInstance();
             
             // Updates feedback for selected doctor
-            DoctorFeedback feedback = reviewList.GetFeedback(selectedDoctor.getIdNumber());
+            DoctorFeedback feedback = reviewList.getFeedback(selectedDoctor.getIdNumber());
             
             // Update UI
             view.setLblRating(Double.toString(feedback.getAverageRating()));
@@ -138,7 +138,7 @@ public class DoctorFeedbackController
             try
             {
                 String administratorFeedback = view.getTxtFeedback();
-                model.GiveDoctorFeedback(selectedDoctor, administratorFeedback);
+                model.giveDoctorFeedback(selectedDoctor, administratorFeedback);
                 JOptionPane.showMessageDialog(null, "Feedback submitted successfully!");
             }
             catch (Exception ex)

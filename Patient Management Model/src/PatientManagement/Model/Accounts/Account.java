@@ -20,6 +20,16 @@ public abstract class Account implements Serializable
     private String idNumber;
     private String password;
     private AccountType accountType;
+        
+    public Account(String name, String surname, String address, String idNumber, String password, AccountType type)
+    {
+        this.name = name;
+        this.surname = surname;
+        this.address = address;
+        this.idNumber = idNumber;
+        this.password = password;
+        this.accountType = type;
+    }
 
     public String getName() {
         return name;
@@ -59,15 +69,5 @@ public abstract class Account implements Serializable
 
     public AccountType getAccountType() {
         return accountType;
-    }
-    
-    public Account(String name, String surname, String address, String idNumber, String password, AccountType type)
-    {
-        this.name = name;
-        this.surname = surname;
-        this.address = address;
-        this.idNumber = idNumber;
-        this.password = password;
-        this.accountType = type;
     }
 }

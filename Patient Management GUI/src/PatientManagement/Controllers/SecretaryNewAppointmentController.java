@@ -34,25 +34,25 @@ public class SecretaryNewAppointmentController
         
         this.view.setVisible(true);
         
-        this.view.AddCreateAppointmentListener(new CreateAppointmentListener());
+        this.view.addCreateAppointmentListener(new CreateAppointmentListener());
         
-        RefreshPatientJList();
-        RefreshDoctorsJList();
+        refreshPatientJList();
+        refreshDoctorsJList();
     }
     
-    private void RefreshPatientJList()
+    private void refreshPatientJList()
     {
-        ArrayList<Account> patientList = GetPatientList();
-        PopulatePatientJList(patientList);
+        ArrayList<Account> patientList = getPatientList();
+        populatePatientJList(patientList);
     }
     
-    private void RefreshDoctorsJList()
+    private void refreshDoctorsJList()
     {
-        ArrayList<Account> doctorList = GetDoctorList();
-        PopulateDoctorJList(doctorList);
+        ArrayList<Account> doctorList = getDoctorList();
+        populateDoctorJList(doctorList);
     }
     
-    private ArrayList<Account> GetPatientList()
+    private ArrayList<Account> getPatientList()
     {
         AccountListSingleton patients = AccountListSingleton.getInstance();
 
@@ -63,7 +63,7 @@ public class SecretaryNewAppointmentController
         return patientList;
     }
 
-    private void PopulatePatientJList(ArrayList<Account> patientList)
+    private void populatePatientJList(ArrayList<Account> patientList)
     {
         ArrayList<String> patientStringList = new ArrayList<String>();
 
@@ -82,7 +82,7 @@ public class SecretaryNewAppointmentController
         view.setLstPatients(model);
     }
 
-    private ArrayList<Account> GetDoctorList()
+    private ArrayList<Account> getDoctorList()
     {
         AccountListSingleton accounts = AccountListSingleton.getInstance();
 
@@ -93,7 +93,7 @@ public class SecretaryNewAppointmentController
         return doctorList;
     }
 
-    private void PopulateDoctorJList(ArrayList<Account> doctorList)
+    private void populateDoctorJList(ArrayList<Account> doctorList)
     {
         ArrayList<String> doctorStringList = new ArrayList<String>();
 
@@ -112,7 +112,7 @@ public class SecretaryNewAppointmentController
         view.setLstDoctors(model);
     }
     
-    private Doctor GetSelectedDoctor()
+    private Doctor getSelectedDoctor()
     {
         String details = view.getLstDoctors().getSelectedValue();
         AccountListSingleton accountList = AccountListSingleton.getInstance();
@@ -125,7 +125,7 @@ public class SecretaryNewAppointmentController
         return selectedDoctor;
     }
     
-    private Patient GetSelectedPatient()
+    private Patient getSelectedPatient()
     {
         String details = view.getLstPatients().getSelectedValue();
         AccountListSingleton accountList = AccountListSingleton.getInstance();
@@ -146,12 +146,12 @@ public class SecretaryNewAppointmentController
         {
             try
             {
-                Doctor doctor = GetSelectedDoctor();
-                Patient patient = GetSelectedPatient();
+                Doctor doctor = getSelectedDoctor();
+                Patient patient = getSelectedPatient();
                 Date date = view.getDatAppointmentDate();
                 String time = view.getCmbAppointmentTime();
             
-                model.CreateAppointment(doctor, patient, date, time);
+                model.createAppointment(doctor, patient, date, time);
                 JOptionPane.showMessageDialog(null, "Appointment created successfully!");
             }
             catch (Exception ex)

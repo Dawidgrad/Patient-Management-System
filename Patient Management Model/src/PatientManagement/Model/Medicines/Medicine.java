@@ -66,7 +66,7 @@ public abstract class Medicine implements Serializable
     
     /* Methods */ 
     
-    public abstract String GetInformation();
+    public abstract String getInformation();
     
     public void addToStock(int amount) 
     {

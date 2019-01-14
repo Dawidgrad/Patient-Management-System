@@ -35,23 +35,23 @@ public class DoctorAppointmentController
         this.view.addInspectHistoryListener(new InspectHistoryListener());
         this.view.addStartAppointmentListener(new StartAppointmentListener());
         
-        RefreshAppointmentJList();
+        refreshAppointmentJList();
     }
     
-    private void RefreshAppointmentJList()
+    private void refreshAppointmentJList()
     {
-        ArrayList<Appointment> appointmentList = GetAppointmentList();
-        PopulateAppointmentJList(appointmentList);
+        ArrayList<Appointment> appointmentList = getAppointmentList();
+        populateAppointmentJList(appointmentList);
     }
 
-    private ArrayList<Appointment> GetAppointmentList()
+    private ArrayList<Appointment> getAppointmentList()
     {
         AppointmentListSingleton appointments = AppointmentListSingleton.getInstance();
 
         return appointments.getScheduledAppointments(model);
     }
 
-    private void PopulateAppointmentJList(ArrayList<Appointment> appointmentList)
+    private void populateAppointmentJList(ArrayList<Appointment> appointmentList)
     {
         ArrayList<String> appointmentStringList = new ArrayList<String>();
 
@@ -73,7 +73,7 @@ public class DoctorAppointmentController
         view.setLstAppointments(model);
     }
     
-    private int GetSelectedAppointmentId()
+    private int getSelectedAppointmentId()
     {
         String details = view.getLstAppointments().getSelectedValue();
 
@@ -92,7 +92,7 @@ public class DoctorAppointmentController
         public void actionPerformed(ActionEvent e) 
         {
             AppointmentListSingleton appointmentList = AppointmentListSingleton.getInstance();
-            int appointmentId = GetSelectedAppointmentId();
+            int appointmentId = getSelectedAppointmentId();
             
             Appointment selectedAppointment = appointmentList.getAppointment(appointmentId);
             
@@ -111,7 +111,7 @@ public class DoctorAppointmentController
         public void actionPerformed(ActionEvent e) 
         {
             AppointmentListSingleton appointmentList = AppointmentListSingleton.getInstance();
-            int appointmentId = GetSelectedAppointmentId();
+            int appointmentId = getSelectedAppointmentId();
             
             Appointment selectedAppointment = appointmentList.getAppointment(appointmentId);
             

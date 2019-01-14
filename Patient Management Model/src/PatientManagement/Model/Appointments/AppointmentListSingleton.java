@@ -93,7 +93,7 @@ public class AppointmentListSingleton implements Serializable
             }
         }
         
-        targetAppointment.ProcessRequest();
+        targetAppointment.processRequest();
     }
     
     public void addAppointment(Doctor doctor, Patient patient, Date date, String time)

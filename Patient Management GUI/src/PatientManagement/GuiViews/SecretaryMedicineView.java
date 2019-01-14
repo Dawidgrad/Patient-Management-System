@@ -53,12 +53,12 @@ public class SecretaryMedicineView extends javax.swing.JFrame {
     
     /* Listeners */
     
-    public void AddGiveMedicineListener(ActionListener giveMedicineButton)
+    public void addGiveMedicineListener(ActionListener giveMedicineButton)
     {
         btnGiveMedicine.addActionListener(giveMedicineButton);
     }
     
-    public void AddOrderMedicineListener(ActionListener orderMedicineButton)
+    public void addOrderMedicineListener(ActionListener orderMedicineButton)
     {
         btnOrderMedicine.addActionListener(orderMedicineButton);
     }

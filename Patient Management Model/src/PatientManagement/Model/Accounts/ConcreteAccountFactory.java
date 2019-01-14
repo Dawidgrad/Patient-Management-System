@@ -14,7 +14,7 @@ import PatientManagement.Model.Accounts.AccountListSingleton.AccountType;
 public class ConcreteAccountFactory extends AccountFactory
 {
     @Override
-    public Account CreateAccount(String name, String surname, String address, String idNumber, String password, AccountType type)
+    public Account createAccount(String name, String surname, String address, String idNumber, String password, AccountType type)
     {
         Account newAccount;
         

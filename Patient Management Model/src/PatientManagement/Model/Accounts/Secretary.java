@@ -26,20 +26,20 @@ public class Secretary extends Account implements Serializable
         super(name, surname, address, idNumber, password, AccountType.SECRETARY);
     }
     
-    public ArrayList<Appointment> GetAppointmentRequests()
+    public ArrayList<Appointment> getAppointmentRequests()
     {
         AppointmentListSingleton appointments = AppointmentListSingleton.getInstance();
         
         return appointments.getStateList(Appointment.AppointmentState.REQUESTED);
     }
     
-    public void ProcessAppointmentRequest(int appointmentId)
+    public void processAppointmentRequest(int appointmentId)
     {
         AppointmentListSingleton appointments = AppointmentListSingleton.getInstance();
         appointments.approveRequest(appointmentId);
     }
     
-    public void CreateAppointment(Doctor doctor, Patient patient, Date date, String time)
+    public void createAppointment(Doctor doctor, Patient patient, Date date, String time)
     {
         AppointmentListSingleton appointments = AppointmentListSingleton.getInstance();
         appointments.addAppointment(doctor, patient, date, time);
