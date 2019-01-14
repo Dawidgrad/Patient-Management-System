@@ -84,8 +84,15 @@ public class DoctorReviewController
         @Override
         public void actionPerformed(ActionEvent e) 
         {
-            updateSelectedDoctor();
-            updateDoctorReviews();
+            try
+            {
+                updateSelectedDoctor();
+                updateDoctorReviews();
+            }
+            catch (Exception ex)
+            {
+                JOptionPane.showMessageDialog(null, "Could not select the doctor!");
+            }
         }
         
         private void updateSelectedDoctor()
@@ -94,9 +101,9 @@ public class DoctorReviewController
             AccountListSingleton accountList = AccountListSingleton.getInstance();
             
             String idNumber;
-            int x = details.indexOf("Name:");
+            int index = details.indexOf(" Name:");
 
-            idNumber = details.substring(0, x-1);
+            idNumber = details.substring(0, index);
             selectedDoctor = (Doctor)accountList.getAccount(idNumber);
         }
         
@@ -104,10 +111,8 @@ public class DoctorReviewController
         {
             ReviewListSingleton reviewList = ReviewListSingleton.getInstance();
             
-            // Updates feedback for selected doctor
             DoctorFeedback feedback = reviewList.getFeedback(selectedDoctor.getIdNumber());
             
-            // update UI
             view.setLblRating(Double.toString(feedback.getAverageRating()));
             
             String patientComments = "";

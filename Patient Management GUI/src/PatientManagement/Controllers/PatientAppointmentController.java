@@ -6,6 +6,7 @@
 package PatientManagement.Controllers;
 
 import PatientManagement.GuiViews.PatientAppointmentView;
+import PatientManagement.GuiViews.PatientHistoryView;
 import PatientManagement.GuiViews.RequestAppointmentView;
 import PatientManagement.Model.Accounts.Patient;
 import java.awt.event.ActionEvent;
@@ -37,7 +38,10 @@ public class PatientAppointmentController
         @Override
         public void actionPerformed(ActionEvent e) 
         {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            PatientHistoryView newView = new PatientHistoryView();
+            newView.setLocation(view.getLocation());
+            view.dispose();
+            PatientHistoryController historyController = new PatientHistoryController(newView, model);
         }
         
     }

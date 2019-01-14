@@ -111,10 +111,8 @@ public class DoctorFeedbackController
         {
             ReviewListSingleton reviewList = ReviewListSingleton.getInstance();
             
-            // Updates feedback for selected doctor
             DoctorFeedback feedback = reviewList.getFeedback(selectedDoctor.getIdNumber());
             
-            // Update UI
             view.setLblRating(Double.toString(feedback.getAverageRating()));
             
             String patientComments = "";

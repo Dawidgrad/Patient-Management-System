@@ -15,6 +15,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -91,15 +92,22 @@ public class DoctorAppointmentController
         @Override
         public void actionPerformed(ActionEvent e) 
         {
-            AppointmentListSingleton appointmentList = AppointmentListSingleton.getInstance();
-            int appointmentId = getSelectedAppointmentId();
-            
-            Appointment selectedAppointment = appointmentList.getAppointment(appointmentId);
-            
-            PatientHistoryView newView = new PatientHistoryView();
-            newView.setLocation(view.getLocation());
-            view.dispose();
-            PatientHistoryController doctorMedicine = new PatientHistoryController(newView, selectedAppointment.getPatient(), model);
+            try
+            {
+                AppointmentListSingleton appointmentList = AppointmentListSingleton.getInstance();
+                int appointmentId = getSelectedAppointmentId();
+
+                Appointment selectedAppointment = appointmentList.getAppointment(appointmentId);
+
+                PatientHistoryView newView = new PatientHistoryView();
+                newView.setLocation(view.getLocation());
+                view.dispose();
+                PatientHistoryController doctorMedicine = new PatientHistoryController(newView, selectedAppointment.getPatient(), model);
+            }
+            catch (Exception ex)
+            {
+                JOptionPane.showMessageDialog(null, "Could not inspect patient's history!");
+            }
         }
         
     }
@@ -110,15 +118,22 @@ public class DoctorAppointmentController
         @Override
         public void actionPerformed(ActionEvent e) 
         {
-            AppointmentListSingleton appointmentList = AppointmentListSingleton.getInstance();
-            int appointmentId = getSelectedAppointmentId();
-            
-            Appointment selectedAppointment = appointmentList.getAppointment(appointmentId);
-            
-            DoctorStartAppointmentView newView = new DoctorStartAppointmentView();
-            newView.setLocation(view.getLocation());
-            view.dispose();
-            DoctorStartAppointmentController startAppointment = new DoctorStartAppointmentController(newView, model, selectedAppointment);
+            try
+            {
+                AppointmentListSingleton appointmentList = AppointmentListSingleton.getInstance();
+                int appointmentId = getSelectedAppointmentId();
+
+                Appointment selectedAppointment = appointmentList.getAppointment(appointmentId);
+
+                DoctorStartAppointmentView newView = new DoctorStartAppointmentView();
+                newView.setLocation(view.getLocation());
+                view.dispose();
+                DoctorStartAppointmentController startAppointment = new DoctorStartAppointmentController(newView, model, selectedAppointment);
+            }
+            catch (Exception ex)
+            {
+                JOptionPane.showMessageDialog(null, "Could not start the appointment!");
+            }
         }
         
     }

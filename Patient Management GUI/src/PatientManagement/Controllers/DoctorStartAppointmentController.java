@@ -57,11 +57,7 @@ public class DoctorStartAppointmentController
     {
         StockSingleton medicines = StockSingleton.getInstance();
 
-        ArrayList<Medicine> medicineList = new ArrayList<Medicine>();
-
-        medicineList.addAll(medicines.getMedicineList());
-
-        return medicineList;
+        return medicines.getMedicineList();
     }
 
     private void populateMedicineJList(ArrayList<Medicine> medicineList)

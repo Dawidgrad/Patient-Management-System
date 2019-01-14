@@ -74,7 +74,6 @@ public class PatientAccountController
                 {
                     JOptionPane.showMessageDialog(null, "Incorrect password!");
                 }
-                
             }
             catch (Exception ex)
             {
