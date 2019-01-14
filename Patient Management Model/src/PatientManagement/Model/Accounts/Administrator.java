@@ -37,6 +37,6 @@ public class Administrator extends Account
     
     public void GiveDoctorFeedback(Doctor doctor, String feedback)
     {
-        doctor.UpdateAdministratorFeedback(feedback);
+        doctor.updateAdministratorFeedback(feedback);
     }
 }

@@ -162,7 +162,7 @@ public class DoctorStartAppointmentController
                 Date date = view.getDatAppointmentDate();
                 String time = view.getCmbAppointmentTime();
             
-                model.CreateAppointment(model, currentAppointment.getPatient(), date, time);
+                model.createAppointment(model, currentAppointment.getPatient(), date, time);
                 JOptionPane.showMessageDialog(null, "Appointment created successfully!");
             }
             catch (Exception ex)

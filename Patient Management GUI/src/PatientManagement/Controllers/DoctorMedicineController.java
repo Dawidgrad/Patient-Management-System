@@ -36,16 +36,18 @@ public class DoctorMedicineController
         this.view.setVisible(true);
         
         this.view.AddNewMedicineListener(new NewMedicineListener());
-        RefreshMedicineJList();
+        this.view.AddRequestOrderListener(new RequestOrderListener());
+        
+        refreshMedicineJList();
     }
     
-    private void RefreshMedicineJList()
+    private void refreshMedicineJList()
     {
-        ArrayList<Medicine> medicineList = GetMedicineList();
-        PopulateMedicineJList(medicineList);
+        ArrayList<Medicine> medicineList = getMedicineList();
+        populateMedicineJList(medicineList);
     }
 
-    private ArrayList<Medicine> GetMedicineList()
+    private ArrayList<Medicine> getMedicineList()
     {
         StockSingleton medicines = StockSingleton.getInstance();
 
@@ -56,7 +58,7 @@ public class DoctorMedicineController
         return medicineList;
     }
 
-    private void PopulateMedicineJList(ArrayList<Medicine> medicineList)
+    private void populateMedicineJList(ArrayList<Medicine> medicineList)
     {
         ArrayList<String> medicineStringList = new ArrayList<String>();
 
@@ -76,7 +78,7 @@ public class DoctorMedicineController
         view.setLstMedicines(model);
     }
             
-    private MedicineType GetMedicineTypeSelection()
+    private MedicineType getMedicineTypeSelection()
     {
 
         String typeText = "";
@@ -109,6 +111,21 @@ public class DoctorMedicineController
         return type;
     }
     
+    private Medicine getSelectedMedicine()
+    {
+        String details = view.getLstMedicines().getSelectedValue();
+
+        String medicineId;
+        int index = details.indexOf(" Name:");
+
+        medicineId = details.substring(0, index);
+        
+        StockSingleton stock = StockSingleton.getInstance();
+        Medicine selectedMedicine = stock.GetMedicine(Integer.parseInt(medicineId));
+                
+        return selectedMedicine;
+    }
+    
     public class NewMedicineListener implements ActionListener
     {
 
@@ -121,7 +138,7 @@ public class DoctorMedicineController
                 String description = view.getTxtDescription();
                 int quantity = view.getSpnAmount();
                 float price = view.getSpnPrice();
-                MedicineType type = GetMedicineTypeSelection();
+                MedicineType type = getMedicineTypeSelection();
 
                 StockSingleton stock = StockSingleton.getInstance();
                 stock.CreateNewMedicine(name, description, quantity, price, 0, type);
@@ -132,7 +149,29 @@ public class DoctorMedicineController
                 JOptionPane.showMessageDialog(null, "Could not add the medicine!");
             }
             
-            RefreshMedicineJList();
+            refreshMedicineJList();
+        }
+        
+    }
+    
+    public class RequestOrderListener implements ActionListener
+    {
+
+        @Override
+        public void actionPerformed(ActionEvent e) 
+        {
+            try
+            {
+                Medicine selectedMedicine = getSelectedMedicine();
+                int amountToOrder = view.getSpnAmountToOrder();
+                
+                model.requestMedicineOrder(selectedMedicine, amountToOrder);
+                JOptionPane.showMessageDialog(null, "Successfully requested Secretary to order the medicine!");
+            }
+            catch (Exception ex)
+            {
+                JOptionPane.showMessageDialog(null, "Could not request Secretary to order the medicine!");
+            }
         }
         
     }
