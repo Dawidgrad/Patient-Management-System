@@ -8,7 +8,8 @@ package PatientManagement.Controllers;
 import PatientManagement.GuiViews.LoginView;
 import PatientManagement.GuiViews.PatientAppointmentView;
 import PatientManagement.GuiViews.PatientHistoryView;
-import PatientManagement.GuiViews.RequestAppointmentView;
+import PatientManagement.GuiViews.PatientMenuView;
+import PatientManagement.GuiViews.PatientAppointmentRequestView;
 import PatientManagement.Model.Accounts.LoginSystemSingleton;
 import PatientManagement.Model.Accounts.Patient;
 import java.awt.event.ActionEvent;
@@ -33,6 +34,7 @@ public class PatientAppointmentController
         this.view.addAppointmentHistoryListener(new AppointmentHistoryListener());
         this.view.addRequestAppointmentListener(new RequestAppointmentListener());
 	this.view.addLogOutListener(new LogOutListener());
+	this.view.addBackListener(new BackListener());
     }
     
     public class AppointmentHistoryListener implements ActionListener
@@ -55,10 +57,10 @@ public class PatientAppointmentController
         @Override
         public void actionPerformed(ActionEvent e) 
         {
-            RequestAppointmentView newView = new RequestAppointmentView();            
+            PatientAppointmentRequestView newView = new PatientAppointmentRequestView();            
             newView.setLocation(view.getLocation());
             view.dispose();
-            RequestAppointmentController requestAppointment = new RequestAppointmentController(newView, model);
+            PatientAppointmentRequestController requestAppointment = new PatientAppointmentRequestController(newView, model);
         }
         
     }
@@ -78,6 +80,21 @@ public class PatientAppointmentController
             LoginController loginController = new LoginController(newView, login);
         }
         
+    }
+    
+    	
+    public class BackListener implements ActionListener
+    {
+
+        @Override
+        public void actionPerformed(ActionEvent e) 
+        {
+            PatientMenuView newView = new PatientMenuView();
+            newView.setLocation(view.getLocation());
+            view.dispose();
+            PatientMenuController menuController = new PatientMenuController(newView, model);
+        }
+
     }
 
 }

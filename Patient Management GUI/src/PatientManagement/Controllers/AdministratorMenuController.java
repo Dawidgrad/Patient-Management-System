@@ -5,7 +5,7 @@
  */
 package PatientManagement.Controllers;
 
-import PatientManagement.GuiViews.AccountManagementView;
+import PatientManagement.GuiViews.AdministratorAccountView;
 import PatientManagement.GuiViews.AdministratorMenuView;
 import PatientManagement.GuiViews.AdministratorFeedbackView;
 import PatientManagement.GuiViews.LoginView;
@@ -40,10 +40,10 @@ public class AdministratorMenuController {
         @Override
         public void actionPerformed(ActionEvent e) 
         {
-            AccountManagementView newView = new AccountManagementView();
+            AdministratorAccountView newView = new AdministratorAccountView();
             newView.setLocation(view.getLocation());
             view.dispose();
-            AccountManagementController accountController = new AccountManagementController(newView, model);
+            AdministratorAccountController accountController = new AdministratorAccountController(newView, model);
         }
         
     }

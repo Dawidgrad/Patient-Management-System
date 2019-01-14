@@ -35,6 +35,11 @@ public class PatientAppointmentView extends javax.swing.JFrame {
     public void addLogOutListener(ActionListener logOut)
     {
         btnLogOut.addActionListener(logOut);
+    }    
+	
+    public void addBackListener(ActionListener back)
+    {
+        btnBack.addActionListener(back);
     }
 
     /**
@@ -50,6 +55,7 @@ public class PatientAppointmentView extends javax.swing.JFrame {
         btnAppointmentHistory = new javax.swing.JButton();
         btnRequestAppointment = new javax.swing.JButton();
         btnLogOut = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -65,6 +71,9 @@ public class PatientAppointmentView extends javax.swing.JFrame {
         btnLogOut.setText("Log out");
         btnLogOut.setToolTipText("");
 
+        btnBack.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnBack.setText("Back");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -75,7 +84,8 @@ public class PatientAppointmentView extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnAppointmentHistory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnRequestAppointment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnLogOut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnLogOut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnBack, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(114, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -85,9 +95,11 @@ public class PatientAppointmentView extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(41, 41, 41)
                 .addComponent(btnAppointmentHistory)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addGap(28, 28, 28)
                 .addComponent(btnRequestAppointment)
-                .addGap(85, 85, 85)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                .addComponent(btnBack)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnLogOut)
                 .addGap(22, 22, 22))
         );
@@ -132,6 +144,7 @@ public class PatientAppointmentView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAppointmentHistory;
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnLogOut;
     private javax.swing.JButton btnRequestAppointment;
     private javax.swing.JLabel jLabel1;

@@ -7,7 +7,7 @@ package PatientManagement.Controllers;
 
 import PatientManagement.GuiViews.LoginView;
 import PatientManagement.GuiViews.PatientAppointmentView;
-import PatientManagement.GuiViews.RequestAppointmentView;
+import PatientManagement.GuiViews.PatientAppointmentRequestView;
 import PatientManagement.Model.Accounts.Account;
 import PatientManagement.Model.Accounts.AccountListSingleton;
 import PatientManagement.Model.Accounts.Doctor;
@@ -24,12 +24,12 @@ import javax.swing.JOptionPane;
  *
  * @author Davio
  */
-public class RequestAppointmentController 
+public class PatientAppointmentRequestController 
 {
-    private RequestAppointmentView view;
+    private PatientAppointmentRequestView view;
     private Patient model;
     
-    public RequestAppointmentController(RequestAppointmentView view, Patient model)
+    public PatientAppointmentRequestController(PatientAppointmentRequestView view, Patient model)
     {
         this.view = view;
         this.model = model;
@@ -102,13 +102,20 @@ public class RequestAppointmentController
         {
             try
             {
-                Doctor doctor = getSelectedDoctor();
-                Date date = view.getDatAppointmentDate();
-                String time = view.getCmbAppointmentTime();
-            
-                model.requestAppointment(date, doctor, time);
-                JOptionPane.showMessageDialog(null, "Appointment requested!\n"
-                        + "You will receive notification when one of the Secretaries approves it.");
+                if (model.getScheduledAppointment() == null)
+                {
+                    Doctor doctor = getSelectedDoctor();
+                    Date date = view.getDatAppointmentDate();
+                    String time = view.getCmbAppointmentTime();
+
+                    model.requestAppointment(date, doctor, time);
+                    JOptionPane.showMessageDialog(null, "Appointment requested!\n"
+                            + "You will receive notification when one of the Secretaries approves it.");
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null, "You already have the appointment booked!");
+                }
             }
             catch (Exception ex)
             {

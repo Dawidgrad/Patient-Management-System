@@ -30,6 +30,7 @@
                   <Component id="btnAppointmentHistory" alignment="0" max="32767" attributes="0"/>
                   <Component id="btnRequestAppointment" alignment="0" max="32767" attributes="0"/>
                   <Component id="btnLogOut" max="32767" attributes="0"/>
+                  <Component id="btnBack" max="32767" attributes="0"/>
               </Group>
               <EmptySpace pref="114" max="32767" attributes="0"/>
           </Group>
@@ -42,9 +43,11 @@
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
               <Component id="btnAppointmentHistory" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="33" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
               <Component id="btnRequestAppointment" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
+              <EmptySpace pref="56" max="32767" attributes="0"/>
+              <Component id="btnBack" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="btnLogOut" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
           </Group>
@@ -78,6 +81,14 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Log out"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnBack">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="11" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Back"/>
       </Properties>
     </Component>
   </SubComponents>

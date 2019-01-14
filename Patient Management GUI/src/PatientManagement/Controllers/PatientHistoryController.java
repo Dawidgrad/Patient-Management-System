@@ -54,6 +54,8 @@ public class PatientHistoryController
         this.view.setVisible(true);
         
         this.view.addSelectAppointmentListener(new SelectAppointmentListener());
+	this.view.addBackListener(new BackListener());
+	this.view.addLogOutListener(new LogOutListener());
         
         refreshAppointmentJList();
     }

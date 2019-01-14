@@ -61,6 +61,7 @@ public class AccountVerificationSingleton implements Serializable
     {
         AccountListSingleton accountList = AccountListSingleton.getInstance();
         accountList.addAccount(patient);
+        accountsToVerify.remove(patient);
     }
     
     public Patient getPatient(String idNumber)

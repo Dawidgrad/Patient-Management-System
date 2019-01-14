@@ -5,7 +5,7 @@
  */
 package PatientManagement.Controllers;
 
-import PatientManagement.GuiViews.AccountManagementView;
+import PatientManagement.GuiViews.AdministratorAccountView;
 import PatientManagement.GuiViews.AdministratorMenuView;
 import PatientManagement.GuiViews.LoginView;
 import PatientManagement.Model.Accounts.Account;
@@ -26,12 +26,12 @@ import javax.swing.JOptionPane;
  *
  * @author Davio
  */
-public class AccountManagementController
+public class AdministratorAccountController
 {
-    private AccountManagementView view;
+    private AdministratorAccountView view;
     private Administrator model;
     
-    public AccountManagementController(AccountManagementView view, Administrator model)
+    public AdministratorAccountController(AdministratorAccountView view, Administrator model)
     {
         this.view = view;
         this.model = model;

@@ -37,6 +37,8 @@ public class SecretaryAccountController
         
         this.view.addVerificationListener(new VerificationListener());
         this.view.addTerminationListener(new TerminationListener());	
+        this.view.addSelectVerificationListener(new SelectVerificationListener());
+        this.view.addSelectTerminationListener(new SelectTerminationListener());
 	this.view.addBackListener(new BackListener());
 	this.view.addLogOutListener(new LogOutListener());
         
@@ -169,6 +171,36 @@ public class SecretaryAccountController
             {
                 JOptionPane.showMessageDialog(null, "Could not terminate the account!");
             }
+        }
+        
+    }
+    
+    public class SelectVerificationListener implements ActionListener
+    {
+
+        @Override
+        public void actionPerformed(ActionEvent e) 
+        {
+            Patient patient = getSelectedAccountToVerify();
+            view.setLblAgeV(String.valueOf(patient.getAge()));
+            view.setLblPatientAddressV(patient.getAddress());
+            view.setLblPatientNameV(patient.getName() + patient.getSurname());
+            view.setLblSexV(patient.getSex().toString());
+        }
+        
+    }
+    
+    public class SelectTerminationListener implements ActionListener
+    {
+
+        @Override
+        public void actionPerformed(ActionEvent e) 
+        {
+            Patient patient = getSelectedAccountToTerminate();
+            view.setLblAgeR(String.valueOf(patient.getAge()));
+            view.setLblPatientAddressR(patient.getAddress());
+            view.setLblPatientNameR(patient.getName() + patient.getSurname());
+            view.setLblSexR(patient.getSex().toString());
         }
         
     }

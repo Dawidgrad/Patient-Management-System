@@ -98,4 +98,9 @@ public class Patient extends Account implements Observer, Serializable
         
         return changedPassword;
     }
+    
+    public Appointment getScheduledAppointment()
+    {
+        return scheduledAppointment;
+    }
 }
