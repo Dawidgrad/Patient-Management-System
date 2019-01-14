@@ -5,10 +5,12 @@
  */
 package PatientManagement.Controllers;
 
+import PatientManagement.GuiViews.LoginView;
 import PatientManagement.GuiViews.SecretaryAccountView;
 import PatientManagement.GuiViews.SecretaryAppointmentView;
 import PatientManagement.GuiViews.SecretaryMedicineView;
 import PatientManagement.GuiViews.SecretaryMenuView;
+import PatientManagement.Model.Accounts.LoginSystemSingleton;
 import PatientManagement.Model.Accounts.Patient;
 import PatientManagement.Model.Accounts.Secretary;
 import PatientManagement.Model.Appointments.Appointment;
@@ -39,6 +41,7 @@ public class SecretaryMenuController
         this.view.addPatientAccountsListener(new PatientAccountsListener());
         this.view.addAppointmentsListener(new AppointmentsListener());
         this.view.addMedicinesListener(new MedicinesListener());
+	this.view.addLogOutListener(new LogOutListener());
         
         checkForAppointmentRequests();
         checkForAccountRequests();
@@ -118,5 +121,23 @@ public class SecretaryMenuController
             SecretaryMedicineController medicineController = new SecretaryMedicineController(newView, model);
         }
         
+    }    
+    
+    public class LogOutListener implements ActionListener
+    {
+
+        @Override
+        public void actionPerformed(ActionEvent e) 
+        {
+            LoginSystemSingleton login = LoginSystemSingleton.getInstance();
+            login.logOut();
+            
+            LoginView newView = new LoginView();
+            newView.setLocation(view.getLocation());
+            view.dispose();
+            LoginController loginController = new LoginController(newView, login);
+        }
+        
     }
+	
 }

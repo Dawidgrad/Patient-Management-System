@@ -5,9 +5,11 @@
  */
 package PatientManagement.Controllers;
 
+import PatientManagement.GuiViews.LoginView;
 import PatientManagement.GuiViews.RequestAccountView;
 import PatientManagement.Model.Accounts.AccountListSingleton;
 import PatientManagement.Model.Accounts.AccountListSingleton.AccountType;
+import PatientManagement.Model.Accounts.LoginSystemSingleton;
 import PatientManagement.Model.Accounts.Patient;
 import PatientManagement.Model.Accounts.Patient.Sex;
 import PatientManagement.Model.PatientAccountManagement.AccountVerificationSingleton;
@@ -34,6 +36,7 @@ public class RequestAccountController
         this.view.setVisible(true);
         
         this.view.addRequestAccountListener(new RequestAccountListener());
+	this.view.addBackListener(new BackListener());
     }
     
     private Sex getSelectedSex()
@@ -95,5 +98,20 @@ public class RequestAccountController
             }
         }
         
+    }
+    	
+    public class BackListener implements ActionListener
+    {
+
+        @Override
+        public void actionPerformed(ActionEvent e) 
+        {
+            LoginSystemSingleton login = LoginSystemSingleton.getInstance();
+            LoginView newView = new LoginView();
+            newView.setLocation(view.getLocation());
+            view.dispose();
+            LoginController loginController = new LoginController(newView, login);
+        }
+
     }
 }

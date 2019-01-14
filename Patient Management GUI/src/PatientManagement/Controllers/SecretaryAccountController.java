@@ -5,7 +5,10 @@
  */
 package PatientManagement.Controllers;
 
+import PatientManagement.GuiViews.LoginView;
 import PatientManagement.GuiViews.SecretaryAccountView;
+import PatientManagement.GuiViews.SecretaryMenuView;
+import PatientManagement.Model.Accounts.LoginSystemSingleton;
 import PatientManagement.Model.Accounts.Patient;
 import PatientManagement.Model.Accounts.Secretary;
 import PatientManagement.Model.PatientAccountManagement.AccountTerminationSingleton;
@@ -33,7 +36,9 @@ public class SecretaryAccountController
         this.view.setVisible(true);
         
         this.view.addVerificationListener(new VerificationListener());
-        this.view.addTerminationListener(new TerminationListener());
+        this.view.addTerminationListener(new TerminationListener());	
+	this.view.addBackListener(new BackListener());
+	this.view.addLogOutListener(new LogOutListener());
         
         refreshVerificationJList();
     }
@@ -164,6 +169,37 @@ public class SecretaryAccountController
             {
                 JOptionPane.showMessageDialog(null, "Could not terminate the account!");
             }
+        }
+        
+    }
+    
+    public class BackListener implements ActionListener
+    {
+
+        @Override
+        public void actionPerformed(ActionEvent e) 
+        {
+            SecretaryMenuView newView = new SecretaryMenuView();
+            newView.setLocation(view.getLocation());
+            view.dispose();
+            SecretaryMenuController menuController = new SecretaryMenuController(newView, model);
+        }
+
+    }
+    
+    public class LogOutListener implements ActionListener
+    {
+
+        @Override
+        public void actionPerformed(ActionEvent e) 
+        {
+            LoginSystemSingleton login = LoginSystemSingleton.getInstance();
+            login.logOut();
+            
+            LoginView newView = new LoginView();
+            newView.setLocation(view.getLocation());
+            view.dispose();
+            LoginController loginController = new LoginController(newView, login);
         }
         
     }

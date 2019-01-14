@@ -6,16 +6,17 @@
 package PatientManagement.Controllers;
 
 import PatientManagement.GuiViews.AccountManagementView;
-import PatientManagement.Main.PatientManagementGUI;
+import PatientManagement.GuiViews.AdministratorMenuView;
+import PatientManagement.GuiViews.LoginView;
 import PatientManagement.Model.Accounts.Account;
 import PatientManagement.Model.Accounts.AccountListSingleton;
 import PatientManagement.Model.Accounts.AccountListSingleton.AccountType;
 import PatientManagement.Model.Accounts.Administrator;
+import PatientManagement.Model.Accounts.LoginSystemSingleton;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Enumeration;
-import java.util.List;
 import javax.swing.AbstractButton;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
@@ -25,7 +26,7 @@ import javax.swing.JOptionPane;
  *
  * @author Davio
  */
-public class AccountManagementController 
+public class AccountManagementController
 {
     private AccountManagementView view;
     private Administrator model;
@@ -40,6 +41,8 @@ public class AccountManagementController
         this.view.addCreateAccountListener(new CreateAccountListener());
         this.view.addDeleteAccountListener(new DeleteAccountListener());
         this.view.addRefreshListListener(new RefreshListListener());
+        this.view.addBackListener(new BackListener());
+        this.view.addLogOutListener(new LogOutListener());
         
         refreshAccountJList();
     }
@@ -190,6 +193,37 @@ public class AccountManagementController
             {
                 JOptionPane.showMessageDialog(null, "Could not refresh the list!");
             }
+        }
+        
+    }
+    
+    public class BackListener implements ActionListener
+    {
+
+        @Override
+        public void actionPerformed(ActionEvent e) 
+        {
+            AdministratorMenuView newView = new AdministratorMenuView();
+            newView.setLocation(view.getLocation());
+            view.dispose();
+            AdministratorMenuController menuController = new AdministratorMenuController(newView, model);
+        }
+
+    }
+    
+    public class LogOutListener implements ActionListener
+    {
+
+        @Override
+        public void actionPerformed(ActionEvent e) 
+        {
+            LoginSystemSingleton login = LoginSystemSingleton.getInstance();
+            login.logOut();
+            
+            LoginView newView = new LoginView();
+            newView.setLocation(view.getLocation());
+            view.dispose();
+            LoginController loginController = new LoginController(newView, login);
         }
         
     }

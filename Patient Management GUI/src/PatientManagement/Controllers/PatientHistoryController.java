@@ -5,8 +5,12 @@
  */
 package PatientManagement.Controllers;
 
+import PatientManagement.GuiViews.DoctorAppointmentView;
+import PatientManagement.GuiViews.LoginView;
+import PatientManagement.GuiViews.PatientAppointmentView;
 import PatientManagement.GuiViews.PatientHistoryView;
 import PatientManagement.Model.Accounts.Doctor;
+import PatientManagement.Model.Accounts.LoginSystemSingleton;
 import PatientManagement.Model.Accounts.Patient;
 import PatientManagement.Model.Appointments.Appointment;
 import PatientManagement.Model.Appointments.AppointmentListSingleton;
@@ -25,7 +29,7 @@ public class PatientHistoryController
 {
     private PatientHistoryView view;
     private Patient model;
-    private Doctor doctorAccess;
+    private Doctor doctorAccess = null;
     
     public PatientHistoryController(PatientHistoryView view, Patient model)
     {
@@ -35,6 +39,8 @@ public class PatientHistoryController
         this.view.setVisible(true);
         
         this.view.addSelectAppointmentListener(new SelectAppointmentListener());
+	this.view.addBackListener(new BackListener());
+	this.view.addLogOutListener(new LogOutListener());
         
         refreshAppointmentJList();
     }
@@ -134,6 +140,47 @@ public class PatientHistoryController
             {
                 JOptionPane.showMessageDialog(null, "Could not select the appointment!");
             }
+        }
+        
+    }
+    	
+    public class BackListener implements ActionListener
+    {
+
+        @Override
+        public void actionPerformed(ActionEvent e) 
+        {
+            if (doctorAccess == null)
+            {
+                PatientAppointmentView newView = new PatientAppointmentView();
+                newView.setLocation(view.getLocation());
+                view.dispose();
+                PatientAppointmentController appointmentController = new PatientAppointmentController(newView, model);
+            }
+            else
+            {
+                DoctorAppointmentView newView = new DoctorAppointmentView();
+                newView.setLocation(view.getLocation());
+                view.dispose();
+                DoctorAppointmentController appointmentController = new DoctorAppointmentController(newView, doctorAccess);
+            }
+        }
+
+    }
+    
+    public class LogOutListener implements ActionListener
+    {
+
+        @Override
+        public void actionPerformed(ActionEvent e) 
+        {
+            LoginSystemSingleton login = LoginSystemSingleton.getInstance();
+            login.logOut();
+            
+            LoginView newView = new LoginView();
+            newView.setLocation(view.getLocation());
+            view.dispose();
+            LoginController loginController = new LoginController(newView, login);
         }
         
     }

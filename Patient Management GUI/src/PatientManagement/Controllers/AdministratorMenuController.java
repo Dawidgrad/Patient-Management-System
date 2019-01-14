@@ -7,8 +7,10 @@ package PatientManagement.Controllers;
 
 import PatientManagement.GuiViews.AccountManagementView;
 import PatientManagement.GuiViews.AdministratorMenuView;
-import PatientManagement.GuiViews.DoctorFeedbackView;
+import PatientManagement.GuiViews.AdministratorFeedbackView;
+import PatientManagement.GuiViews.LoginView;
 import PatientManagement.Model.Accounts.Administrator;
+import PatientManagement.Model.Accounts.LoginSystemSingleton;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -29,6 +31,7 @@ public class AdministratorMenuController {
 
         this.view.addAccountListener(new AddAccountListener());
         this.view.addDoctorListListener(new DoctorListListener());
+	this.view.addLogOutListener(new LogOutListener());
     }
     
     class AddAccountListener implements ActionListener
@@ -45,15 +48,32 @@ public class AdministratorMenuController {
         
     }
     
-    class DoctorListListener implements ActionListener
+    public class DoctorListListener implements ActionListener
     {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            DoctorFeedbackView newView = new DoctorFeedbackView();
+            AdministratorFeedbackView newView = new AdministratorFeedbackView();
             newView.setLocation(view.getLocation());
             view.dispose();
-            DoctorFeedbackController feedbackController = new DoctorFeedbackController(newView, model);
+            AdministratorFeedbackController feedbackController = new AdministratorFeedbackController(newView, model);
+        }
+        
+    }
+    
+    public class LogOutListener implements ActionListener
+    {
+
+        @Override
+        public void actionPerformed(ActionEvent e) 
+        {
+            LoginSystemSingleton login = LoginSystemSingleton.getInstance();
+            login.logOut();
+            
+            LoginView newView = new LoginView();
+            newView.setLocation(view.getLocation());
+            view.dispose();
+            LoginController loginController = new LoginController(newView, login);
         }
         
     }

@@ -5,9 +5,12 @@
  */
 package PatientManagement.Controllers;
 
+import PatientManagement.GuiViews.LoginView;
 import PatientManagement.GuiViews.SecretaryMedicineView;
+import PatientManagement.GuiViews.SecretaryMenuView;
 import PatientManagement.Model.Accounts.Account;
 import PatientManagement.Model.Accounts.AccountListSingleton;
+import PatientManagement.Model.Accounts.LoginSystemSingleton;
 import PatientManagement.Model.Accounts.Secretary;
 import PatientManagement.Model.Medicines.Medicine;
 import PatientManagement.Model.Medicines.MedicineOrder;
@@ -37,6 +40,8 @@ public class SecretaryMedicineController
        
         this.view.addGiveMedicineListener(new GiveMedicineListener());
         this.view.addOrderMedicineListener(new OrderMedicineListener());
+	this.view.addBackListener(new BackListener());
+	this.view.addLogOutListener(new LogOutListener());
         
         refreshMedicineJList();
         refreshPatientJList();
@@ -216,6 +221,37 @@ public class SecretaryMedicineController
             }
             
             refreshMedicineJList();
+        }
+        
+    }	
+	
+    public class BackListener implements ActionListener
+    {
+
+        @Override
+        public void actionPerformed(ActionEvent e) 
+        {
+            SecretaryMenuView newView = new SecretaryMenuView();
+            newView.setLocation(view.getLocation());
+            view.dispose();
+            SecretaryMenuController menuController = new SecretaryMenuController(newView, model);
+        }
+
+    }
+    
+    public class LogOutListener implements ActionListener
+    {
+
+        @Override
+        public void actionPerformed(ActionEvent e) 
+        {
+            LoginSystemSingleton login = LoginSystemSingleton.getInstance();
+            login.logOut();
+            
+            LoginView newView = new LoginView();
+            newView.setLocation(view.getLocation());
+            view.dispose();
+            LoginController loginController = new LoginController(newView, login);
         }
         
     }

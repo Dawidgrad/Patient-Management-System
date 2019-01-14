@@ -5,8 +5,11 @@
  */
 package PatientManagement.Controllers;
 
+import PatientManagement.GuiViews.DoctorAppointmentView;
 import PatientManagement.GuiViews.DoctorStartAppointmentView;
+import PatientManagement.GuiViews.LoginView;
 import PatientManagement.Model.Accounts.Doctor;
+import PatientManagement.Model.Accounts.LoginSystemSingleton;
 import PatientManagement.Model.Appointments.Appointment;
 import PatientManagement.Model.Appointments.Notes;
 import PatientManagement.Model.Appointments.Prescription;
@@ -42,7 +45,9 @@ public class DoctorStartAppointmentController
         
         this.view.addMedicineAddListener(new AddMedicineListener());
         this.view.addCompletePrescriptionListener(new CompletePrescriptionListener());
-        this.view.addCreateAppointmentListener(new CreateAppointmentListener());
+        this.view.addCreateAppointmentListener(new CreateAppointmentListener());	
+        this.view.addBackListener(new BackListener());
+	this.view.addLogOutListener(new LogOutListener());
         
         refreshMedicineJList();
     }
@@ -167,5 +172,36 @@ public class DoctorStartAppointmentController
             }
         }
 
+    }
+    
+    public class BackListener implements ActionListener
+    {
+
+        @Override
+        public void actionPerformed(ActionEvent e) 
+        {
+            DoctorAppointmentView newView = new DoctorAppointmentView();
+            newView.setLocation(view.getLocation());
+            view.dispose();
+            DoctorAppointmentController appointmentController = new DoctorAppointmentController(newView, model);
+        }
+
+    }
+    
+    public class LogOutListener implements ActionListener
+    {
+
+        @Override
+        public void actionPerformed(ActionEvent e) 
+        {
+            LoginSystemSingleton login = LoginSystemSingleton.getInstance();
+            login.logOut();
+            
+            LoginView newView = new LoginView();
+            newView.setLocation(view.getLocation());
+            view.dispose();
+            LoginController loginController = new LoginController(newView, login);
+        }
+        
     }
 }

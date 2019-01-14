@@ -5,10 +5,12 @@
  */
 package PatientManagement.Controllers;
 
-import PatientManagement.GuiViews.DoctorReviewView;
+import PatientManagement.GuiViews.LoginView;
+import PatientManagement.GuiViews.PatientReviewView;
 import PatientManagement.GuiViews.PatientAccountView;
 import PatientManagement.GuiViews.PatientAppointmentView;
 import PatientManagement.GuiViews.PatientMenuView;
+import PatientManagement.Model.Accounts.LoginSystemSingleton;
 import PatientManagement.Model.Accounts.Patient;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -32,6 +34,7 @@ public class PatientMenuController {
         this.view.addAccountSettingsListener(new AccountSettingsListener());
         this.view.addBrowseDoctorsListener(new BrowseDoctorsListener());
         this.view.addAppointmentsListener(new AppointmentsListener());
+	this.view.addLogOutListener(new LogOutListener());
         
         checkIfAppointmentApproved();
     }
@@ -65,10 +68,10 @@ public class PatientMenuController {
         @Override
         public void actionPerformed(ActionEvent e) 
         {
-            DoctorReviewView newView = new DoctorReviewView();            
+            PatientReviewView newView = new PatientReviewView();            
             newView.setLocation(view.getLocation());
             view.dispose();
-            DoctorReviewController doctorReview = new DoctorReviewController(newView, model);
+            PatientReviewController doctorReview = new PatientReviewController(newView, model);
         }
         
     }
@@ -83,6 +86,23 @@ public class PatientMenuController {
             newView.setLocation(view.getLocation());
             view.dispose();
             PatientAppointmentController patientAppointment = new PatientAppointmentController(newView, model);
+        }
+        
+    }
+        
+    public class LogOutListener implements ActionListener
+    {
+
+        @Override
+        public void actionPerformed(ActionEvent e) 
+        {
+            LoginSystemSingleton login = LoginSystemSingleton.getInstance();
+            login.logOut();
+            
+            LoginView newView = new LoginView();
+            newView.setLocation(view.getLocation());
+            view.dispose();
+            LoginController loginController = new LoginController(newView, login);
         }
         
     }

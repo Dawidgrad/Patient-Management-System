@@ -66,9 +66,9 @@ public class LoginSystemSingleton
         return result;
     }
     
-    public boolean logOut()
+    public void logOut()
     {
-        return false;
+        loggedInAccount = null;
     }
     
 }

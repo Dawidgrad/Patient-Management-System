@@ -5,10 +5,13 @@
  */
 package PatientManagement.Controllers;
 
+import PatientManagement.GuiViews.LoginView;
+import PatientManagement.GuiViews.PatientAppointmentView;
 import PatientManagement.GuiViews.RequestAppointmentView;
 import PatientManagement.Model.Accounts.Account;
 import PatientManagement.Model.Accounts.AccountListSingleton;
 import PatientManagement.Model.Accounts.Doctor;
+import PatientManagement.Model.Accounts.LoginSystemSingleton;
 import PatientManagement.Model.Accounts.Patient;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -34,6 +37,8 @@ public class RequestAppointmentController
         this.view.setVisible(true);
         
         this.view.addRequestAppointmentListener(new RequestAppointmentListener());
+	this.view.addBackListener(new BackListener());
+	this.view.addLogOutListener(new LogOutListener());
         
         refreshDoctorsJList();
     }
@@ -111,5 +116,36 @@ public class RequestAppointmentController
             }
         }
 
+    }
+    	
+    public class BackListener implements ActionListener
+    {
+
+        @Override
+        public void actionPerformed(ActionEvent e) 
+        {
+            PatientAppointmentView newView = new PatientAppointmentView();
+            newView.setLocation(view.getLocation());
+            view.dispose();
+            PatientAppointmentController appointmentController = new PatientAppointmentController(newView, model);
+        }
+
+    }
+    
+    public class LogOutListener implements ActionListener
+    {
+
+        @Override
+        public void actionPerformed(ActionEvent e) 
+        {
+            LoginSystemSingleton login = LoginSystemSingleton.getInstance();
+            login.logOut();
+            
+            LoginView newView = new LoginView();
+            newView.setLocation(view.getLocation());
+            view.dispose();
+            LoginController loginController = new LoginController(newView, login);
+        }
+        
     }
 }

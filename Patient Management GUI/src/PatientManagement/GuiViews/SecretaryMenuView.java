@@ -37,6 +37,11 @@ public class SecretaryMenuView extends javax.swing.JFrame {
         btnMedicines.addActionListener(listenForMedicinesButton);
     }
     
+    public void addLogOutListener(ActionListener logOut)
+    {
+        btnLogOut.addActionListener(logOut);
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -51,6 +56,7 @@ public class SecretaryMenuView extends javax.swing.JFrame {
         btnAppointments = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         btnMedicines = new javax.swing.JButton();
+        btnLogOut = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -65,23 +71,28 @@ public class SecretaryMenuView extends javax.swing.JFrame {
         btnMedicines.setText("Medicines");
         btnMedicines.setToolTipText("");
 
+        btnLogOut.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnLogOut.setText("Log out");
+        btnLogOut.setToolTipText("");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(125, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(127, 127, 127)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnPatientAccounts, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnAppointments, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnMedicines, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(132, 132, 132))
+                    .addComponent(btnMedicines, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnLogOut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(130, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(47, 47, 47)
+                .addGap(20, 20, 20)
                 .addComponent(jLabel1)
                 .addGap(45, 45, 45)
                 .addComponent(btnPatientAccounts)
@@ -89,7 +100,9 @@ public class SecretaryMenuView extends javax.swing.JFrame {
                 .addComponent(btnAppointments)
                 .addGap(33, 33, 33)
                 .addComponent(btnMedicines)
-                .addGap(51, 51, 51))
+                .addGap(44, 44, 44)
+                .addComponent(btnLogOut)
+                .addContainerGap())
         );
 
         pack();
@@ -132,6 +145,7 @@ public class SecretaryMenuView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAppointments;
+    private javax.swing.JButton btnLogOut;
     private javax.swing.JButton btnMedicines;
     private javax.swing.JButton btnPatientAccounts;
     private javax.swing.JLabel jLabel1;

@@ -5,11 +5,15 @@
  */
 package PatientManagement.Controllers;
 
-import PatientManagement.GuiViews.DoctorReviewView;
+import PatientManagement.GuiViews.AdministratorMenuView;
+import PatientManagement.GuiViews.AdministratorFeedbackView;
+import PatientManagement.GuiViews.LoginView;
 import PatientManagement.Model.Accounts.Account;
 import PatientManagement.Model.Accounts.AccountListSingleton;
+import PatientManagement.Model.Accounts.AccountListSingleton.AccountType;
+import PatientManagement.Model.Accounts.Administrator;
 import PatientManagement.Model.Accounts.Doctor;
-import PatientManagement.Model.Accounts.Patient;
+import PatientManagement.Model.Accounts.LoginSystemSingleton;
 import PatientManagement.Model.Reviews.DoctorFeedback;
 import PatientManagement.Model.Reviews.ReviewListSingleton;
 import java.awt.event.ActionEvent;
@@ -22,13 +26,13 @@ import javax.swing.JOptionPane;
  *
  * @author Davio
  */
-public class DoctorReviewController 
+public class AdministratorFeedbackController 
 {
-    private DoctorReviewView view;
-    private Patient model;
+    private AdministratorFeedbackView view;
+    private Administrator model;
     private Doctor selectedDoctor = null;
     
-    public DoctorReviewController(DoctorReviewView view, Patient model)
+    public AdministratorFeedbackController(AdministratorFeedbackView view, Administrator model)
     {
         this.view = view;
         this.model = model;
@@ -36,12 +40,13 @@ public class DoctorReviewController
         this.view.setVisible(true);
         
         this.view.addSelectDoctorListener(new SelectDoctor());
-        this.view.addSubmitReviewListener(new SubmitReview());
+        this.view.addSubmitFeebackListener(new SubmitFeedback());
+        this.view.addBackListener(new BackListener());
+	this.view.addLogOutListener(new LogOutListener());
         
         refreshDoctorsJList();
     }
     
-        
     private void refreshDoctorsJList()
     {
         ArrayList<Account> doctorList = getDoctorList();
@@ -54,7 +59,7 @@ public class DoctorReviewController
 
         ArrayList<Account> doctorList = new ArrayList<Account>();
 
-        doctorList.addAll(accounts.getAccountTypeList(AccountListSingleton.AccountType.DOCTOR));
+        doctorList.addAll(accounts.getAccountTypeList(AccountType.DOCTOR));
 
         return doctorList;
     }
@@ -101,9 +106,9 @@ public class DoctorReviewController
             AccountListSingleton accountList = AccountListSingleton.getInstance();
             
             String idNumber;
-            int index = details.indexOf(" Name:");
+            int x = details.indexOf("Name:");
 
-            idNumber = details.substring(0, index);
+            idNumber = details.substring(0, x-1);
             selectedDoctor = (Doctor)accountList.getAccount(idNumber);
         }
         
@@ -124,36 +129,58 @@ public class DoctorReviewController
 
             view.setTxtComments(patientComments);
         }
+        
     }
     
-    public class SubmitReview implements ActionListener
+    public class SubmitFeedback implements ActionListener
     {
 
         @Override
         public void actionPerformed(ActionEvent e) 
         {
-            String comment = view.getTxtComment();
-            int rating = view.getSpnRating();
-            
             try
             {
-                if (!comment.isEmpty())
-                {
-                    model.provideReview(selectedDoctor, comment, rating);
-                    JOptionPane.showMessageDialog(null, "Review added successfully!");
-                }
-                else
-                {
-                    JOptionPane.showMessageDialog(null, "Please fill in the comment field!");
-                }
+                String administratorFeedback = view.getTxtFeedback();
+                model.giveDoctorFeedback(selectedDoctor, administratorFeedback);
+                JOptionPane.showMessageDialog(null, "Feedback submitted successfully!");
             }
             catch (Exception ex)
             {
-                JOptionPane.showMessageDialog(null, "Could not add the review!");
+                JOptionPane.showMessageDialog(null, "Could not submit the feedback!");
             }
-            
-            refreshDoctorsJList();
         }
         
     }
+    
+    public class BackListener implements ActionListener
+    {
+
+        @Override
+        public void actionPerformed(ActionEvent e) 
+        {
+            AdministratorMenuView newView = new AdministratorMenuView();
+            newView.setLocation(view.getLocation());
+            view.dispose();
+            AdministratorMenuController menuController = new AdministratorMenuController(newView, model);
+        }
+
+    }
+    
+    public class LogOutListener implements ActionListener
+    {
+
+        @Override
+        public void actionPerformed(ActionEvent e) 
+        {
+            LoginSystemSingleton login = LoginSystemSingleton.getInstance();
+            login.logOut();
+            
+            LoginView newView = new LoginView();
+            newView.setLocation(view.getLocation());
+            view.dispose();
+            LoginController loginController = new LoginController(newView, login);
+        }
+        
+    }
+    
 }

@@ -35,7 +35,7 @@ public class PatientManagementGUI {
         
         AccountListSingleton list = AccountListSingleton.getInstance();
 //        list.addAccount(new Patient("Test", "test", "test", "PTest", "test", 31, Sex.FEMALE));
-//        list.addAccount(new Administrator("root", "root", "root", "root", "root"));
+//       list.addAccount(new Administrator("root", "root", "root", "root", "root"));
         
         LoginView view = new LoginView();
         LoginSystemSingleton model = LoginSystemSingleton.getInstance();

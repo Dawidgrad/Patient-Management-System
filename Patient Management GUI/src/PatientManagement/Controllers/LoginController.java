@@ -25,6 +25,8 @@ public class LoginController {
         this.view = view;
         this.model = model;
         
+        this.view.setVisible(true);
+        
         this.view.addSubmitListener(new SubmitListener());
         this.view.addRequestAccountListener(new RequestAccountListener());
     }

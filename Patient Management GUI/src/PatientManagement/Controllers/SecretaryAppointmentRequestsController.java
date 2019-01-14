@@ -5,7 +5,10 @@
  */
 package PatientManagement.Controllers;
 
+import PatientManagement.GuiViews.LoginView;
 import PatientManagement.GuiViews.SecretaryAppointmentRequestsView;
+import PatientManagement.GuiViews.SecretaryAppointmentView;
+import PatientManagement.Model.Accounts.LoginSystemSingleton;
 import PatientManagement.Model.Accounts.Secretary;
 import PatientManagement.Model.Appointments.Appointment;
 import PatientManagement.Model.Appointments.AppointmentListSingleton;
@@ -31,7 +34,10 @@ public class SecretaryAppointmentRequestsController
         
         this.view.setVisible(true);
         
-        this.view.addApproveAppointmentListener(new ApproveAppointmentListener());
+        this.view.addApproveAppointmentListener(new ApproveAppointmentListener());	
+	this.view.addBackListener(new BackListener());
+	this.view.addLogOutListener(new LogOutListener());
+        
         refreshAppointmentJList();
     }
     
@@ -98,6 +104,37 @@ public class SecretaryAppointmentRequestsController
             {
                 JOptionPane.showMessageDialog(null, "Cannot approve the appointment!");
             }
+        }
+        
+    }
+    	
+    public class BackListener implements ActionListener
+    {
+
+        @Override
+        public void actionPerformed(ActionEvent e) 
+        {
+            SecretaryAppointmentView newView = new SecretaryAppointmentView();
+            newView.setLocation(view.getLocation());
+            view.dispose();
+            SecretaryAppointmentController appointmentController = new SecretaryAppointmentController(newView, model);
+        }
+
+    }
+    
+    public class LogOutListener implements ActionListener
+    {
+
+        @Override
+        public void actionPerformed(ActionEvent e) 
+        {
+            LoginSystemSingleton login = LoginSystemSingleton.getInstance();
+            login.logOut();
+            
+            LoginView newView = new LoginView();
+            newView.setLocation(view.getLocation());
+            view.dispose();
+            LoginController loginController = new LoginController(newView, login);
         }
         
     }

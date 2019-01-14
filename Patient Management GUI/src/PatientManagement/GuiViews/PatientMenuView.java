@@ -35,6 +35,11 @@ public class PatientMenuView extends javax.swing.JFrame {
     public void addAppointmentsListener(ActionListener listenForAppointmentsButton)
     {
         btnAppointments.addActionListener(listenForAppointmentsButton);
+    }    
+    
+    public void addLogOutListener(ActionListener logOut)
+    {
+        btnLogOut.addActionListener(logOut);
     }
 
     /**
@@ -50,6 +55,7 @@ public class PatientMenuView extends javax.swing.JFrame {
         btnAccountSettings = new javax.swing.JButton();
         btnBrowseDoctors = new javax.swing.JButton();
         btnAppointments = new javax.swing.JButton();
+        btnLogOut = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -64,6 +70,10 @@ public class PatientMenuView extends javax.swing.JFrame {
         btnAppointments.setText("Appointments");
         btnAppointments.setToolTipText("");
 
+        btnLogOut.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnLogOut.setText("Log out");
+        btnLogOut.setToolTipText("");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -74,13 +84,14 @@ public class PatientMenuView extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnAccountSettings, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnBrowseDoctors, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnAppointments, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnAppointments, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnLogOut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(173, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(45, 45, 45)
+                .addGap(21, 21, 21)
                 .addComponent(jLabel1)
                 .addGap(45, 45, 45)
                 .addComponent(btnAccountSettings)
@@ -88,7 +99,9 @@ public class PatientMenuView extends javax.swing.JFrame {
                 .addComponent(btnBrowseDoctors)
                 .addGap(33, 33, 33)
                 .addComponent(btnAppointments)
-                .addGap(53, 53, 53))
+                .addGap(43, 43, 43)
+                .addComponent(btnLogOut)
+                .addContainerGap())
         );
 
         pack();
@@ -133,6 +146,7 @@ public class PatientMenuView extends javax.swing.JFrame {
     private javax.swing.JButton btnAccountSettings;
     private javax.swing.JButton btnAppointments;
     private javax.swing.JButton btnBrowseDoctors;
+    private javax.swing.JButton btnLogOut;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

@@ -37,7 +37,11 @@ public class AdministratorMenuView extends javax.swing.JFrame {
     {
         JOptionPane.showMessageDialog(this, errorMessage);
     }
-    
+        
+    public void addLogOutListener(ActionListener logOut)
+    {
+        btnLogOut.addActionListener(logOut);
+    }
     
     
 
@@ -53,6 +57,7 @@ public class AdministratorMenuView extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         btnAccountsManagement = new javax.swing.JButton();
         btnDoctorsList = new javax.swing.JButton();
+        btnLogOut = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(0, 0));
@@ -66,6 +71,10 @@ public class AdministratorMenuView extends javax.swing.JFrame {
         btnDoctorsList.setText("Doctors List");
         btnDoctorsList.setToolTipText("");
 
+        btnLogOut.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnLogOut.setText("Log out");
+        btnLogOut.setToolTipText("");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -73,6 +82,7 @@ public class AdministratorMenuView extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(138, 138, 138)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnLogOut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnDoctorsList, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnAccountsManagement, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -81,13 +91,15 @@ public class AdministratorMenuView extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(63, 63, 63)
+                .addGap(30, 30, 30)
                 .addComponent(jLabel1)
                 .addGap(53, 53, 53)
                 .addComponent(btnAccountsManagement)
                 .addGap(34, 34, 34)
                 .addComponent(btnDoctorsList)
-                .addContainerGap(82, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
+                .addComponent(btnLogOut)
+                .addContainerGap())
         );
 
         pack();
@@ -133,6 +145,7 @@ public class AdministratorMenuView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAccountsManagement;
     private javax.swing.JButton btnDoctorsList;
+    private javax.swing.JButton btnLogOut;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,10 +5,13 @@
  */
 package PatientManagement.Controllers;
 
+import PatientManagement.GuiViews.LoginView;
+import PatientManagement.GuiViews.SecretaryAppointmentView;
 import PatientManagement.GuiViews.SecretaryNewAppointmentView;
 import PatientManagement.Model.Accounts.Account;
 import PatientManagement.Model.Accounts.AccountListSingleton;
 import PatientManagement.Model.Accounts.Doctor;
+import PatientManagement.Model.Accounts.LoginSystemSingleton;
 import PatientManagement.Model.Accounts.Patient;
 import PatientManagement.Model.Accounts.Secretary;
 import java.awt.event.ActionEvent;
@@ -35,6 +38,8 @@ public class SecretaryNewAppointmentController
         this.view.setVisible(true);
         
         this.view.addCreateAppointmentListener(new CreateAppointmentListener());
+	this.view.addBackListener(new BackListener());
+	this.view.addLogOutListener(new LogOutListener());
         
         refreshPatientJList();
         refreshDoctorsJList();
@@ -158,6 +163,37 @@ public class SecretaryNewAppointmentController
             {
                 JOptionPane.showMessageDialog(null, "Could not create the appointment!");
             }
+        }
+        
+    }
+    	
+    public class BackListener implements ActionListener
+    {
+
+        @Override
+        public void actionPerformed(ActionEvent e) 
+        {
+            SecretaryAppointmentView newView = new SecretaryAppointmentView();
+            newView.setLocation(view.getLocation());
+            view.dispose();
+            SecretaryAppointmentController appointmentController = new SecretaryAppointmentController(newView, model);
+        }
+
+    }
+    
+    public class LogOutListener implements ActionListener
+    {
+
+        @Override
+        public void actionPerformed(ActionEvent e) 
+        {
+            LoginSystemSingleton login = LoginSystemSingleton.getInstance();
+            login.logOut();
+            
+            LoginView newView = new LoginView();
+            newView.setLocation(view.getLocation());
+            view.dispose();
+            LoginController loginController = new LoginController(newView, login);
         }
         
     }
