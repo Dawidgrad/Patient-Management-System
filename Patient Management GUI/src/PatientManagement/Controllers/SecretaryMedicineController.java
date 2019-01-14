@@ -10,6 +10,8 @@ import PatientManagement.Model.Accounts.Account;
 import PatientManagement.Model.Accounts.AccountListSingleton;
 import PatientManagement.Model.Accounts.Secretary;
 import PatientManagement.Model.Medicines.Medicine;
+import PatientManagement.Model.Medicines.MedicineOrder;
+import PatientManagement.Model.Medicines.OrderRequestSingleton;
 import PatientManagement.Model.Medicines.StockSingleton;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -121,6 +123,53 @@ public class SecretaryMedicineController
         return Integer.parseInt(medicineId);
     }
     
+    private void refreshOrderRequestJList()
+    {
+        ArrayList<MedicineOrder> orderList = getOrderList();
+        populateOrderRequestJList(orderList);
+    }
+    
+    private ArrayList<MedicineOrder> getOrderList()
+    {
+        OrderRequestSingleton orders = OrderRequestSingleton.getInstance();
+        
+        return orders.getOrderList();
+    }
+    
+    private void populateOrderRequestJList(ArrayList<MedicineOrder> orderList)
+    {
+        ArrayList<String> orderStringList = new ArrayList<String>();
+        
+        for (MedicineOrder order : orderList)
+        {
+            orderStringList.add(order.getMedicine().getMedicineId() + " Name: " 
+                    + order.getMedicine().getName() + " Amount to order: " + order.getAmountToOrder());
+        }
+
+        DefaultListModel<String> model = new DefaultListModel<>();
+
+        for (String element : orderStringList)
+        {
+            model.addElement(element);
+        }
+        
+        view.setLstOrderRequests(model);
+    }
+    
+    private MedicineOrder getSelectedOrderRequest()
+    {
+        String details = view.getLstOrderRequests().getSelectedValue();
+
+        String medicineId;
+        int index = details.indexOf(" Name:");
+        medicineId = details.substring(0, index);
+        
+        OrderRequestSingleton orders = OrderRequestSingleton.getInstance();
+        MedicineOrder selectedOrder = orders.getOrder(Integer.parseInt(medicineId));
+        
+        return selectedOrder;
+    }
+    
     public class GiveMedicineListener implements ActionListener
     {
 
@@ -154,11 +203,11 @@ public class SecretaryMedicineController
         {
             StockSingleton medicineList = StockSingleton.getInstance();
             int amountToOrder = view.getSpnAmountToOrder();
-            int medicineId = GetSelectedMedicineId();
+            MedicineOrder order = getSelectedOrderRequest();
             
             try
             {
-                medicineList.OrderMedicine(medicineId, amountToOrder);
+                medicineList.OrderMedicine(order.getMedicine().getMedicineId(), amountToOrder);
                 JOptionPane.showMessageDialog(null, "The medicine has been ordered!");
             }
             catch (Exception ex)

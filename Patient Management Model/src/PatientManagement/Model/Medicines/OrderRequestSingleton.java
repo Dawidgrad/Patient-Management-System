@@ -46,12 +46,42 @@ public class OrderRequestSingleton
     
     public void addOrderRequest(Medicine medicine, int amountToOrder)
     {
-        MedicineOrder order = new MedicineOrder(medicine, amountToOrder);
+        int highest = 0;
+        
+        for (MedicineOrder order : medicineToOrder)
+        {
+            if (order.getOrderId() > highest)
+            {
+                highest = order.getOrderId();
+            }
+        }
+        
+        MedicineOrder order = new MedicineOrder(highest + 1, medicine, amountToOrder);
         medicineToOrder.add(order);
     }
     
     public void processRequest(MedicineOrder order)
     {
         medicineToOrder.remove(order);
+    }
+    
+    public ArrayList<MedicineOrder> getOrderList()
+    {
+        return medicineToOrder;
+    }
+    
+    public MedicineOrder getOrder(int orderId)
+    {
+        MedicineOrder targetOrder = null;
+        
+        for (MedicineOrder order : medicineToOrder)
+        {
+            if (order.getOrderId() == orderId)
+            {
+                targetOrder = order;
+            }
+        }
+        
+        return targetOrder;
     }
 }

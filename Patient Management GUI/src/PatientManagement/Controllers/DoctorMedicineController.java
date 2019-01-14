@@ -7,8 +7,9 @@ package PatientManagement.Controllers;
 
 import PatientManagement.GuiViews.DoctorMedicineView;
 import PatientManagement.Model.Accounts.Doctor;
-import PatientManagement.Model.Medicines.ConcreteMedicineFactory;
 import PatientManagement.Model.Medicines.Medicine;
+import PatientManagement.Model.Medicines.MedicineOrder;
+import PatientManagement.Model.Medicines.OrderRequestSingleton;
 import PatientManagement.Model.Medicines.StockSingleton;
 import PatientManagement.Model.Medicines.StockSingleton.MedicineType;
 import java.awt.event.ActionEvent;
@@ -51,11 +52,7 @@ public class DoctorMedicineController
     {
         StockSingleton medicines = StockSingleton.getInstance();
 
-        ArrayList<Medicine> medicineList = new ArrayList<Medicine>();
-
-        medicineList.addAll(medicines.GetMedicineList());
-
-        return medicineList;
+        return medicines.GetMedicineList();
     }
 
     private void populateMedicineJList(ArrayList<Medicine> medicineList)
@@ -172,6 +169,8 @@ public class DoctorMedicineController
             {
                 JOptionPane.showMessageDialog(null, "Could not request Secretary to order the medicine!");
             }
+            
+            refreshMedicineJList();
         }
         
     }

@@ -11,13 +11,15 @@ package PatientManagement.Model.Medicines;
  */
 public class MedicineOrder 
 {
+    private int orderId;
     private Medicine medicine;
     private int amountToOrder;
     
-    public MedicineOrder(Medicine medicine, int amountToOrder)
+    public MedicineOrder(int orderId, Medicine medicine, int amountToOrder)
     {
         this.medicine = medicine;
         this.amountToOrder = amountToOrder;
+        this.orderId = orderId;
     }
 
     public Medicine getMedicine() {
@@ -27,4 +29,9 @@ public class MedicineOrder
     public int getAmountToOrder() {
         return amountToOrder;
     }
+
+    public int getOrderId() {
+        return orderId;
+    }
+    
 }
