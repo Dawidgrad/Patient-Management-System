@@ -38,6 +38,11 @@ public class DoctorMenuView extends javax.swing.JFrame {
         btnLogOut.addActionListener(logOut);
     }
     
+    public void addFeedbackListener(ActionListener feedback)
+    {
+        btnFeedback.addActionListener(feedback);
+    }
+    
     public void displayErrorMessage(String errorMessage)
     {
         JOptionPane.showMessageDialog(this, errorMessage);
@@ -56,6 +61,7 @@ public class DoctorMenuView extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         btnMedicines = new javax.swing.JButton();
         btnLogOut = new javax.swing.JButton();
+        btnFeedback = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -72,6 +78,9 @@ public class DoctorMenuView extends javax.swing.JFrame {
         btnLogOut.setText("Log out");
         btnLogOut.setToolTipText("");
 
+        btnFeedback.setText("Feedback");
+        btnFeedback.setToolTipText("");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -79,22 +88,29 @@ public class DoctorMenuView extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(142, 142, 142)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnAppointments, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnMedicines, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(145, 145, 145))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnFeedback, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnAppointments, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnMedicines, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(145, 145, 145))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(33, 33, 33)
                 .addComponent(jLabel1)
-                .addGap(56, 56, 56)
+                .addGap(37, 37, 37)
                 .addComponent(btnAppointments)
-                .addGap(33, 33, 33)
+                .addGap(18, 18, 18)
                 .addComponent(btnMedicines)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(btnFeedback)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
                 .addComponent(btnLogOut)
                 .addGap(23, 23, 23))
         );
@@ -139,6 +155,7 @@ public class DoctorMenuView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAppointments;
+    private javax.swing.JButton btnFeedback;
     private javax.swing.JButton btnLogOut;
     private javax.swing.JButton btnMedicines;
     private javax.swing.JLabel jLabel1;

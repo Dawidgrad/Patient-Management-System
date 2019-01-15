@@ -6,6 +6,7 @@
 package PatientManagement.Controllers;
 
 import PatientManagement.GuiViews.DoctorAppointmentView;
+import PatientManagement.GuiViews.DoctorFeedbackView;
 import PatientManagement.GuiViews.DoctorMedicineView;
 import PatientManagement.GuiViews.DoctorMenuView;
 import PatientManagement.GuiViews.LoginView;
@@ -31,6 +32,7 @@ public class DoctorMenuController {
         
         this.view.addAppointmentsListener(new AppointmentsListener());
         this.view.addMedicinesListener(new MedicinesListener());
+        this.view.addFeedbackListener(new FeedbackListener());
 	this.view.addLogOutListener(new LogOutListener());
     }
     
@@ -58,6 +60,20 @@ public class DoctorMenuController {
             newView.setLocation(view.getLocation());
             view.dispose();
             DoctorMedicineController medicineController = new DoctorMedicineController(newView, model);
+        }
+        
+    }
+    
+    public class FeedbackListener implements ActionListener
+    {
+
+        @Override
+        public void actionPerformed(ActionEvent e) 
+        {
+            DoctorFeedbackView newView = new DoctorFeedbackView();
+            newView.setLocation(view.getLocation());
+            view.dispose();
+            DoctorFeedbackController feedbackController = new DoctorFeedbackController(newView, model);
         }
         
     }

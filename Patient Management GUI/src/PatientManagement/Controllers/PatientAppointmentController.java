@@ -12,6 +12,7 @@ import PatientManagement.GuiViews.PatientMenuView;
 import PatientManagement.GuiViews.PatientAppointmentRequestView;
 import PatientManagement.Model.Accounts.LoginSystemSingleton;
 import PatientManagement.Model.Accounts.Patient;
+import PatientManagement.Model.Appointments.Appointment;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -35,6 +36,18 @@ public class PatientAppointmentController
         this.view.addRequestAppointmentListener(new RequestAppointmentListener());
 	this.view.addLogOutListener(new LogOutListener());
 	this.view.addBackListener(new BackListener());
+        
+        CheckForScheduledAppointment();
+    }
+    
+    private void CheckForScheduledAppointment()
+    {
+        Appointment appointment = model.getScheduledAppointment();
+        
+        if (appointment != null)
+        {
+            view.setLblAppointment("You have an appointment scheduled for " + appointment.getDate() + " " + appointment.getTime());
+        }
     }
     
     public class AppointmentHistoryListener implements ActionListener

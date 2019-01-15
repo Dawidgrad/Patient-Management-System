@@ -35,6 +35,11 @@ public class Doctor extends Account implements Serializable
     {
         this.feedback = feedback;
     }
+
+    public DoctorFeedback getFeedback() 
+    {
+        return feedback;
+    }
     
     public void createAppointment(Doctor doctor, Patient patient, Date date, String time)
     {

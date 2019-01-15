@@ -41,6 +41,10 @@ public class DoctorFeedback implements Serializable
         return comments;
     }
 
+    public String getAdministratorFeedback() {
+        return administratorFeedback;
+    }
+
     public void setAdministratorFeedback(String administratorFeedback) {
         this.administratorFeedback = administratorFeedback;
     }
