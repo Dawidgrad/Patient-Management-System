@@ -81,16 +81,24 @@ public class RequestAccountController
             
             try
             {
-                AccountListSingleton accountList = AccountListSingleton.getInstance();
-                String idNumber = accountList.getNextIdNumber(AccountType.PATIENT);
-               
-                Patient request = new Patient(firstName, lastName, address, idNumber, password, age, sex);
-                model.addVerificationRequest(request);
-                        
-                JOptionPane.showMessageDialog(null, "Account requested successfully!" + System.lineSeparator() 
-                        + "Your new ID is " + idNumber + "." + System.lineSeparator()
-                        + "Before you log in Secretary needs to validate your account." + System.lineSeparator() 
-                        + "You will be emailed when your account is validated. After that you will be able to log in.");
+                if (firstName.isEmpty() == false && lastName.isEmpty() == false && address.isEmpty() == false 
+                        && password.isEmpty() == false && sex != null)
+                {
+                    AccountListSingleton accountList = AccountListSingleton.getInstance();
+                    String idNumber = accountList.getNextIdNumber(AccountType.PATIENT);
+
+                    Patient request = new Patient(firstName, lastName, address, idNumber, password, age, sex);
+                    model.addVerificationRequest(request);
+
+                    JOptionPane.showMessageDialog(null, "Account requested successfully!" + System.lineSeparator() 
+                            + "Your new ID is " + idNumber + "." + System.lineSeparator()
+                            + "Before you log in Secretary needs to validate your account." + System.lineSeparator() 
+                            + "You will be emailed when your account is validated. After that you will be able to log in."); 
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null, "Please fill out the fields!");
+                }
             }
             catch (Exception ex)
             {

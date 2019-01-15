@@ -135,6 +135,8 @@ public class PatientHistoryController
                 {
                     prescription += element.getDetails() + System.lineSeparator();
                 }
+                
+                prescription += System.lineSeparator() + selectedAppointment.getPrescription().getNotes().getNote();
 
                 view.setTxtPrescription(prescription); 
             }

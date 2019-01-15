@@ -34,10 +34,6 @@ public class SecretaryMedicineView extends javax.swing.JFrame {
         return (int)spnAmountToGive.getValue();
     }
 
-    public int getSpnAmountToOrder() {
-        return (int)spnAmountToOrder.getValue();
-    }
-
     public void setLstPatients(DefaultListModel<String> model) {
         this.lstPatients.setModel(model);
     }
@@ -93,8 +89,6 @@ public class SecretaryMedicineView extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         btnGiveMedicine = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        spnAmountToOrder = new javax.swing.JSpinner();
-        jLabel4 = new javax.swing.JLabel();
         btnOrderMedicine = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         lstOrderRequests = new javax.swing.JList<>();
@@ -159,11 +153,6 @@ public class SecretaryMedicineView extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Give patient's medicine", jPanel1);
 
-        spnAmountToOrder.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel4.setText("Amount to order");
-
         btnOrderMedicine.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnOrderMedicine.setText("Order medicine");
 
@@ -181,13 +170,10 @@ public class SecretaryMedicineView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(spnAmountToOrder)
                     .addComponent(btnOrderMedicine, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(jLabel5)
+                        .addGap(0, 186, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -196,12 +182,8 @@ public class SecretaryMedicineView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel5)
                 .addGap(8, 8, 8)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(spnAmountToOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
                 .addComponent(btnOrderMedicine, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -260,7 +242,7 @@ public class SecretaryMedicineView extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addGap(8, 8, 8)
                         .addComponent(jScrollPane1))
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE))
+                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
 
@@ -310,7 +292,6 @@ public class SecretaryMedicineView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
@@ -324,6 +305,5 @@ public class SecretaryMedicineView extends javax.swing.JFrame {
     private javax.swing.JList<String> lstOrderRequests;
     private javax.swing.JList<String> lstPatients;
     private javax.swing.JSpinner spnAmountToGive;
-    private javax.swing.JSpinner spnAmountToOrder;
     // End of variables declaration//GEN-END:variables
 }

@@ -8,10 +8,8 @@ package PatientManagement.GuiViews;
 import java.awt.event.ActionListener;
 import java.util.Date;
 import javax.swing.DefaultListModel;
-import javax.swing.JComboBox;
 import javax.swing.JList;
-import javax.swing.JTextArea;
-import org.jdesktop.swingx.JXDatePicker;
+import javax.swing.ListModel;
 
 /**
  *
@@ -40,10 +38,6 @@ public class DoctorStartAppointmentView extends javax.swing.JFrame {
         return txtNotes.getText();
     }
 
-    public DefaultListModel<String> getLstCurrentPrescription() {
-        return (DefaultListModel<String>)lstCurrentPrescription.getModel();
-    }
-
     public String getCmbAppointmentTime() {
         return cmbAppointmentTime.getSelectedItem().toString();
     }
@@ -70,9 +64,9 @@ public class DoctorStartAppointmentView extends javax.swing.JFrame {
         btnAddMedicine.addActionListener(addMedicine);
     }
     
-    public void addCompletePrescriptionListener(ActionListener completePrescription)
+    public void addCompleteAppointmentListener(ActionListener completeAppointment)
     {
-        btnCompletePrescription.addActionListener(completePrescription);
+        btnCompleteAppointment.addActionListener(completeAppointment);
     }
     
     public void addCreateAppointmentListener(ActionListener createAppointment)
@@ -116,7 +110,7 @@ public class DoctorStartAppointmentView extends javax.swing.JFrame {
         jScrollPane5 = new javax.swing.JScrollPane();
         lstCurrentPrescription = new javax.swing.JList<>();
         jLabel6 = new javax.swing.JLabel();
-        btnCompletePrescription = new javax.swing.JButton();
+        btnCompleteAppointment = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         datAppointmentDate = new org.jdesktop.swingx.JXDatePicker();
         cmbAppointmentTime = new javax.swing.JComboBox<>();
@@ -159,8 +153,8 @@ public class DoctorStartAppointmentView extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel6.setText("Prescribed medicine");
 
-        btnCompletePrescription.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnCompletePrescription.setText("Complete prescription");
+        btnCompleteAppointment.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnCompleteAppointment.setText("Complete appointment");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -188,7 +182,7 @@ public class DoctorStartAppointmentView extends javax.swing.JFrame {
                                         .addGap(0, 0, Short.MAX_VALUE))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnCompletePrescription, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(btnCompleteAppointment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3)
@@ -206,24 +200,23 @@ public class DoctorStartAppointmentView extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane3)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnAddMedicine, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(15, 15, 15)
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane5)))
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)))
                 .addGap(11, 11, 11)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnCompletePrescription, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(53, 53, 53)))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnCompleteAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -357,7 +350,7 @@ public class DoctorStartAppointmentView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddMedicine;
     private javax.swing.JButton btnBack;
-    private javax.swing.JButton btnCompletePrescription;
+    private javax.swing.JButton btnCompleteAppointment;
     private javax.swing.JButton btnCreateAppointment;
     private javax.swing.JButton btnLogOut;
     private javax.swing.JComboBox<String> cmbAppointmentTime;

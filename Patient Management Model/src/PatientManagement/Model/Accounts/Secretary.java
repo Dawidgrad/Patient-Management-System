@@ -8,6 +8,9 @@ package PatientManagement.Model.Accounts;
 import PatientManagement.Model.Accounts.AccountListSingleton.AccountType;
 import PatientManagement.Model.Appointments.Appointment;
 import PatientManagement.Model.Appointments.AppointmentListSingleton;
+import PatientManagement.Model.Medicines.MedicineOrder;
+import PatientManagement.Model.Medicines.OrderRequestSingleton;
+import PatientManagement.Model.Medicines.StockSingleton;
 import PatientManagement.Model.PatientAccountManagement.AccountTerminationSingleton;
 import PatientManagement.Model.PatientAccountManagement.AccountVerificationSingleton;
 import java.io.Serializable;
@@ -62,5 +65,14 @@ public class Secretary extends Account implements Serializable
     {
         AccountTerminationSingleton terminationList = AccountTerminationSingleton.getInstance();
         terminationList.removeAccount(patient);
+    }
+    
+    public void orderMedicine(MedicineOrder order)
+    {
+        StockSingleton medicineList = StockSingleton.getInstance();
+        OrderRequestSingleton orderRequests = OrderRequestSingleton.getInstance();
+        
+        medicineList.orderMedicine(order.getMedicine().getMedicineId(), order.getAmountToOrder());
+        orderRequests.processRequest(order);
     }
 }

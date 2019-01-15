@@ -22,6 +22,7 @@ public class AppointmentListSingleton implements Serializable
 {
     private static AppointmentListSingleton uniqueInstance = null;
     private ArrayList<Appointment> appointmentList = null;
+    private int nextAppointmentId;
     
     private AppointmentListSingleton()
     {
@@ -110,18 +111,10 @@ public class AppointmentListSingleton implements Serializable
     
     public void addAppointment(Doctor doctor, Patient patient, Date date, String time)
     {
-        int highest = 1;
-        
-        for (Appointment appointment : appointmentList)
-        {
-            if (appointment.getAppointmentId() > highest)
-            {
-                highest = appointment.getAppointmentId();
-            }
-        }
-        
-        Appointment appointment = new Appointment(highest, patient, date, doctor, time, AppointmentState.APPROVED);
+        Appointment appointment = new Appointment(nextAppointmentId, patient, date, doctor, time, AppointmentState.APPROVED);
         appointmentList.add(appointment);
+        
+        nextAppointmentId++;
     }
     
     public ArrayList<Appointment> getPatientHistory(Patient patient)
@@ -158,7 +151,6 @@ public class AppointmentListSingleton implements Serializable
     {
         appointment.setState(AppointmentState.ARCHIVED);
         appointment.getPatient().completeAppointment();
-        
     }
     
     public Appointment getAppointment(int appointmentId)

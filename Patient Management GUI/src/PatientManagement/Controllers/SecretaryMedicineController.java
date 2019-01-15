@@ -148,7 +148,7 @@ public class SecretaryMedicineController
         
         for (MedicineOrder order : orderList)
         {
-            orderStringList.add(order.getMedicine().getMedicineId() + " Name: " 
+            orderStringList.add(order.getOrderId() + " Name: " 
                     + order.getMedicine().getName() + " Amount to order: " + order.getAmountToOrder());
         }
 
@@ -182,18 +182,26 @@ public class SecretaryMedicineController
         @Override
         public void actionPerformed(ActionEvent e) 
         {
-            StockSingleton medicineList = StockSingleton.getInstance();
-            int amountToGive = view.getSpnAmountToGive();
-            int medicineId = getSelectedMedicineId();
-            
             try
             {
-                medicineList.giveMedicine(medicineId, amountToGive);  
-                JOptionPane.showMessageDialog(null, "The medicine has been given to the patient!");
+                StockSingleton medicineList = StockSingleton.getInstance();
+                int amountToGive = view.getSpnAmountToGive();
+                int medicineId = getSelectedMedicineId();
+            
+                boolean success = medicineList.giveMedicine(medicineId, amountToGive);  
+                
+                if (success)
+                {
+                    JOptionPane.showMessageDialog(null, "The medicine has been given to the patient!");
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null, "There is not enough medicine in the stock!");
+                }
             }
             catch (Exception ex)
             {
-                JOptionPane.showMessageDialog(null, "Could not give the medicine to patient!");
+                JOptionPane.showMessageDialog(null, "Could not give the medicine to patient! Check if medicine is selected.");
             }
             
             refreshMedicineJList();
@@ -207,13 +215,11 @@ public class SecretaryMedicineController
         @Override
         public void actionPerformed(ActionEvent e) 
         {
-            StockSingleton medicineList = StockSingleton.getInstance();
-            int amountToOrder = view.getSpnAmountToOrder();
             MedicineOrder order = getSelectedOrderRequest();
             
             try
             {
-                medicineList.orderMedicine(order.getMedicine().getMedicineId(), amountToOrder);
+                model.orderMedicine(order);
                 JOptionPane.showMessageDialog(null, "The medicine has been ordered!");
             }
             catch (Exception ex)
@@ -222,6 +228,7 @@ public class SecretaryMedicineController
             }
             
             refreshMedicineJList();
+            refreshOrderRequestJList();
         }
         
     }	

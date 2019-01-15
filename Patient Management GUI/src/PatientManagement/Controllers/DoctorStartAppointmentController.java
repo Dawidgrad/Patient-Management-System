@@ -33,6 +33,8 @@ public class DoctorStartAppointmentController
     private Doctor model;
     private Appointment currentAppointment;
     private ArrayList<PrescriptionMedicine> prescribedMedicine;
+    private DefaultListModel<String> prescribedMedicineModel;
+    private Prescription prescription;
     
     public DoctorStartAppointmentController(DoctorStartAppointmentView view, Doctor model, Appointment currentAppointment)
     {
@@ -40,11 +42,12 @@ public class DoctorStartAppointmentController
         this.model = model;
         this.currentAppointment = currentAppointment;
         prescribedMedicine = new ArrayList<PrescriptionMedicine>();
+        this.prescribedMedicineModel = new DefaultListModel<String>();
         
         this.view.setVisible(true);
         
         this.view.addMedicineAddListener(new AddMedicineListener());
-        this.view.addCompletePrescriptionListener(new CompletePrescriptionListener());
+        this.view.addCompleteAppointmentListener(new CompleteAppointmentListener());
         this.view.addCreateAppointmentListener(new CreateAppointmentListener());	
         this.view.addBackListener(new BackListener());
 	this.view.addLogOutListener(new LogOutListener());
@@ -72,7 +75,7 @@ public class DoctorStartAppointmentController
         for (Medicine medicine : medicineList)
         {
             medicineStringList.add(medicine.getMedicineId() + " Name: " + medicine.getName() 
-                    + "\t Quantity: " + medicine.getQuantity() + "\t Price: " + medicine.getPrice() + " Stock: " + medicine.getAmountInStock());
+                    + "\t Quantity: " + medicine.getQuantity() + medicine.getQuantityInformation() + "\t Price: " + medicine.getPrice() + " Stock: " + medicine.getAmountInStock());
         }
 
         DefaultListModel<String> model = new DefaultListModel<>();
@@ -112,9 +115,9 @@ public class DoctorStartAppointmentController
                 
                 if (selectedMedicine.getAmountInStock() >= 1)
                 {
-                    DefaultListModel<String> model = view.getLstCurrentPrescription();
-                    model.addElement(selectedMedicine.getMedicineId() + " Name: " + selectedMedicine.getName() + "\t Quantity: " + selectedMedicine.getQuantity());
-                    view.setLstCurrentPrescription(model);
+                    prescribedMedicineModel.addElement(selectedMedicine.getMedicineId() + " Name: " + selectedMedicine.getName() 
+                            + "\t Quantity: " + selectedMedicine.getQuantity() + selectedMedicine.getQuantityInformation());
+                    view.setLstCurrentPrescription(prescribedMedicineModel);
 
                     prescribedMedicine.add(new PrescriptionMedicine(selectedMedicine, selectedMedicine.getQuantity(), dosage));
                     JOptionPane.showMessageDialog(null, "Medicine added successfully!");
@@ -131,25 +134,26 @@ public class DoctorStartAppointmentController
         }
         
     }
-            
-    public class CompletePrescriptionListener implements ActionListener
+    
+    public class CompleteAppointmentListener implements ActionListener
     {
 
         @Override
         public void actionPerformed(ActionEvent e) 
         {
             try
-            {
+            { 
                 String notes = view.getTxtNotes();
-                Prescription prescription = new Prescription(new Notes(notes), prescribedMedicine);
-                JOptionPane.showMessageDialog(null, "Prescription created successfully!");
+                
+                model.completeAppointment(currentAppointment, new Notes(notes), prescribedMedicine);
+                JOptionPane.showMessageDialog(null, "Appointment completed!");
             }
             catch (Exception ex)
             {
-                JOptionPane.showMessageDialog(null, "Could not create prescription!");
+                JOptionPane.showMessageDialog(null, "Could not complete appointment!");
             }
         }
-
+        
     }
 
     public class CreateAppointmentListener implements ActionListener

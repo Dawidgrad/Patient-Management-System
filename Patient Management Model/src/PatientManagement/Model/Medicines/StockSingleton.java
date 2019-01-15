@@ -93,7 +93,6 @@ public class StockSingleton implements Serializable
     public void orderMedicine(int medicineId, int amount)
     {
         Medicine medicineToOrder = getMedicine(medicineId);
-        int medicineAmount = medicineToOrder.getAmountInStock();
         
         medicineToOrder.addToStock(amount);
     }

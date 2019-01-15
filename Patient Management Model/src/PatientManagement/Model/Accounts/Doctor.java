@@ -6,12 +6,16 @@
 package PatientManagement.Model.Accounts;
 
 import PatientManagement.Model.Accounts.AccountListSingleton.AccountType;
+import PatientManagement.Model.Appointments.Appointment;
 import PatientManagement.Model.Appointments.AppointmentListSingleton;
+import PatientManagement.Model.Appointments.Notes;
+import PatientManagement.Model.Appointments.Prescription;
+import PatientManagement.Model.Appointments.PrescriptionMedicine;
 import PatientManagement.Model.Medicines.Medicine;
 import PatientManagement.Model.Medicines.OrderRequestSingleton;
 import PatientManagement.Model.Reviews.DoctorFeedback;
-import PatientManagement.Model.Reviews.ReviewListSingleton;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -42,5 +46,13 @@ public class Doctor extends Account implements Serializable
     {
         OrderRequestSingleton orders = OrderRequestSingleton.getInstance();
         orders.addOrderRequest(medicine, amountToOrder);
+    }
+    
+    public void completeAppointment(Appointment appointment, Notes notes, ArrayList<PrescriptionMedicine> medicine)
+    {
+        appointment.createPrescription(notes, medicine);
+        
+        AppointmentListSingleton appointments = AppointmentListSingleton.getInstance();
+        appointments.completeAppointment(appointment);
     }
 }
