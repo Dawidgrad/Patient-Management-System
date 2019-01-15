@@ -44,12 +44,31 @@ public class PatientAccountController
         {
             try
             {
-                String currentPassword = view.getTxtCurrentPassword();
-                String newPassword = view.getTxtNewPassword();
-                String newPasswordConfirm = view.getTxtNewPasswordConfirm();
-                
-                model.changePassword(currentPassword, newPassword, newPasswordConfirm);
-                JOptionPane.showMessageDialog(null, "Password changed successfully!");
+                if (model.getPassword().equals(view.getTxtCurrentPassword()))
+                {
+                    String currentPassword = view.getTxtCurrentPassword();
+                    String newPassword = view.getTxtNewPassword();
+                    String newPasswordConfirm = view.getTxtNewPasswordConfirm();
+
+                    if (newPassword.equals(model.getPassword()) == false 
+                            && newPasswordConfirm.equals(newPassword))
+                    {
+                        model.changePassword(currentPassword, newPassword, newPasswordConfirm);
+                        JOptionPane.showMessageDialog(null, "Password changed successfully!");
+                    }
+                    else if (newPassword.equals(model.getPassword()) == true)
+                    {
+                        JOptionPane.showMessageDialog(null, "New password is the same as the old one!");
+                    }
+                    else if (!newPasswordConfirm.equals(newPassword))
+                    {
+                        JOptionPane.showMessageDialog(null, "Confirmed password do not match");
+                    }
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null, "Incorrect password!");
+                }
             }
             catch (Exception ex)
             {
@@ -73,6 +92,7 @@ public class PatientAccountController
                     if (dialogResult == JOptionPane.YES_OPTION)
                     {
                         model.requestAccountTermination();
+                        JOptionPane.showMessageDialog(null, "Account termination has been successfully requested!");
                     } 
                 }
                 else

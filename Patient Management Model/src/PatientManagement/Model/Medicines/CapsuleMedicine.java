@@ -18,9 +18,9 @@ public class CapsuleMedicine extends Medicine
     }
 
     @Override
-    public String getInformation() 
+    public String getQuantityInformation() 
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return " capsules";
     }
     
 }

@@ -90,7 +90,7 @@ public class RequestAccountController
                 JOptionPane.showMessageDialog(null, "Account requested successfully!" + System.lineSeparator() 
                         + "Your new ID is " + idNumber + "." + System.lineSeparator()
                         + "Before you log in Secretary needs to validate your account." + System.lineSeparator() 
-                        + "You will be emailed your account is validated, after that you can log in.");
+                        + "You will be emailed when your account is validated. After that you will be able to log in.");
             }
             catch (Exception ex)
             {

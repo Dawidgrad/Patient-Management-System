@@ -78,11 +78,11 @@ public class Appointment implements Observable, Serializable
     }
 
     public String getPatientName() {
-        return patient.getName();
+        return patient.getName() + " " + patient.getSurname();
     }
 
     public String getDoctorName() {
-        return doctor.getName();
+        return doctor.getName() + " " + doctor.getSurname();
     }
     
     public Patient getPatient()

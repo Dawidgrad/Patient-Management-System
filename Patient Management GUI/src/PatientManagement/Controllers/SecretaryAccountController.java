@@ -27,6 +27,8 @@ public class SecretaryAccountController
 {
     private SecretaryAccountView view;
     private Secretary model;
+    private Patient selectedVerification = null;
+    private Patient selectedTermination = null;
     
     public SecretaryAccountController(SecretaryAccountView view, Secretary model)
     {
@@ -43,6 +45,7 @@ public class SecretaryAccountController
 	this.view.addLogOutListener(new LogOutListener());
         
         refreshVerificationJList();
+        refreshTerminationJList();
     }
     
     private void refreshVerificationJList()
@@ -125,7 +128,7 @@ public class SecretaryAccountController
     private Patient getSelectedAccountToTerminate()
     {
         String details = view.getLstAccountsToTerminate().getSelectedValue();
-        AccountVerificationSingleton accountList = AccountVerificationSingleton.getInstance();
+        AccountTerminationSingleton accountList = AccountTerminationSingleton.getInstance();
 
         String idNumber;
         int index = details.indexOf(" Name:");
@@ -143,14 +146,16 @@ public class SecretaryAccountController
         {
             try
             {
-                Patient patient = getSelectedAccountToVerify();
-                model.verifyAccount(patient);
+                model.verifyAccount(selectedVerification);
                 JOptionPane.showMessageDialog(null, "Account verified successfully!");
+                selectedVerification = null;
             }
             catch (Exception ex)
             {
                 JOptionPane.showMessageDialog(null, "Could not verify the account!");
             }
+            
+            refreshVerificationJList();
         }
         
     }
@@ -163,14 +168,16 @@ public class SecretaryAccountController
         {
             try
             {
-               Patient patient = getSelectedAccountToTerminate();
-               model.terminateAccount(patient);
+               model.terminateAccount(selectedTermination);
                JOptionPane.showMessageDialog(null, "Account terminated successfully!");
+               selectedTermination = null;
             }
             catch (Exception ex)
             {
                 JOptionPane.showMessageDialog(null, "Could not terminate the account!");
             }
+            
+            refreshTerminationJList();
         }
         
     }
@@ -181,11 +188,18 @@ public class SecretaryAccountController
         @Override
         public void actionPerformed(ActionEvent e) 
         {
-            Patient patient = getSelectedAccountToVerify();
-            view.setLblAgeV(String.valueOf(patient.getAge()));
-            view.setLblPatientAddressV(patient.getAddress());
-            view.setLblPatientNameV(patient.getName() + patient.getSurname());
-            view.setLblSexV(patient.getSex().toString());
+            try 
+            {
+                selectedVerification = getSelectedAccountToVerify();
+                view.setLblAgeV(String.valueOf(selectedVerification.getAge()));
+                view.setLblPatientAddressV(selectedVerification.getAddress());
+                view.setLblPatientNameV(selectedVerification.getName() + " " + selectedVerification.getSurname());
+                view.setLblSexV(selectedVerification.getSex().toString());
+            }
+            catch (Exception ex)
+            {
+                JOptionPane.showMessageDialog(null, "Could not select the request!");
+            }
         }
         
     }
@@ -196,11 +210,18 @@ public class SecretaryAccountController
         @Override
         public void actionPerformed(ActionEvent e) 
         {
-            Patient patient = getSelectedAccountToTerminate();
-            view.setLblAgeR(String.valueOf(patient.getAge()));
-            view.setLblPatientAddressR(patient.getAddress());
-            view.setLblPatientNameR(patient.getName() + patient.getSurname());
-            view.setLblSexR(patient.getSex().toString());
+            try 
+            {
+                selectedTermination = getSelectedAccountToTerminate();
+                view.setLblAgeR(String.valueOf(selectedTermination.getAge()));
+                view.setLblPatientAddressR(selectedTermination.getAddress());
+                view.setLblPatientNameR(selectedTermination.getName() + " " + selectedTermination.getSurname());
+                view.setLblSexR(selectedTermination.getSex().toString());
+            }
+            catch (Exception ex)
+            {
+                JOptionPane.showMessageDialog(null, "Could not select the request!");
+            }
         }
         
     }

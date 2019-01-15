@@ -38,6 +38,11 @@ public class SecretaryAppointmentRequestsView extends javax.swing.JFrame {
     {
         btnApproveAppointment.addActionListener(approveAppointment);
     }    
+    
+    public void addRemoveRequestListener(ActionListener removeRequest)
+    {
+        btnRemoveRequest.addActionListener(removeRequest);
+    }
 	
     public void addBackListener(ActionListener back)
     {
@@ -60,20 +65,21 @@ public class SecretaryAppointmentRequestsView extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         lstAppointmentRequests = new javax.swing.JList<>();
-        btnApproveAppointment = new javax.swing.JButton();
+        btnRemoveRequest = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
         btnLogOut = new javax.swing.JButton();
+        btnApproveAppointment = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lstAppointmentRequests.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(lstAppointmentRequests);
 
-        btnApproveAppointment.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnApproveAppointment.setText("Approve appointment");
+        btnRemoveRequest.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnRemoveRequest.setText("Remove request");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel1.setText("List of appointments waiting for approval");
@@ -88,6 +94,9 @@ public class SecretaryAppointmentRequestsView extends javax.swing.JFrame {
         btnLogOut.setText("Log out");
         btnLogOut.setToolTipText("");
 
+        btnApproveAppointment.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnApproveAppointment.setText("Approve appointment");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -101,7 +110,8 @@ public class SecretaryAppointmentRequestsView extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addGap(0, 87, Short.MAX_VALUE))
-                            .addComponent(btnApproveAppointment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(btnApproveAppointment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnRemoveRequest, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(btnBack)
@@ -121,12 +131,14 @@ public class SecretaryAppointmentRequestsView extends javax.swing.JFrame {
                     .addComponent(btnBack))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(11, 11, 11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnApproveAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnRemoveRequest, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -173,6 +185,7 @@ public class SecretaryAppointmentRequestsView extends javax.swing.JFrame {
     private javax.swing.JButton btnApproveAppointment;
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnLogOut;
+    private javax.swing.JButton btnRemoveRequest;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

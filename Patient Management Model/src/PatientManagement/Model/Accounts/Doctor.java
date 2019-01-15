@@ -10,6 +10,7 @@ import PatientManagement.Model.Appointments.AppointmentListSingleton;
 import PatientManagement.Model.Medicines.Medicine;
 import PatientManagement.Model.Medicines.OrderRequestSingleton;
 import PatientManagement.Model.Reviews.DoctorFeedback;
+import PatientManagement.Model.Reviews.ReviewListSingleton;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -26,9 +27,9 @@ public class Doctor extends Account implements Serializable
         super(name, surname, address, idNumber, password, AccountType.DOCTOR);
     }
     
-    public void updateAdministratorFeedback(String feedback)
+    public void updateAdministratorFeedback(DoctorFeedback feedback)
     {
-        this.feedback.setAdministratorFeedback(feedback);
+        this.feedback = feedback;
     }
     
     public void createAppointment(Doctor doctor, Patient patient, Date date, String time)

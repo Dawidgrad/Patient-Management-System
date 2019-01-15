@@ -34,7 +34,8 @@ public class SecretaryAppointmentRequestsController
         
         this.view.setVisible(true);
         
-        this.view.addApproveAppointmentListener(new ApproveAppointmentListener());	
+        this.view.addApproveAppointmentListener(new ApproveAppointmentListener());
+        this.view.addRemoveRequestListener(new RemoveRequestListener());
 	this.view.addBackListener(new BackListener());
 	this.view.addLogOutListener(new LogOutListener());
         
@@ -62,7 +63,7 @@ public class SecretaryAppointmentRequestsController
         {
             appointmentStringList.add(appointment.getAppointmentId() 
                     + " Doctor: " + appointment.getDoctorName() 
-                    + " Patient: " + appointment.getPatientName() 
+                    + " Patient: " + appointment.getPatientName()
                     + " Date: " + appointment.getDate() + " " + appointment.getTime());
         }
 
@@ -104,7 +105,32 @@ public class SecretaryAppointmentRequestsController
             {
                 JOptionPane.showMessageDialog(null, "Cannot approve the appointment!");
             }
+            
+            refreshAppointmentJList();
         }
+        
+    }
+    
+    public class RemoveRequestListener implements ActionListener
+    {
+
+        @Override
+        public void actionPerformed(ActionEvent e) 
+        {
+            try
+            {
+                int appointmentId = getSelectedAppointmentId();
+                model.removeAppointmentRequest(appointmentId);
+                JOptionPane.showMessageDialog(null, "Appointment has been removed!");
+            }
+            catch (Exception ex)
+            {
+                JOptionPane.showMessageDialog(null, "Cannot remove the appointment!");
+            }
+            
+            refreshAppointmentJList();
+        }
+        
         
     }
     	

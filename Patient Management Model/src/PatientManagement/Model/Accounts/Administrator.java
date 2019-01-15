@@ -6,6 +6,8 @@
 package PatientManagement.Model.Accounts;
 
 import PatientManagement.Model.Accounts.AccountListSingleton.AccountType;
+import PatientManagement.Model.Reviews.DoctorFeedback;
+import PatientManagement.Model.Reviews.ReviewListSingleton;
 
 /**
  *
@@ -37,6 +39,10 @@ public class Administrator extends Account
     
     public void giveDoctorFeedback(Doctor doctor, String feedback)
     {
-        doctor.updateAdministratorFeedback(feedback);
+        ReviewListSingleton reviews = ReviewListSingleton.getInstance();
+        DoctorFeedback adminFeedback = reviews.getFeedback(doctor.getIdNumber());
+        adminFeedback.setAdministratorFeedback(feedback);
+        
+        doctor.updateAdministratorFeedback(adminFeedback);
     }
 }

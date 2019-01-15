@@ -59,6 +59,7 @@ public class AccountTerminationSingleton implements Serializable
     
     public void removeAccount(Patient patient)
     {
+        accountsToTerminate.remove(patient);
         AccountListSingleton accountList = AccountListSingleton.getInstance();
         accountList.removeAccount(patient);
     }

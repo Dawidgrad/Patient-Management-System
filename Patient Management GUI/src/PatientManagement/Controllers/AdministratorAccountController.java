@@ -105,8 +105,8 @@ public class AdministratorAccountController
                 
                 if (result)
                 {
-                    JOptionPane.showMessageDialog(null, "Account added successfully!");
-                }
+                    JOptionPane.showMessageDialog(null, "Account added successfully! The ID number is: " + idNumber);
+                } 
                 else
                 {
                     JOptionPane.showMessageDialog(null, "Account with given credentials could not be added! "

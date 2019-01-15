@@ -51,7 +51,7 @@ public class AppointmentListSingleton implements Serializable
     
     public void addRequest(Patient patient, Date date, Doctor doctor, String time)
     {
-        int highest = 1;
+        int highest = 0;
         
         for (Appointment appointment : appointmentList)
         {
@@ -61,7 +61,7 @@ public class AppointmentListSingleton implements Serializable
             }
         }
         
-        Appointment request = new Appointment(highest, patient, date, doctor, time);
+        Appointment request = new Appointment(highest + 1, patient, date, doctor, time);
         appointmentList.add(request);
     }
     
@@ -94,6 +94,18 @@ public class AppointmentListSingleton implements Serializable
         }
         
         targetAppointment.processRequest();
+    }
+    
+    public void removeRequest(int appointmentId)
+    {        
+        for (Appointment appointment : appointmentList)
+        {
+            if (appointment.getAppointmentId() == appointmentId)
+            {
+                appointmentList.remove(appointment);
+                break;
+            }
+        }
     }
     
     public void addAppointment(Doctor doctor, Patient patient, Date date, String time)

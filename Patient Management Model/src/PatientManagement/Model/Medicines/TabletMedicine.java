@@ -18,8 +18,9 @@ public class TabletMedicine extends Medicine
     }
 
     @Override
-    public String getInformation() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String getQuantityInformation() 
+    {
+        return " tablets";
     }
     
 }

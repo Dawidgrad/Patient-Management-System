@@ -82,6 +82,36 @@ public class PatientReviewController
 
         view.setLstDoctors(model);
     }
+        
+    private void updateSelectedDoctor()
+    {
+        String details = view.getLstDoctors().getSelectedValue();
+        AccountListSingleton accountList = AccountListSingleton.getInstance();
+
+        String idNumber;
+        int index = details.indexOf(" Name:");
+
+        idNumber = details.substring(0, index);
+        selectedDoctor = (Doctor)accountList.getAccount(idNumber);
+    }
+
+    private void updateDoctorReviews()
+    {
+        ReviewListSingleton reviewList = ReviewListSingleton.getInstance();
+
+        DoctorFeedback feedback = reviewList.getFeedback(selectedDoctor.getIdNumber());
+
+        view.setLblRating(Double.toString(feedback.getAverageRating()));
+
+        String patientComments = "";
+
+        for (String element : feedback.getComments())
+        {
+            patientComments += element + System.lineSeparator() + System.lineSeparator();
+        }
+
+        view.setTxtComments(patientComments);
+    }
     
     public class SelectDoctor implements ActionListener
     {
@@ -98,36 +128,6 @@ public class PatientReviewController
             {
                 JOptionPane.showMessageDialog(null, "Could not select the doctor!");
             }
-        }
-        
-        private void updateSelectedDoctor()
-        {
-            String details = view.getLstDoctors().getSelectedValue();
-            AccountListSingleton accountList = AccountListSingleton.getInstance();
-            
-            String idNumber;
-            int index = details.indexOf(" Name:");
-
-            idNumber = details.substring(0, index);
-            selectedDoctor = (Doctor)accountList.getAccount(idNumber);
-        }
-        
-        private void updateDoctorReviews()
-        {
-            ReviewListSingleton reviewList = ReviewListSingleton.getInstance();
-            
-            DoctorFeedback feedback = reviewList.getFeedback(selectedDoctor.getIdNumber());
-            
-            view.setLblRating(Double.toString(feedback.getAverageRating()));
-            
-            String patientComments = "";
-
-            for (String element : feedback.getComments())
-            {
-                patientComments += element + System.lineSeparator() + System.lineSeparator();
-            }
-
-            view.setTxtComments(patientComments);
         }
     }
     
@@ -158,6 +158,7 @@ public class PatientReviewController
             }
             
             refreshDoctorsJList();
+            updateDoctorReviews();
         }
         
     }	

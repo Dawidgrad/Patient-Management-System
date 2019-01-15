@@ -89,19 +89,19 @@ public class AdministratorAccountView extends javax.swing.JFrame {
         btngrpAccountType = new javax.swing.ButtonGroup();
         accountManagementPane = new javax.swing.JTabbedPane();
         addAccountTab = new javax.swing.JPanel();
+        txtFirstName = new javax.swing.JTextField();
+        txtLastName = new javax.swing.JTextField();
+        txtAddress = new javax.swing.JTextField();
+        txtPassword = new javax.swing.JPasswordField();
         rbtnAdministrator = new javax.swing.JRadioButton();
         rbtnDoctor = new javax.swing.JRadioButton();
         rbtnSecretary = new javax.swing.JRadioButton();
+        btnCreateAccount = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        txtFirstName = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        txtLastName = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        txtAddress = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        txtPassword = new javax.swing.JPasswordField();
-        btnCreateAccount = new javax.swing.JButton();
         removeAccountTab = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         accountList = new javax.swing.JList<>();
@@ -118,6 +118,8 @@ public class AdministratorAccountView extends javax.swing.JFrame {
         accountManagementPane.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         accountManagementPane.setName(""); // NOI18N
 
+        txtAddress.setToolTipText("");
+
         btngrpAccountType.add(rbtnAdministrator);
         rbtnAdministrator.setText("Administrator");
 
@@ -127,6 +129,9 @@ public class AdministratorAccountView extends javax.swing.JFrame {
         btngrpAccountType.add(rbtnSecretary);
         rbtnSecretary.setSelected(true);
         rbtnSecretary.setText("Secretary");
+
+        btnCreateAccount.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnCreateAccount.setText("Submit");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel1.setText("Account Type");
@@ -140,13 +145,8 @@ public class AdministratorAccountView extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel6.setText("Address");
 
-        txtAddress.setToolTipText("");
-
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel7.setText("Password");
-
-        btnCreateAccount.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnCreateAccount.setText("Submit");
 
         javax.swing.GroupLayout addAccountTabLayout = new javax.swing.GroupLayout(addAccountTab);
         addAccountTab.setLayout(addAccountTabLayout);
@@ -299,7 +299,7 @@ public class AdministratorAccountView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(accountManagementPane, javax.swing.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
+                .addComponent(accountManagementPane)
                 .addContainerGap())
         );
 

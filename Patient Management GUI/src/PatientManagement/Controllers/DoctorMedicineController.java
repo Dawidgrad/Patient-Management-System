@@ -65,7 +65,7 @@ public class DoctorMedicineController
         for (Medicine medicine : medicineList)
         {
             medicineStringList.add(medicine.getMedicineId() + " Name: " + medicine.getName() 
-                    + "\t Quantity: " + medicine.getQuantity() + "\t Price: " + medicine.getPrice() + " Stock: " + medicine.getAmountInStock());
+                    + " Quantity: " + medicine.getQuantity() + medicine.getQuantityInformation() + " Price: " + medicine.getPrice() + " Stock: " + medicine.getAmountInStock());
         }
 
         DefaultListModel<String> model = new DefaultListModel<>();
@@ -99,10 +99,10 @@ public class DoctorMedicineController
                 type = MedicineType.TABLET;
                 break;
             case "Liquid":
-                type = MedicineType.TABLET;
+                type = MedicineType.LIQUID;
                 break;
             case "Capsule":
-                type = MedicineType.TABLET;
+                type = MedicineType.CAPSULE;
                 break;
             default:
                 type = null;
@@ -170,7 +170,7 @@ public class DoctorMedicineController
             }
             catch (Exception ex)
             {
-                JOptionPane.showMessageDialog(null, "Could not request Secretary to order the medicine!");
+                JOptionPane.showMessageDialog(null, "Could not request Secretary to order the medicine! Please select the medicine.");
             }
             
             refreshMedicineJList();

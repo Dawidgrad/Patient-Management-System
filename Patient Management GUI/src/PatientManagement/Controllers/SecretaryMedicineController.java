@@ -45,6 +45,7 @@ public class SecretaryMedicineController
         
         refreshMedicineJList();
         refreshPatientJList();
+        refreshOrderRequestJList();
     }
     
     private void refreshPatientJList()
@@ -72,8 +73,8 @@ public class SecretaryMedicineController
 
         for (Medicine medicine : medicineList)
         {
-            medicineStringList.add(medicine.getMedicineId() + " Name: " + medicine.getName() + "\t Quantity: " 
-                    + medicine.getQuantity() + "\t Price unit: " + medicine.getPrice() + " Stock: " + medicine.getAmountInStock());
+            medicineStringList.add(medicine.getMedicineId() + " Name: " + medicine.getName() + " Quantity: " 
+                    + medicine.getQuantity() + medicine.getQuantityInformation() + " Price unit: " + medicine.getPrice() + " Stock: " + medicine.getAmountInStock());
         }
 
         DefaultListModel<String> model = new DefaultListModel<>();

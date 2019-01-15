@@ -2,6 +2,11 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/Davio/Desktop/SOFT252%20Assignment/Patient-Management-System/Patient-Management-System/Patient%20Management%20Model/src/PatientManagement/Model/Accounts/Administrator.java</file>
+            <file>file:/C:/Users/Davio/Desktop/SOFT252%20Assignment/Patient-Management-System/Patient-Management-System/Patient%20Management%20Model/src/PatientManagement/Model/Reviews/DoctorFeedback.java</file>
+            <file>file:/C:/Users/Davio/Desktop/SOFT252%20Assignment/Patient-Management-System/Patient-Management-System/Patient%20Management%20Model/src/PatientManagement/Model/Accounts/Doctor.java</file>
+            <file>file:/C:/Users/Davio/Desktop/SOFT252%20Assignment/Patient-Management-System/Patient-Management-System/Patient%20Management%20Model/src/PatientManagement/Model/Reviews/ReviewListSingleton.java</file>
+        </group>
     </open-files>
 </project-private>

@@ -39,11 +39,18 @@ public class Secretary extends Account implements Serializable
         appointments.approveRequest(appointmentId);
     }
     
+    public void removeAppointmentRequest(int appointmentId)
+    {
+        AppointmentListSingleton appointments = AppointmentListSingleton.getInstance();
+        appointments.removeRequest(appointmentId);
+    }
+    
     public void createAppointment(Doctor doctor, Patient patient, Date date, String time)
     {
         AppointmentListSingleton appointments = AppointmentListSingleton.getInstance();
         appointments.addAppointment(doctor, patient, date, time);
     }
+    
     
     public void verifyAccount(Patient patient)
     {
