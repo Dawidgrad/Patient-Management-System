@@ -18,9 +18,9 @@ public class Prescription implements Serializable
     private ArrayList<PrescriptionMedicine> medicine;
     
     /**
-     *
-     * @param notes
-     * @param medicine
+     * Creates the prescription instance used in the appointment
+     * @param notes Notes taken down by the doctor during the appointment
+     * @param medicine Medicine list and dosages prescribed by the doctor during the appointment
      */
     public Prescription(Notes notes, ArrayList<PrescriptionMedicine> medicine)
     {
@@ -29,16 +29,16 @@ public class Prescription implements Serializable
     }
 
     /**
-     *
-     * @return
+     * Gets the Note instance 
+     * @return Note instance including text note written by the doctor during the appointment
      */
     public Notes getNotes() {
         return notes;
     }
 
     /**
-     *
-     * @return
+     * Gets medicine and dosages prescribed by the doctor during the appointment
+     * @return Medicine list including dosages
      */
     public ArrayList<PrescriptionMedicine> getMedicine() {
         return medicine;

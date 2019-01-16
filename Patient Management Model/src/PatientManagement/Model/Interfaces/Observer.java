@@ -11,5 +11,10 @@ package PatientManagement.Model.Interfaces;
  */
 public interface Observer 
 {
+
+    /**
+     * Observer pattern. Updates the Observer object after the change to Observable object.
+     * @param o Observable object
+     */
     public void update(Observable o);
 }

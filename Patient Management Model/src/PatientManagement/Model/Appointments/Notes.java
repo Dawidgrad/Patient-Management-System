@@ -16,8 +16,8 @@ public class Notes implements Serializable
     private String note;
     
     /**
-     *
-     * @param note
+     * Creates instance of the Notes class.
+     * @param note Text notes written by the doctor during the appointment
      */
     public Notes(String note)
     {
@@ -25,8 +25,8 @@ public class Notes implements Serializable
     }
 
     /**
-     *
-     * @return
+     * Gets the text note.
+     * @return Text notes written by the doctor during the appointment
      */
     public String getNote() 
     {

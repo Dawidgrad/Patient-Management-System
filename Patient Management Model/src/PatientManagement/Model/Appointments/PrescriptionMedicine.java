@@ -19,10 +19,10 @@ public class PrescriptionMedicine implements Serializable
     private String dosage;
     
     /**
-     *
-     * @param medicine
-     * @param quantity
-     * @param dosage
+     * Creates Prescription medicine instance.
+     * @param medicine Medicine prescribed by the doctor
+     * @param quantity Quantity of the medicine prescribed
+     * @param dosage Medicine dosage information 
      */
     public PrescriptionMedicine(Medicine medicine, int quantity, String dosage)
     {
@@ -32,8 +32,8 @@ public class PrescriptionMedicine implements Serializable
     }
     
     /**
-     *
-     * @return
+     * Gets the details of prescription medicine.
+     * @return Details including medicine name, quantity and dosage information
      */
     public String getDetails()
     {

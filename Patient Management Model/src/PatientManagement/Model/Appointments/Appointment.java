@@ -78,13 +78,13 @@ public class Appointment implements Observable, Serializable
     }
     
     /**
-     *
-     * @param id
-     * @param patient
-     * @param date
-     * @param doctor
-     * @param time
-     * @param state
+     * Creates new instance of Appointment.
+     * @param id ID of the appointment
+     * @param patient Instance of Patient account assigned to appointment
+     * @param date Date of the appointment
+     * @param doctor Instance of Doctor account assigned to appointment
+     * @param time Time of the appointment
+     * @param state State of the appointment
      */
     public Appointment(int id, Patient patient, Date date, Doctor doctor, String time, AppointmentState state)
     {
@@ -105,40 +105,40 @@ public class Appointment implements Observable, Serializable
     }
     
     /**
-     *
-     * @return
+     * Gets the state of the appointment.
+     * @return Current state of the appointment
      */
     public AppointmentState getState() {
         return state;
     }
 
     /**
-     *
-     * @return
+     * Gets the ID of the appointment.
+     * @return ID of the appointment
      */
     public int getAppointmentId() {
         return appointmentId;
     }
 
     /**
-     *
-     * @return
+     * Gets the name of the patient assigned to this instance of appointment.
+     * @return Name of the patient
      */
     public String getPatientName() {
         return patient.getName() + " " + patient.getSurname();
     }
 
     /**
-     *
-     * @return
+     * Gets the name of the doctor assigned to this instance of appointment.
+     * @return Name of the doctor
      */
     public String getDoctorName() {
         return doctor.getName() + " " + doctor.getSurname();
     }
     
     /**
-     *
-     * @return
+     * Gets the instance of the patient account assigned to this appointment.
+     * @return Instance of the patient account
      */
     public Patient getPatient()
     {
@@ -146,8 +146,8 @@ public class Appointment implements Observable, Serializable
     }
     
     /**
-     *
-     * @return
+     * Gets the instance of the patient account assigned to this appointment.
+     * @return Instance of the doctor account
      */
     public Doctor getDoctor()
     {
@@ -155,8 +155,8 @@ public class Appointment implements Observable, Serializable
     }
 
     /**
-     *
-     * @return
+     * Gets the date of the appointment
+     * @return Scheduled date of the appointment
      */
     public String getDate() {
         String dateString = date.toString();
@@ -167,24 +167,24 @@ public class Appointment implements Observable, Serializable
     }
 
     /**
-     *
-     * @return
+     * Gets the time of the appointment
+     * @return Scheduled time of the appointment
      */
     public String getTime() {
         return time;
     }
 
     /**
-     *
-     * @return
+     * Gets the doctor's prescription assigned to the appointment
+     * @return Doctor's prescription including Medicine, dosages and notes
      */
     public Prescription getPrescription() {
         return prescription;
     }
 
     /**
-     *
-     * @param state
+     * Sets the state of the appointment
+     * @param state State to which appointment will be changed
      */
     public void setState(AppointmentState state) {
         this.state = state;
@@ -205,8 +205,9 @@ public class Appointment implements Observable, Serializable
     }
     
     /**
-     *
-     * @param o
+     * Observer pattern method, used for notification purposes. 
+     * Saves the instance of Patient account assigned to the appointment.
+     * @param o Patient account instance
      */
     @Override
     public void registerObserver(Observer o) 
@@ -215,7 +216,8 @@ public class Appointment implements Observable, Serializable
     }
 
     /**
-     *
+     * Observer pattern method, used for notification purposes. 
+     * Informs the Patient about the approval of the appointment.
      */
     @Override
     public void notifyObserver() 
@@ -224,7 +226,7 @@ public class Appointment implements Observable, Serializable
     }
     
     /**
-     *
+     * Changes the state of appointment to APPROVED, at the same time notifying the user about that change.
      */
     public void processRequest()
     {
@@ -233,9 +235,9 @@ public class Appointment implements Observable, Serializable
     }
     
     /**
-     *
-     * @param notes
-     * @param medicine
+     * Creates prescription for the appointment.
+     * @param notes Doctor's notes written at the appointment
+     * @param medicine Medicine prescribed by doctor with dosage information
      */
     public void createPrescription(Notes notes, ArrayList<PrescriptionMedicine> medicine)
     {

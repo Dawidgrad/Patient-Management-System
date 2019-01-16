@@ -11,6 +11,15 @@ package PatientManagement.Model.Interfaces;
  */
 public interface Observable 
 {
+
+    /**
+     * Observer pattern. Saves the observer instance.
+     * @param o Observer instance
+     */
     public void registerObserver(Observer o);
+
+    /**
+     * Observer pattern. Notifies the observers about the change with the Observable object.
+     */
     public void notifyObserver();
 }
