@@ -29,6 +29,10 @@ public class AppointmentListSingleton implements Serializable
         appointmentList = new ArrayList<Appointment>();
     }
     
+    /**
+     *
+     * @return
+     */
     public static AppointmentListSingleton getInstance()
     {
         if (uniqueInstance == null)
@@ -50,6 +54,13 @@ public class AppointmentListSingleton implements Serializable
         return uniqueInstance;
     }
     
+    /**
+     *
+     * @param patient
+     * @param date
+     * @param doctor
+     * @param time
+     */
     public void addRequest(Patient patient, Date date, Doctor doctor, String time)
     {
         int highest = 0;
@@ -66,6 +77,11 @@ public class AppointmentListSingleton implements Serializable
         appointmentList.add(request);
     }
     
+    /**
+     *
+     * @param state
+     * @return
+     */
     public ArrayList<Appointment> getStateList(AppointmentState state)
     {
         ArrayList<Appointment> targetAppointments = new ArrayList<Appointment>();
@@ -81,6 +97,10 @@ public class AppointmentListSingleton implements Serializable
         return targetAppointments;
     }
     
+    /**
+     *
+     * @param appointmentId
+     */
     public void approveRequest(int appointmentId)
     {
         Appointment targetAppointment = null;
@@ -97,6 +117,10 @@ public class AppointmentListSingleton implements Serializable
         targetAppointment.processRequest();
     }
     
+    /**
+     *
+     * @param appointmentId
+     */
     public void removeRequest(int appointmentId)
     {        
         for (Appointment appointment : appointmentList)
@@ -109,6 +133,13 @@ public class AppointmentListSingleton implements Serializable
         }
     }
     
+    /**
+     *
+     * @param doctor
+     * @param patient
+     * @param date
+     * @param time
+     */
     public void addAppointment(Doctor doctor, Patient patient, Date date, String time)
     {
         Appointment appointment = new Appointment(nextAppointmentId, patient, date, doctor, time, AppointmentState.APPROVED);
@@ -117,6 +148,11 @@ public class AppointmentListSingleton implements Serializable
         nextAppointmentId++;
     }
     
+    /**
+     *
+     * @param patient
+     * @return
+     */
     public ArrayList<Appointment> getPatientHistory(Patient patient)
     {
         ArrayList<Appointment> targetAppointments = new ArrayList<Appointment>();
@@ -132,6 +168,11 @@ public class AppointmentListSingleton implements Serializable
         return targetAppointments;
     }
     
+    /**
+     *
+     * @param doctor
+     * @return
+     */
     public ArrayList<Appointment> getScheduledAppointments(Doctor doctor)
     {
         ArrayList<Appointment> targetAppointments = new ArrayList<Appointment>();
@@ -147,12 +188,21 @@ public class AppointmentListSingleton implements Serializable
         return targetAppointments;
     }
     
+    /**
+     *
+     * @param appointment
+     */
     public void completeAppointment(Appointment appointment)
     {
         appointment.setState(AppointmentState.ARCHIVED);
         appointment.getPatient().completeAppointment();
     }
     
+    /**
+     *
+     * @param appointmentId
+     * @return
+     */
     public Appointment getAppointment(int appointmentId)
     {
         Appointment targetAppointment = null;

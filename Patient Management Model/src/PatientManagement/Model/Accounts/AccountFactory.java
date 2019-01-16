@@ -13,5 +13,16 @@ import PatientManagement.Model.Accounts.AccountListSingleton.AccountType;
  */
 public abstract class AccountFactory 
 {
+
+    /**
+     * Creates the instance of an account with the type specified at run time.
+     * @param name Account holder's first name
+     * @param surname Account holder's last name
+     * @param address Account holder's address
+     * @param idNumber Account holder's ID number
+     * @param password Account holder's password
+     * @param type Type of the account to be created
+     * @return Account instance created by the factory
+     */
     public abstract Account createAccount(String name, String surname, String address, String idNumber, String password, AccountType type);
 }

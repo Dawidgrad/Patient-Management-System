@@ -15,11 +15,19 @@ public class Notes implements Serializable
 {
     private String note;
     
+    /**
+     *
+     * @param note
+     */
     public Notes(String note)
     {
         this.note = note;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getNote() 
     {
         return note;

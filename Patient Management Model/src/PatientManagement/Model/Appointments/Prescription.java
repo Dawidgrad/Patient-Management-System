@@ -17,16 +17,29 @@ public class Prescription implements Serializable
     private Notes notes;
     private ArrayList<PrescriptionMedicine> medicine;
     
+    /**
+     *
+     * @param notes
+     * @param medicine
+     */
     public Prescription(Notes notes, ArrayList<PrescriptionMedicine> medicine)
     {
         this.notes = notes;
         this.medicine = medicine;
     }
 
+    /**
+     *
+     * @return
+     */
     public Notes getNotes() {
         return notes;
     }
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<PrescriptionMedicine> getMedicine() {
         return medicine;
     }

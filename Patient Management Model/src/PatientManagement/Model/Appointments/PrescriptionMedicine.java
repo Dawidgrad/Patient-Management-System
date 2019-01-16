@@ -18,6 +18,12 @@ public class PrescriptionMedicine implements Serializable
     private int quantity;
     private String dosage;
     
+    /**
+     *
+     * @param medicine
+     * @param quantity
+     * @param dosage
+     */
     public PrescriptionMedicine(Medicine medicine, int quantity, String dosage)
     {
         this.medicine = medicine;
@@ -25,6 +31,10 @@ public class PrescriptionMedicine implements Serializable
         this.dosage = dosage;
     }
     
+    /**
+     *
+     * @return
+     */
     public String getDetails()
     {
         String details = "Medicine: " + medicine.getName() + " Quantity: " + quantity + " Dosage: " + dosage;

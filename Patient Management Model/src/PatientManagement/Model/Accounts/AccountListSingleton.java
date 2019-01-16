@@ -16,7 +16,11 @@ import java.util.ArrayList;
  */
 public class AccountListSingleton implements Serializable
 {
-    public static enum AccountType implements Serializable {ADMINISTRATOR, DOCTOR, SECRETARY, PATIENT}
+
+    /**
+     * Type of the user's account. Each type provides different functionality.
+     */
+    public static enum AccountType implements Serializable { ADMINISTRATOR, DOCTOR, SECRETARY, PATIENT}
     
     private static AccountListSingleton uniqueInstance = null;
     private ArrayList<Account> accountList;
@@ -28,6 +32,10 @@ public class AccountListSingleton implements Serializable
         accountCount = 1;
     }
     
+    /**
+     * Method to get the instance of the singleton to prevent from creating multiple instances
+     * @return Returns instance of existing singleton
+     */
     public static AccountListSingleton getInstance()
     {
         if (uniqueInstance == null)
@@ -49,6 +57,12 @@ public class AccountListSingleton implements Serializable
         return uniqueInstance;
     }
     
+    /**
+     * Gets next available id number that can be used in account creation. 
+     * Concatenates different letter used in ID number depending on the account type passed.
+     * @param type Account type used in ID number String
+     * @return Returns ID number String that is appropriate for account type used
+     */
     public String getNextIdNumber(AccountType type)
     {
         String letter = "";
@@ -75,6 +89,11 @@ public class AccountListSingleton implements Serializable
         return idNumber;
     }
     
+    /**
+     * 
+     * @param newAccount
+     * @return
+     */
     public boolean addAccount(Account newAccount)
     {
         boolean uniqueAccount = true;
@@ -95,11 +114,21 @@ public class AccountListSingleton implements Serializable
         return uniqueAccount;
     }
     
+    /**
+     * Removes the account from the account list
+     * @param accountToRemove Account to remove
+     */
     public void removeAccount(Account accountToRemove)
     {
         accountList.remove(accountToRemove);
     }
     
+    /**
+     * Provides a list of accounts based on account type passed.
+     * E.g. By passing DOCTOR account type, the method will return accounts of that type.
+     * @param type Type of the account
+     * @return List of accounts of given type
+     */
     public ArrayList<Account> getAccountTypeList(AccountType type)
     {
         ArrayList<Account> typeList = new ArrayList<Account>();
@@ -115,6 +144,11 @@ public class AccountListSingleton implements Serializable
         return typeList;
     }
     
+    /**
+     * Method returns the instance of an account that has given ID number
+     * @param idNumber ID number of the account instance 
+     * @return Account instance with ID Number passed to the method
+     */
     public Account getAccount(String idNumber)
     {
         Account targetAccount = null;
