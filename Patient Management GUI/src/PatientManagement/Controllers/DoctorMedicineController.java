@@ -139,9 +139,8 @@ public class DoctorMedicineController
                 int quantity = view.getSpnAmount();
                 float price = view.getSpnPrice();
                 MedicineType type = getMedicineTypeSelection();
-
-                StockSingleton stock = StockSingleton.getInstance();
-                stock.createNewMedicine(name, description, quantity, price, 0, type);
+                
+                model.createNewMedicine(name, description, quantity, price, 0, type);
                 JOptionPane.showMessageDialog(null, "Medicine added successfully!");
             }
             catch (Exception ex)

@@ -13,6 +13,7 @@ import PatientManagement.Model.Appointments.Prescription;
 import PatientManagement.Model.Appointments.PrescriptionMedicine;
 import PatientManagement.Model.Medicines.Medicine;
 import PatientManagement.Model.Medicines.OrderRequestSingleton;
+import PatientManagement.Model.Medicines.StockSingleton;
 import PatientManagement.Model.Reviews.DoctorFeedback;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -93,5 +94,20 @@ public class Doctor extends Account implements Serializable
         
         AppointmentListSingleton appointments = AppointmentListSingleton.getInstance();
         appointments.completeAppointment(appointment);
+    }
+    
+    /**
+     * Method utilising factory to create new instance of medicine.
+     * @param name Medicine name
+     * @param description Medicine description
+     * @param quantity Medicine quantity in pack / bottle
+     * @param price Medicine price in GBP
+     * @param amount Medicine amount in stock
+     * @param type Type of the medicine
+     */
+    public void createNewMedicine(String name, String description, int quantity, float price, int amount, StockSingleton.MedicineType type) 
+    {
+        StockSingleton stock = StockSingleton.getInstance();
+        stock.createNewMedicine(name, description, quantity, price, amount, type);
     }
 }

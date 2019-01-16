@@ -24,6 +24,10 @@ public class OrderRequestSingleton implements Serializable
         medicineToOrder = new ArrayList<MedicineOrder>();
     }
     
+    /**
+     * Method to get the instance of the singleton to prevent from creating multiple instances.
+     * @return Returns instance of existing order request list singleton
+     */
     public static OrderRequestSingleton getInstance()
     {
         if (uniqueInstance == null)
@@ -45,6 +49,11 @@ public class OrderRequestSingleton implements Serializable
         return uniqueInstance;
     }
     
+    /**
+     * Adds order request to the list.
+     * @param medicine Medicine instance to be ordered
+     * @param amountToOrder Amount of the medicine to be ordered
+     */
     public void addOrderRequest(Medicine medicine, int amountToOrder)
     {
         int highest = 0;
@@ -61,16 +70,31 @@ public class OrderRequestSingleton implements Serializable
         medicineToOrder.add(order);
     }
     
+    /**
+     * Processes the order request by removing it from the list.
+     * @param order Medicine order instance to process
+     */
     public void processRequest(MedicineOrder order)
     {
+        StockSingleton medicineList = StockSingleton.getInstance();
+        medicineList.orderMedicine(order.getMedicine().getMedicineId(), order.getAmountToOrder());
         medicineToOrder.remove(order);
     }
     
+    /**
+     * Gets the complete medicine order list.
+     * @return Current list of medicines to be ordered, including their amount
+     */
     public ArrayList<MedicineOrder> getOrderList()
     {
         return medicineToOrder;
     }
     
+    /**
+     * Gets the order instance with given order ID
+     * @param orderId ID number of the order instance to return
+     * @return Order instance with given ID number
+     */ 
     public MedicineOrder getOrder(int orderId)
     {
         MedicineOrder targetOrder = null;

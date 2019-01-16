@@ -14,6 +14,17 @@ import PatientManagement.Model.Medicines.StockSingleton.MedicineType;
 public class ConcreteMedicineFactory extends MedicineFactory
 {
 
+    /**
+     * Creates the instance of the medicine with the type specified at run time.
+     * @param medicineId ID number of the medicine
+     * @param name Medicine name
+     * @param description Description of the medicine
+     * @param quantity Medicine quantity
+     * @param price Medicine price
+     * @param amount Amount of medicine in stock
+     * @param type Type of the medicine (Tablet, Liquid, Capsule)
+     * @return New instance of the medicine of specified type
+     */
     @Override
     public Medicine createNewMedicine(int medicineId, String name, String description, int quantity, float price, int amount, MedicineType type) 
     {

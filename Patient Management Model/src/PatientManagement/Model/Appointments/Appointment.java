@@ -52,12 +52,12 @@ public class Appointment implements Observable, Serializable
     private Prescription prescription;
     
     /**
-     *
-     * @param id
-     * @param patient
-     * @param date
-     * @param doctor
-     * @param time
+     * Creates new appointment instance.
+     * @param id ID number of the appointment
+     * @param patient Patient account instance assigned to the appointment
+     * @param date Scheduled date of the appointment
+     * @param doctor Doctor account instance assigned to the appointment
+     * @param time Scheduled time of the appointment
      */
     public Appointment(int id, Patient patient, Date date, Doctor doctor, String time)
     {

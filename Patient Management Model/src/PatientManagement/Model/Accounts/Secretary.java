@@ -108,10 +108,7 @@ public class Secretary extends Account implements Serializable
      */
     public void orderMedicine(MedicineOrder order)
     {
-        StockSingleton medicineList = StockSingleton.getInstance();
         OrderRequestSingleton orderRequests = OrderRequestSingleton.getInstance();
-        
-        medicineList.orderMedicine(order.getMedicine().getMedicineId(), order.getAmountToOrder());
         orderRequests.processRequest(order);
     }
 }
