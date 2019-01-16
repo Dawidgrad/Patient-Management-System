@@ -118,12 +118,14 @@ public class DoctorAppointmentView extends javax.swing.JFrame {
                         .addComponent(btnBack)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel2)
-                        .addGap(49, 49, 49)
+                        .addGap(101, 101, 101)
                         .addComponent(btnLogOut))
                     .addComponent(jScrollPane2)
-                    .addComponent(jLabel1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(btnInspectHistory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnStartAppointment, javax.swing.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE))
+                    .addComponent(btnStartAppointment, javax.swing.GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(

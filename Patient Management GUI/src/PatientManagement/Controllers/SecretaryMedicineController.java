@@ -184,11 +184,10 @@ public class SecretaryMedicineController
         {
             try
             {
-                StockSingleton medicineList = StockSingleton.getInstance();
                 int amountToGive = view.getSpnAmountToGive();
                 int medicineId = getSelectedMedicineId();
             
-                boolean success = medicineList.giveMedicine(medicineId, amountToGive);  
+                boolean success = model.giveMedicine(medicineId, amountToGive);  
                 
                 if (success)
                 {

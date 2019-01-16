@@ -111,4 +111,12 @@ public class Secretary extends Account implements Serializable
         OrderRequestSingleton orderRequests = OrderRequestSingleton.getInstance();
         orderRequests.processRequest(order);
     }
+    
+    public boolean giveMedicine(int medicineId, int amount)
+    {
+        StockSingleton medicineList = StockSingleton.getInstance();
+        boolean success = medicineList.giveMedicine(medicineId, amount); 
+        
+        return success;
+    }
 }

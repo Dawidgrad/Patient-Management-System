@@ -11,6 +11,7 @@ import PatientManagement.Model.Appointments.AppointmentListSingleton;
 import PatientManagement.Model.Interfaces.Observable;
 import PatientManagement.Model.Interfaces.Observer;
 import PatientManagement.Model.PatientAccountManagement.AccountTerminationSingleton;
+import PatientManagement.Model.PatientAccountManagement.AccountVerificationSingleton;
 import PatientManagement.Model.Reviews.ReviewListSingleton;
 import java.io.Serializable;
 import java.util.Date;
@@ -33,7 +34,9 @@ public class Patient extends Account implements Observer, Serializable
     private boolean appointmentJustApproved;
     
     /**
-     * Constructor creating instance of patient account.
+     * Constructor creating instance of patient account. 
+     * It automatically adds the Patient account to account verification list,
+     * so then one of the Secretaries can verify it.
      * @param name Patient's first name
      * @param surname Patient's last name
      * @param address Patient's address
@@ -48,6 +51,9 @@ public class Patient extends Account implements Observer, Serializable
         
         this.age = age;
         this.sex = sex;
+        
+        AccountVerificationSingleton verificationList = AccountVerificationSingleton.getInstance();
+        verificationList.addVerificationRequest(this);
     }
 
     /**

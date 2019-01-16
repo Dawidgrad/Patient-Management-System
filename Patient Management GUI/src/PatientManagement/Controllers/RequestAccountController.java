@@ -88,7 +88,6 @@ public class RequestAccountController
                     String idNumber = accountList.getNextIdNumber(AccountType.PATIENT);
 
                     Patient request = new Patient(firstName, lastName, address, idNumber, password, age, sex);
-                    model.addVerificationRequest(request);
 
                     JOptionPane.showMessageDialog(null, "Account requested successfully!" + System.lineSeparator() 
                             + "Your new ID is " + idNumber + "." + System.lineSeparator()
