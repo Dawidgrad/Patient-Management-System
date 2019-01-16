@@ -15,11 +15,19 @@ public class Comment implements Serializable
 {
     private String commentText;
 
+    /**
+     * Creates instance of the review comment.
+     * @param comment Text of the comment
+     */
     public Comment(String comment)
     {
         this.commentText = comment;
     }
     
+    /**
+     * Gets the comment text
+     * @return Comment text 
+     */
     public String getCommentText() {
         return commentText;
     }

@@ -26,6 +26,10 @@ public class AccountVerificationSingleton implements Serializable
         accountsToVerify = new ArrayList<Patient>();
     }
     
+    /**
+     * Method to get the instance of the singleton to prevent from creating multiple instances.
+     * @return Returns instance of existing account verification request list singleton
+     */
     public static AccountVerificationSingleton getInstance()
     {
         if (uniqueInstance == null)
@@ -47,16 +51,28 @@ public class AccountVerificationSingleton implements Serializable
         return uniqueInstance;
     }
     
+    /**
+     * Gets the complete list of all newly created patient accounts to verify.
+     * @return List of patient accounts to verify
+     */
     public ArrayList<Patient> getVerificationRequests()
     {
         return accountsToVerify;
     }
     
+    /**
+     * Adds newly created account to verification list to get verified by Secretary.
+     * @param patient Patient account instance to verify
+     */
     public void addVerificationRequest(Patient patient)
     {
         accountsToVerify.add(patient);
     }
     
+    /**
+     * Verifies the patient account instance and adds it to account list
+     * @param patient Patient account instance to verify
+     */
     public void verifyAccount(Patient patient)
     {
         AccountListSingleton accountList = AccountListSingleton.getInstance();
@@ -64,6 +80,11 @@ public class AccountVerificationSingleton implements Serializable
         accountsToVerify.remove(patient);
     }
     
+    /**
+     * Gets the patient account instance from verification list based on the ID number
+     * @param idNumber ID number of the account to verify
+     * @return Instance of the Patient account to verify
+     */
     public Patient getPatient(String idNumber)
     {
         Patient targetAccount = null;

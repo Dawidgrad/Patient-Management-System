@@ -18,6 +18,10 @@ public class DoctorFeedback implements Serializable
     private ArrayList<String> comments;
     private String administratorFeedback;
     
+    /**
+     * Creates instance of the feedback for the doctor.
+     * @param reviews List of patient reviews
+     */
     public DoctorFeedback(ArrayList<Review> reviews)
     {
         averageRating = calculateAverageRating(reviews);
@@ -29,22 +33,34 @@ public class DoctorFeedback implements Serializable
         }
     }
 
+    /**
+     * Gets the average rating from the user reviews
+     * @return Average rating between 1 to 10
+     */
     public double getAverageRating() {
         return averageRating;
     }
 
-    public void setAverageRating(double averageRating) {
-        this.averageRating = averageRating;
-    }
-
+    /**
+     * Gets patient comments
+     * @return List of patient comments
+     */
     public ArrayList<String> getComments() {
         return comments;
     }
 
+    /**
+     * Gets feedback provided by an administrator for the doctor.
+     * @return Text feedback for the doctor
+     */
     public String getAdministratorFeedback() {
         return administratorFeedback;
     }
 
+    /**
+     * Sets feedback provided by an administrator for the doctor.
+     * @param administratorFeedback Text feedback for the doctor
+     */
     public void setAdministratorFeedback(String administratorFeedback) {
         this.administratorFeedback = administratorFeedback;
     }

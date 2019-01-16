@@ -90,9 +90,9 @@ public class AccountListSingleton implements Serializable
     }
     
     /**
-     * 
-     * @param newAccount
-     * @return
+     * Add new account to account list.
+     * @param newAccount Account instance to add to the list
+     * @return True / False value indicating if the account was added
      */
     public boolean addAccount(Account newAccount)
     {

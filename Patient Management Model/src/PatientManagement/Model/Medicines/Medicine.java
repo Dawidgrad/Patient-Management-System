@@ -109,7 +109,7 @@ public abstract class Medicine implements Serializable
 
     /**
      * Abstract method to get the quantity units information, such as "ml" or "tablets".
-     * @return
+     * @return Quantity units information
      */
     public abstract String getQuantityInformation();
     
