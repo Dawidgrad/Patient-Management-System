@@ -128,6 +128,9 @@ public abstract class Medicine implements Serializable
      */
     public void getFromStock(int amount)
     {
-        this.amountInStock -= amount;
+        if (this.amountInStock - amount >= 0)
+        {
+            this.amountInStock -= amount;
+        }
     }
 }
