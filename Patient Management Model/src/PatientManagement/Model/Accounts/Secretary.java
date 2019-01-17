@@ -112,6 +112,12 @@ public class Secretary extends Account implements Serializable
         orderRequests.processRequest(order);
     }
     
+    /**
+     * Gives a specified medicine in specified amount to the patient.
+     * @param medicineId ID number of the medicine to give
+     * @param amount Amount of the medicine to give
+     * @return True / False value indicating if the process was successful
+     */
     public boolean giveMedicine(int medicineId, int amount)
     {
         StockSingleton medicineList = StockSingleton.getInstance();

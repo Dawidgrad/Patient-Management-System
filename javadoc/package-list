@@ -1,0 +1,7 @@
+PatientManagement.Model
+PatientManagement.Model.Accounts
+PatientManagement.Model.Appointments
+PatientManagement.Model.Interfaces
+PatientManagement.Model.Medicines
+PatientManagement.Model.PatientAccountManagement
+PatientManagement.Model.Reviews

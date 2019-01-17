@@ -34,7 +34,7 @@ public class PatientManagementGUI {
         ReadSerialisedObjects();
         
         AccountListSingleton list = AccountListSingleton.getInstance();
-        list.addAccount(new Administrator("root", "root", "root", "root", "root"));
+        list.addAccount(new Administrator("root", "root", "root", "A0000", "root"));
         
         LoginView view = new LoginView();
         LoginSystemSingleton model = LoginSystemSingleton.getInstance();

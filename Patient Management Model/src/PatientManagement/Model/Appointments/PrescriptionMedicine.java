@@ -37,7 +37,7 @@ public class PrescriptionMedicine implements Serializable
      */
     public String getDetails()
     {
-        String details = "Medicine: " + medicine.getName() + " Quantity: " + quantity + " Dosage: " + dosage;
+        String details = "Medicine: " + medicine.getName() + " Quantity: " + quantity + medicine.getQuantityInformation() + " Dosage: " + dosage;
                 
         return details;
     }

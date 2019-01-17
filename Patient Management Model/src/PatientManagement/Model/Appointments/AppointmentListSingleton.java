@@ -62,19 +62,11 @@ public class AppointmentListSingleton implements Serializable
      * @param time Requested time of the appointment
      */
     public void addRequest(Patient patient, Date date, Doctor doctor, String time)
-    {
-        int highest = 0;
-        
-        for (Appointment appointment : appointmentList)
-        {
-            if (appointment.getAppointmentId() > highest)
-            {
-                highest = appointment.getAppointmentId();
-            }
-        }
-        
-        Appointment request = new Appointment(highest + 1, patient, date, doctor, time);
+    {        
+        Appointment request = new Appointment(nextAppointmentId, patient, date, doctor, time);
         appointmentList.add(request);
+        
+        nextAppointmentId++;
     }
     
     /**
